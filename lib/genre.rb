@@ -1,5 +1,7 @@
 class Genre
   extend Concerns::Findable
+  extend Persistable
+  include Persistable
 
   attr_accessor :name
   @@all = []
@@ -15,14 +17,6 @@ class Genre
 
   def self.all_sorted
     all.sort_by!{|genre| genre.name}
-  end
-
-  def self.destroy_all
-    @@all = []
-  end
-
-  def save
-    @@all << self
   end
 
   def songs

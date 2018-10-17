@@ -2,6 +2,8 @@
 
 class Artist
   extend Concerns::Findable
+  extend Persistable
+  include Persistable
 
   attr_accessor :name, :artist, :songs
   @@all = []
@@ -35,14 +37,6 @@ class Artist
 
   def genres
     @songs.collect {|song| song.genre}.uniq
-  end
-
-  def self.destroy_all
-    @@all = []
-  end
-
-  def save
-    @@all << self
   end
 
   def self.create(name)
