@@ -1,5 +1,9 @@
+require 'pry'
+
 class Genre
   attr_accessor :name, :songs
+
+  extend Concerns::Findable
 
   @@all =  []
 
@@ -24,5 +28,9 @@ class Genre
     genre= Genre.new(name)
     genre.save
     genre
+  end
+
+  def artists
+    songs.collect{ |song| song.artist}.uniq
   end
 end
