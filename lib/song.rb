@@ -49,4 +49,19 @@ class Song
   def self.find_or_create_by_name(name)
     find_by_name(name) || create(name)
   end
+
+  def self.new_from_filename(file_name)
+    file_parts = file_name.split(" - ")
+    artist_name = file_parts[0]
+    song_name = file_parts[1]
+    genre = file_parts[2]
+
+    Artist.find_or_create_by_name(artist_name)
+    Genre.find_or_create_by_name(genre)
+  end
+
+  def create_from_filename
+
+  end
+
 end
