@@ -31,5 +31,12 @@ class Artist
   def add_song(song)
     # binding.pry
     song.artist = self unless song.artist
+    songs << song if !songs.include? song
+  end
+
+  def genres
+    songs.each do |song|
+      song.genre
+    end
   end
 end
