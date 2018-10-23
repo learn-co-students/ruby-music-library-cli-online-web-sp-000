@@ -55,10 +55,11 @@ class Song
     artist_name = file_parts[0]
     song_name = file_parts[1]
     genre = file_parts[2]
-    binding.pry
+    # binding.pry
 
     Artist.find_or_create_by_name(artist_name)
     Genre.find_or_create_by_name(genre)
+    Song.create(song_name)
   end
 
   def create_from_filename
