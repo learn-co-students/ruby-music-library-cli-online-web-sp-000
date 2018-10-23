@@ -32,11 +32,11 @@ class Artist
   def add_song(song)
     # binding.pry
     song.artist = self unless song.artist
-    songs << song if !songs.include? song
+    songs << song if !songs.include?(song)
   end
 
   def genres
     # binding.pry
-    songs.collect{ |song| song.genre}.uniq
+    songs.collect{ |song| song.genre }.uniq
   end
 end
