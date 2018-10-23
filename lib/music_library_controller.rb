@@ -1,5 +1,5 @@
 class MusicLibraryController
-  def initialize(file)
+  def initialize(file_path = './db/mp3s')
     file
   end
 end
