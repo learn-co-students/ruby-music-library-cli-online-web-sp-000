@@ -1,6 +1,7 @@
 require 'pry'
 
 class MusicLibraryController
+
   def initialize(file_path = './db/mp3s')
     @file_path = file_path
     MusicImporter.new(file_path).import
@@ -31,8 +32,44 @@ class MusicLibraryController
       # binding.pry
       puts "#{index}. #{instance.artist.name} - #{instance.name} - #{instance.genre.name}"
     end
-
   end
 
+  def list_artists
+    sorted = Artist.all.sort{ |instance1, instance2| instance1.name <=> instance2.name }
+    # binding.pry
+    sorted.each.with_index(1) do |instance, index|
+      puts "#{index}. #{instance.name}"
+    end
+  end
 
+  def list_genres
+    sorted = Genre.all.sort{ |instance1, instance2| instance1.name <=> instance2.name }
+    sorted.each.with_index(1) do |instance, index|
+      puts "#{index}. #{instance.name}"
+    end
+  end
+
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    user_input = gets.strip
+    # binding.pry
+
+    filtered_by_artist = Artist.all.map do |instance|
+      # binding.pry
+      instance.name == user_input
+    end
+
+    if filtered_by_artist.include?(true)
+      sorted_by_artist = filtered_by_artist.sort do |instance1, instance2|
+        # binding.pry
+        instance1.name <=> instance2.name
+      end
+      sorted_by_artist.each.with_index(1) do |instance, index|
+        binding.pry
+        puts "#{index}. #{instance.name} - #{instance.genre.name}"
+      end
+    else
+      list_songs_by_artist
+    end
+  end
 end
