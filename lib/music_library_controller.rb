@@ -59,13 +59,13 @@ class MusicLibraryController
       instance.name == user_input
     end
 
-    if filtered_by_artist.include?(true)
+    if filtered_by_artist.include?(user_input)
       sorted_by_artist = filtered_by_artist.sort do |instance1, instance2|
         # binding.pry
         instance1.name <=> instance2.name
       end
       sorted_by_artist.each.with_index(1) do |instance, index|
-        binding.pry
+        # binding.pry
         puts "#{index}. #{instance.name} - #{instance.genre.name}"
       end
     else
