@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicLibraryController
   def initialize(file_path = './db/mp3s')
     @file_path = file_path
@@ -24,7 +26,13 @@ class MusicLibraryController
   end
 
   def list_songs
+    sorted = Song.all.sort{ |instance1, instance2| instance1.name <=> instance2.name }
+    sorted.each.with_index(1) do |instance, index|
+      # binding.pry
+      puts "#{index}. #{instance.artist.name} - #{instance.name} - #{instance.genre.name}"
+    end
+
   end
-  
+
 
 end
