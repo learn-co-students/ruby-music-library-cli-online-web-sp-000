@@ -1,6 +1,7 @@
 require 'pry'
 
 class MusicLibraryController
+  extend Concerns::Findable
 
   def initialize(file_path = './db/mp3s')
     @file_path = file_path
@@ -22,6 +23,21 @@ class MusicLibraryController
       puts "What would you like to do?"
 
       input = gets.chomp
+
+      case input
+      when "list songs"
+        list_songs
+      when "list artists"
+        list_artists
+      when "list genres"
+        list_genres
+      when "list artist"
+        list_songs_by_artist
+      when "list genre"
+        list_songs_by_genre
+      when "play song"
+        play_song
+      end
     end
   end
 
@@ -43,5 +59,36 @@ class MusicLibraryController
     end
   end
 
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets.strip
 
+    if artist = Artist.find_by_name(input)
+      artist.songs.sort{ |instance1, instance2| instance1.name <=> instance2.name }.each.with_index(1) do |instance, index|
+        puts "#{index}. #{instance.name} - #{instance.genre.name}"
+      end
+    end
+  end
+
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.strip
+
+    if genre = Genre.find_by_name(input)
+      genre.songs.sort{ |instance1, instance2| instance1.name <=> instance2.name }.each.with_index(1) do |instance, index|
+        puts "#{index}. #{instance.artist.name} - #{instance.name}"
+      end
+    end
+  end
+
+  def play_song
+    puts "Which song number would you like to play?"
+    input = gets.strip.to_i
+
+    if song = Song.all.sort { |instance1, instance2| instance1.name <=> instance2.name } [input - 1]
+      if input > 1 && input <= Song.all.length
+        puts "Playing #{song.name} by #{song.artist.name}"
+      end
+    end
+  end
 end
