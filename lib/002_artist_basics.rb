@@ -2,8 +2,6 @@ class Artist
     
     @@all = []
 
-
-
     attr_accessor :name
     attr_reader :songs
     
@@ -29,11 +27,6 @@ class Artist
         self
     end
 
-#add_song
-#assigns the current artist to the song's 'artist' property (song belongs to artist)
-#does not assign the artist if the song already has an artist
-#adds the song to the current artist's 'songs' collection
-#does not add the song to the current artist's collection of songs if it already exists therein
     def add_song(song)
         if song.artist == nil
             song.artist = self
@@ -41,6 +34,14 @@ class Artist
         if @songs.include?(song)==false
             @songs << song
         end
+    end
+
+    def genres
+        @saveme = []
+        @songs.map do |song|
+            @saveme << song.genre if @saveme.include?(song.genre) == false
+        end
+        @saveme
     end
 
 end
