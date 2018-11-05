@@ -1,5 +1,7 @@
 require 'pry'
 class Song
+    extend Concerns::Findable
+    extend Concerns::Findable::ClassMethods
     
     @@all = []
     
@@ -39,14 +41,25 @@ class Song
     end
 
     def self.create(mysong)
-        self.new(mysong).save
-        self
+        song = Song.new(mysong)
+        song.save
+        song
     end
 
-    def self.find_by_name(myname)
-        @@all.detect do |obj|
-            obj.name == myname
-            #     binding.pry
-        end
+    def self.new_from_filename(filename)
+        artistname = filename.split(" - ")[0]
+        songname = filename.split(" - ")[1]
+        genrename = filename.split(" - ")[2].split(".")[0]
+
+        myartist = Artist.find_or_create_by_name(artistname)
+        mygenre = Genre.find_or_create_by_name(genrename)
+
+        song=self.new(songname,myartist,mygenre)
+    end
+
+    def self.create_from_filename(filename)
+        song= self.new_from_filename(filename)
+        song.save
+        song
     end
 end
