@@ -29,13 +29,10 @@ class MusicLibraryController
     when "play song"
       play_song
     when "exit"
-
+#     exit?
     else
       call
     end
-#    if input != "exit"
-#      call
-#    end
   end
 
   def list_songs
