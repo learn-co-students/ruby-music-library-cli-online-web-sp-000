@@ -74,8 +74,8 @@ describe "MusicImporter" do
     let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
 
     it "imports the files into the library by invoking Song.create_from_filename" do
-      expect(Song).to receive(:create_from_filename).with("Action Bronson - Larry Csonka - indie.mp3")
       expect(Song).to receive(:create_from_filename).with("Jurassic 5 - What's Golden - hip-hop.mp3")
+      expect(Song).to receive(:create_from_filename).with("Action Bronson - Larry Csonka - indie.mp3")
       expect(Song).to receive(:create_from_filename).with("Real Estate - Green Aisles - country.mp3")
       expect(Song).to receive(:create_from_filename).with("Real Estate - It's Real - hip-hop.mp3")
       expect(Song).to receive(:create_from_filename).with("Thundercat - For Love I Come - dance.mp3")

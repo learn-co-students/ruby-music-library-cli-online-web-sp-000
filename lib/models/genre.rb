@@ -1,20 +1,13 @@
 class Genre
+
   extend Concerns::Findable
-  attr_accessor :name, :songs
-  @@all=[]
+
+  attr_accessor :name
+  @@all = []
 
   def initialize(name)
     @name = name
-    @songs=[]
-  end
-
-  def songs
-    @songs
-  end
-
-  def add_song(song)
-    song.genre = self
-    @songs << song
+    @songs = []
   end
 
   def self.all
@@ -52,4 +45,5 @@ class Genre
     end
     artists.uniq
   end
+
 end
