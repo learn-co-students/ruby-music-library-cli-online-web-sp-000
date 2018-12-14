@@ -3,6 +3,7 @@ class Genre
   
   extend Modules::ClassMethods
   include Modules::InstanceMethods
+  extend Concerns::Findable
   
   @@all = []
   def initialize(name)

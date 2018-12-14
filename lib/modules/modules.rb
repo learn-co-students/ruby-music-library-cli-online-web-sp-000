@@ -7,15 +7,6 @@ module Modules
     def create(name)
       self.new(name)
     end
-      
-    def find_by_name(name)
-      self.all.find{|i| i.name == name}
-    end
-    
-    def find_or_create_by_name(name)
-      obj = find_by_name(name)
-      self.new(name) if !!obj
-    end
   end
   
   module InstanceMethods
@@ -25,6 +16,19 @@ module Modules
     
     def save
       self.class.all << self
+    end
+  end
+end
+
+module Concerns
+  module Findable
+    def find_by_name(name)
+      self.all.find{|i| i.name == name}
+    end
+    def find_or_create_by_name(name)
+      obj = find_by_name(name)
+      obj = self.create(name) if !obj
+      obj
     end
   end
 end
