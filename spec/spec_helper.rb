@@ -1,6 +1,7 @@
 require_relative "../config/environment.rb"
 
 RSpec.configure do |config|
+  config.fail_fast = true
   config.order = :default
   config.before(:each) do
     ["Song", "Genre", "Artist"].each do |class_name|
