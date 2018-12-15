@@ -1,5 +1,8 @@
 
 class MusicLibraryController
+    extend Concerns::Sortables
+    include Concerns::Sortables
+    
     attr_accessor :mp3Path
 
 # initialize the controller to import the files from the music importer.
@@ -46,24 +49,17 @@ class MusicLibraryController
             end
         end
     end
-  # I see redundant code below. I would like to work on putting it in module at some point.
-  
+    
     def list_songs 
-        Song.all.sort{|a, b| a.name <=> b.name}.each_with_index do |item, index|
-        puts "#{index +1}. #{item.name}"
-        end
+       sort_with_index
     end
      
-   def list_artists
-        Artist.all.sort{|a, b| a.name <=> b.name}.each_with_index do |item, index|
-        puts "#{index +1}. #{item.artist.name}"
-        end
+    def list_artists
+        sort_with_index
     end
         
     def list_genres
-        Genre.all.sort{|a, b| a.name <=> b.name}.each_with_index do |item, index|
-        puts "#{index +1}. #{item.genre.name}"
-        end
+       sort_with_index
     end
   
     def list_songs_by_artist
@@ -71,9 +67,7 @@ class MusicLibraryController
         artist_name = gets.strip
     
         if artist = Artist.find_by_name(artist_name)
-          artist.songs.sort{|a, b| a.name <=> b.name}.each_with_index do |item, index|
-            puts "#{index +1}. #{item.name} - #{item.genre.name}"
-          end
+           list_with_index
         end
     end
     
@@ -82,9 +76,7 @@ class MusicLibraryController
         genre_type = gets.strip
     
         if genre = Genre.find_by_name(genre_type)
-            genre.songs.sort{|a, b| a.name <=> b.name}.each_with_index do |item, index|
-             puts "#{index +1}. #{item.artist.name} - #{item.name}"
-            end
+            list_with_index
         end
     end
 
