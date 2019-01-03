@@ -1,9 +1,12 @@
 class Artist
   attr_accessor :name
+  attr_reader :songs, :genres
   @@all = []
 
   def initialize(name)
     self.name = name
+    @songs = []
+    @genres = []
   end
 
   def self.all
@@ -23,4 +26,15 @@ class Artist
     artist.save
     artist
   end
+
+  def add_song(song)
+    if !song.artist
+      song.artist = self
+    end
+
+    if !@songs.include?(song)
+      @songs << song
+    end
+  end
+
 end
