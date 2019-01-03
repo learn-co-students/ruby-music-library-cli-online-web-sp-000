@@ -39,6 +39,10 @@ class Song
     if genre
       @genre = genre
       genre.add_song(self)
+
+      # if artist
+      #   genre.artist
+      # end
     end
   end
 
