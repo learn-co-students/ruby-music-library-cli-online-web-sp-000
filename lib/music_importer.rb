@@ -13,7 +13,7 @@ def files
 end
 
 def import
-  self.files.each do |filename|
+  self.files.collect do |filename|
     Song.create_from_filename(filename)
   end
 end
