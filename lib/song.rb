@@ -1,10 +1,14 @@
 class Song 
-  attr_accessor :name, :genre 
+  attr_accessor :name 
   @@all = []
-  def initialize(name, artist = nil)
+  def initialize(name, artist = nil, genre = nil)
     @name = name
     if artist != nil 
       self.artist = artist
+    end 
+    
+    if genre != nil 
+      self.genre = genre
     end 
     save
     
@@ -38,6 +42,15 @@ class Song
     artist.add_song(self)
   end 
   
+  def genre
+    @genre
+  end 
+
+  def genre=(genre)
+    @genre = genre
+    genre.songs.push self unless genre.songs.include? self
+    
+  end 
     
     
 end
