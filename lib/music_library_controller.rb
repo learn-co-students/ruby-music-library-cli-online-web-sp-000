@@ -1,10 +1,12 @@
+require 'pry'
+
 class MusicLibraryController
   attr_accessor :path
 
   def initialize(path = "./db/mp3s")
-    #self.path = path
-    music = MusicImporter.new(path)
-    @songs = music.import
+    self.path = path
+    @music = MusicImporter.new(self.path)
+    @songs = @music.import
   end
   
   def call
@@ -34,12 +36,14 @@ class MusicLibraryController
   end
   
   def list_artists
+    
     counter = 1
-    extracted_artists = @songs.collect {|song| song.artist.name}
-    extracted_artists = extracted_artists.sort.uniq
+    
+    extracted_artists = Artist.all
+    extracted_artists = extracted_artists.sort_by {|artist| artist.name}
     
     extracted_artists.each do |artist|
-      puts ("#{counter}. #{artist}")
+      puts ("#{counter}. #{artist.name}")
       counter += 1
     end
   end
@@ -60,7 +64,7 @@ class MusicLibraryController
     artist = gets
     
     counter = 1
-    @songs.sort_by {|song| song.name}.each do |song|
+    Song.all.sort_by {|song| song.name}.each do |song|
       if artist == song.artist.name
         puts ("#{counter}. #{song.name} - #{song.genre.name}")
         counter += 1
