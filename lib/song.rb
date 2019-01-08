@@ -51,6 +51,24 @@ class Song
     genre.songs.push self unless genre.songs.include? self
     
   end 
+  
+  def self.find_by_name(name)
+    self.all.find {|song| song.name == name }
+    
+    
+  end 
+  
+  def self.find_or_create_by_name(name)
+    
+   self.find_by_name(name) ? self.find_by_name(name) : self.create(name) 
+  end 
+  
+  def self.new_from_filename(name)
+   
+  end 
+  
+  def self.create_from_filename(name)
+  end 
     
     
 end
