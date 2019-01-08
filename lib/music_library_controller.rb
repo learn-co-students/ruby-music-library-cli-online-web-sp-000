@@ -36,8 +36,9 @@ class MusicLibraryController
   def list_artists
     counter = 1
     extracted_artists = @songs.collect {|song| song.artist.name}
+    extracted_artists = extracted_artists.sort.uniq
     
-    extracted_artists.sort.each do |artist|
+    extracted_artists.each do |artist|
       puts ("#{counter}. #{artist}")
       counter += 1
     end
@@ -46,11 +47,40 @@ class MusicLibraryController
   def list_genres
     counter = 1
     extracted_genres = @songs.collect {|song| song.genre.name}
+    extracted_genres = extracted_genres.sort.uniq
     
-    extracted_genres.sort.each do |genre|
+    extracted_genres.each do |genre|
       puts ("#{counter}. #{genre}")
       counter += 1
     end
+  end
+  
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    artist = gets
+    
+    counter = 1
+    @songs.sort_by {|song| song.name}.each do |song|
+      if artist == song.artist.name
+        puts ("#{counter}. #{song.name} - #{song.genre.name}")
+        counter += 1
+      end
+    end
+    
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    genre = gets
+    
+    counter = 1
+    @songs.sort_by {|song| song.name}.each do |song|
+      if genre == song.genre.name
+        puts ("#{counter}. #{song.artist.name} - #{song.name}")
+        counter += 1
+      end
+    end
+    
   end
 
 end
