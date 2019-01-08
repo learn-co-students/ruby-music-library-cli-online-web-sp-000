@@ -7,6 +7,7 @@ class MusicLibraryController
     self.path = path
     @music = MusicImporter.new(self.path)
     @songs = @music.import
+    
   end
   
   def call
@@ -24,6 +25,7 @@ class MusicLibraryController
     
     until name == "exit" do
       name = gets
+      self.send(name)
     end
   end
   
@@ -83,6 +85,17 @@ class MusicLibraryController
         puts ("#{counter}. #{song.artist.name} - #{song.name}")
         counter += 1
       end
+    end
+    
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"
+    input = gets.to_i
+    list =  @songs.sort_by {|song| song.name}
+    
+    if input >= 1 && input <= list.length
+      puts "Playing #{list[input-1].name} by #{list[input-1].artist.name}"
     end
     
   end
