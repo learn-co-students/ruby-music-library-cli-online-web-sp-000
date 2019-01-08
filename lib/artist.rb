@@ -1,5 +1,5 @@
 class Artist
-  attr_accessor :name
+  attr_accessor :name, :songs
   @@all = []
 
   def initialize(name)
@@ -29,9 +29,9 @@ class Artist
      @songs
    end
 
-  #  def add_song(song)
-  #    @songs << song
-  #    song.artist = self
-  #  end
+   def add_song(song) #if song already belongs to an artist, do not assign to an artist
+     @songs << song unless songs.include?(song)
+     song.artist = self unless song.artist
+   end
 
 end
