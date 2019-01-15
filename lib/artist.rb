@@ -1,5 +1,8 @@
+require 'pry'
+
+
 class Artist 
-  attr_accessor :name 
+  attr_accessor :name
   
   @@all = []
   
@@ -30,8 +33,12 @@ class Artist
     @songs
   end
   
-  def add_song
-    
+  def add_song(song)
+    song.artist = self 
+    @songs << song
+  end
+  
+  
   
   
 end
