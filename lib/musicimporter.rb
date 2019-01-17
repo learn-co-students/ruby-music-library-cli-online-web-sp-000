@@ -11,11 +11,15 @@ class MusicImporter
   end
 
   def files
-    current_dir = Dir.getwd
-    Dir.chdir(@path)
-    filenames = Dir.glob("*.mp3")
+    current_dir = Dir.getwd #returns path of current working directory as a string
+    Dir.chdir(@path)  #change directory
+    filenames = Dir.glob("*.mp3") #returns filenames found by patterns
     Dir.chdir(current_dir)
     filenames
+  end
+
+  def import
+
   end
 
 end
