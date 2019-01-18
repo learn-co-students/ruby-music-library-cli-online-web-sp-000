@@ -30,7 +30,12 @@ class Artist
   end 
   
   def songs 
-    @songs
+    songs = Song.all
+  
+    songs.select do |s|
+      s.artist == self
+    end
+    
   end
   
   def add_song(song)
@@ -38,7 +43,15 @@ class Artist
     @songs << song
   end
   
-  
-  
+  def genres 
+    
+    collection = []
+  songs.map do |song|
+    collection << song.genre
+  end
+  collection.uniq 
+    
+  end
+ 
   
 end

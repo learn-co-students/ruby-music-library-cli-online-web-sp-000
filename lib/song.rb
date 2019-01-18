@@ -10,6 +10,7 @@ class Song
     @name = name 
     @artist = artist
     self.genre=(genre) unless genre == nil
+    @@all << self 
   end 
   
   def genre=(genre)

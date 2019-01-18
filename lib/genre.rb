@@ -28,8 +28,23 @@ class Genre
   end
   
   def songs 
-    @songs 
+    songs = Song.all 
+    
+    songs.select do |s|
+      s.genre == self
+    end
   end
+  
+  def artists 
+    collection = []
+  songs.map do |song|
+    collection << song.artist
+  end
+  collection.uniq 
+    
+  end
+    
+  
   
 
 end
