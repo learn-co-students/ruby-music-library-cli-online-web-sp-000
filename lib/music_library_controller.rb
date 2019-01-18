@@ -20,6 +20,22 @@ class MusicLibraryController
     puts "What would you like to do?"
 
     input = gets.strip
+
+    #check the inputs using case statements
+      case input
+      when 'list songs'
+        list_songs
+      when 'list artists'
+        list_artists
+      when 'list genres'
+        list_genres
+      when 'list artist'
+        list_songs_by_artist
+      when 'list genre'
+        list_songs_by_genre
+      when 'play song'
+        play_song
+       end
      end
   end
 
@@ -67,9 +83,14 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     input = gets.strip.to_i
-    song = Song.all.sort_by(&:name)[input]
-    puts "Playing #{song.name} by #{song.artist.name}" if song
+      if input > 0 && Song.all.length
+        song = Song.all.sort_by(&:name)[input - 1]
+    #  binding.pry
+        puts "Playing #{song.name} by #{song.artist.name}" if song
+      end
   end
+
+
 
 
 end
