@@ -35,16 +35,11 @@ class Song
     song 
   end
   
-  def self.find_by_name(name)
-    @@all.detect{|a| a.name == name}
-  end
+  def self.new_from_filename(name)
+      words = name.split("-")
+      self.new(words[1].strip,words[0].strip)
+      #binding.pry 
+    end
   
-   def self.find_or_create_by_name(name)
-     if self.find_by_name(name)
-      return self.find_by_name(name)
-     else
-       self.create(name)
-  end 
-  end
 
 end 

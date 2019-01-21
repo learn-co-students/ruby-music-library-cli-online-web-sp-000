@@ -15,9 +15,7 @@ module Findable
   end 
   end
   
-  def new_from_filename(name)
-      self.new(name)
-    end
+  
   
   
   
