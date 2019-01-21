@@ -2,6 +2,7 @@ require 'pry'
 
 
 class Artist 
+  extend Concerns::Findable
   attr_accessor :name
   
   @@all = []
@@ -26,7 +27,7 @@ class Artist
   def self.create(name)
     song = self.new(name)
     song.save
-    self 
+    song 
   end 
   
   def songs 
