@@ -21,6 +21,17 @@ class MusicImporter
      
   end
     
+ def import
+   
+    array = self.files 
+    
+    array.collect do |s|
+    Song.create_from_filename(s)
+    end
+    
+  end
+      
+    
   
   
   

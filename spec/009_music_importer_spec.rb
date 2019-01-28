@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe "MusicImporter" do
   let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
@@ -37,6 +38,7 @@ describe "Song" do
 
       expect(song.name).to eq("For Love I Come")
       expect(song.artist.name).to eq("Thundercat")
+      
       expect(song.genre.name).to eq("dance")
     end
 
