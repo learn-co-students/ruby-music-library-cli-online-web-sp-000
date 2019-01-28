@@ -1,4 +1,8 @@
+require 'pry'
+
 class MusicLibraryController
+  
+
   
   def initialize(path = './db/mp3s')
     new = MusicImporter.new(path)
@@ -21,6 +25,13 @@ class MusicLibraryController
     gets
   end
     
+    
+  def list_songs 
+    
+    
+  end
+    
+
     
   
 end
