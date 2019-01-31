@@ -35,9 +35,53 @@ class MusicLibraryController
 
      end
     
-    binding.pry
-    
   end
+  
+  def list_artists
+    
+     collection = Artist.all.sort_by {|a| a.name}
+     
+     collection.each_with_index do |a,index|
+       puts "#{index+1}. #{a.name}"
+
+     end
+    end
+    
+      
+  def list_genres
+    
+     collection = Genre.all.sort_by {|g| g.name}
+     
+     collection.each_with_index do |g,index|
+       puts "#{index+1}. #{g.name}"
+
+     end
+    end
+    
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    gets  
+    
+    collection = []
+    
+    Song.all.collect do |song|
+     if song.artist.name == artist
+       collection << song
+     else
+     end
+     end
+     
+     binding.pry 
+     
+     collection.each_with_index do |song,index|
+       puts "#{index+1}. #{song.name} - #{song.genre.name}"
+
+     end
+     
+     
+     
+    end
+ 
     
 
     

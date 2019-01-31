@@ -10,12 +10,12 @@ class MusicImporter
   end 
   
   def files
-    test_ = Dir["./spec/fixtures/mp3s/*"]
+    test_ = Dir[@path + "/*"]
     
     collection = []
     
     test_.each do |song|
-      song.slice!("./spec/fixtures/mp3s/")
+      song.slice!(@path + "/")
       collection << song
     end
      
