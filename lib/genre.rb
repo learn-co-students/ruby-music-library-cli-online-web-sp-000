@@ -1,6 +1,6 @@
 class Genre
 
-  attr_accessor :name, :artist
+  attr_accessor :name
 
   @@all = []
 
@@ -25,5 +25,4 @@ class Genre
     genre.save
     genre
   end
-
 end
