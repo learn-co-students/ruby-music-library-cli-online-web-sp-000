@@ -106,9 +106,7 @@ class MusicLibraryController
 
     if number.between?(1,s.count) 
     
-    sorted = s.sort_by {|song| song.name}
-    
-    puts "Playing #{sorted[number-1].name} by #{sorted[number-1].artist.name}"
+    puts "Playing #{s[number-1].name} by #{s[number-1].artist.name}"
     
   end 
 
