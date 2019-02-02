@@ -87,7 +87,6 @@ class MusicLibraryController
       if g != nil 
         
       array = g.songs.sort_by {|song| song.name }
-
     
       array.each_with_index do |s,index|
         puts "#{index+1}. #{s.artist.name} - #{s.name}"
@@ -100,7 +99,20 @@ class MusicLibraryController
   
   def play_song 
     
+    puts "Which song number would you like to play?"
+    number = gets.to_i 
     
+    s = Song.all.sort_by {|song| song.name}
+
+    if number.between?(1,s.count) 
+    
+    sorted = s.sort_by {|song| song.name}
+    
+    puts "Playing #{sorted[number-1].name} by #{sorted[number-1].artist.name}"
+    
+  end 
+
+  end
     
     
     
