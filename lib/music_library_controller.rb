@@ -25,4 +25,59 @@ class MusicLibraryController
     end
   end
 
+  def list_songs
+    alphabetized_songs = Song.all.sort_by! { |s| s.name }
+    alphabetized_songs.each_with_index do |song, index|
+      puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
+  end
+
+  def list_artists
+    alphabetized_artists = Artist.all.sort_by! { |a| a.name }
+    alphabetized_artists.each_with_index do |artist, index|
+      puts "#{index + 1}. #{artist.name}"
+    end
+  end
+
+  def list_genres
+    alphabetized_genres = Genre.all.sort_by! { |g| g.name }
+    alphabetized_genres.each_with_index do |genre, index|
+      puts "#{index + 1}. #{genre.name}"
+    end
+  end
+
+  def list_songs_by_artist
+    input = ""
+    puts "Please enter the name of an artist:"
+    input = gets.chomp
+
+    Artist.all.each do |artist|
+      if artist.name == input
+        alphabetized_songs = artist.songs.sort_by! { |s| s.name }
+        alphabetized_songs.each_with_index do |song, index|
+          puts "#{index + 1}. #{song.name} - #{song.genre.name}"
+        end
+      end
+    end
+  end
+
+  def list_songs_by_genre
+    input = ""
+    puts "Please enter the name of a genre:"
+    input = gets.chomp
+
+    Genre.all.each do |genre|
+      if genre.name == input
+        alphabetized_songs = genre.songs.sort_by! { |s| s.name }
+        alphabetized_songs.each_with_index do |song, index|
+          puts "#{index + 1}. #{song.artist.name} - #{song.name}"
+        end
+      end
+    end
+  end
+
+  def play_song
+
+  end
+
 end
