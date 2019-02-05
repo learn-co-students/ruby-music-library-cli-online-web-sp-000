@@ -22,6 +22,21 @@ class MusicLibraryController
       puts "What would you like to do?"
 
       input = gets.chomp.downcase
+
+      case input
+      when "list artists"
+        list_artists
+      when "list songs"
+        list_songs
+      when "list genres"
+        list_genres
+      when "list artist"
+        list_songs_by_artist
+      when "list genre"
+        list_songs_by_genre
+      when "play song"
+        play_song
+      end
     end
   end
 
@@ -80,9 +95,10 @@ class MusicLibraryController
     input = ""
     puts "Which song number would you like to play?"
     input = gets.chomp.to_i
+    alphabetized_songs = Song.all.sort_by! { |s| s.name }
 
-    if input >= 1 && input < list_songs.length
-      list_songs.each_with_index do |song, index|
+    if input >= 1 && input < alphabetized_songs.length
+      alphabetized_songs.each_with_index do |song, index|
         if index + 1  == input
           puts "Playing #{song.name} by #{song.artist.name}"
         end
