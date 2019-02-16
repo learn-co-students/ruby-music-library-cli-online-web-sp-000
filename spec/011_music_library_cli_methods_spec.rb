@@ -74,7 +74,7 @@ describe "MusicLibraryController - CLI Methods" do
 
       music_library_controller.list_songs_by_artist
     end
-
+ 
     it "accepts user input" do
       allow(music_library_controller).to receive(:gets).and_return("Testing for #gets")
 
