@@ -12,6 +12,7 @@ class MusicImporter
   def files
     # binding.pry
     @files ||= Dir.glob("#{@path}/*.mp3").map do |file|
+      binding.pry
       file.gsub("#{@path}/", "")
     # @files
     binding.pry
