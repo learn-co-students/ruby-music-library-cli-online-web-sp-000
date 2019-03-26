@@ -1,4 +1,7 @@
+require "pry"
+
 class Genre
+  extend Concerns::Findable
   attr_accessor :name, :songs
 
   @@all = []
@@ -31,7 +34,7 @@ class Genre
   end
 
   def artists
-    # binding.pry
     self.songs.map {|song| song.artist}.uniq
   end
+
 end
