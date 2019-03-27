@@ -5,6 +5,7 @@ module Concerns
     end
 
     def find_or_create_by_name(name)
+      # self.find_by_name(name) || self.create(name)
       if !find_by_name(name)
         self.create(name)
       else
