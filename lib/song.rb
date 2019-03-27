@@ -12,14 +12,11 @@ class Song
 
     if artist != ""
        artist.add_song(self)
-      # binding.pry
     end
 
     if genre != ""
        self.genre = genre
     end
-
-    self
   end
 
   def self.all
@@ -31,7 +28,6 @@ class Song
   end
 
   def save
-    # binding.pry
     @@all << self
   end
 
@@ -42,7 +38,6 @@ class Song
   end
 
   def artist=(artist)
-    # binding.pry
     @artist = artist
     artist.add_song(self)
   end
@@ -60,7 +55,6 @@ class Song
   end
 
   def self.new_from_filename(filename)
-    # binding.pry
     name = filename.split(" - ")[1]
     artist = filename.split(" - ")[0]
     genre = filename.split(" - ")[2].gsub(".mp3", "")

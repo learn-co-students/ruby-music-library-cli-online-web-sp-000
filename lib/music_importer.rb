@@ -6,15 +6,12 @@ class MusicImporter
 
   def initialize(path)
     @path = path
-    # @files = []
   end
 
   def files
-    # binding.pry
     @files ||= Dir.glob("#{@path}/*.mp3").collect do |file|
       file.gsub("#{@path}/", "")
     end
-    # @files
   end
 
   def import
