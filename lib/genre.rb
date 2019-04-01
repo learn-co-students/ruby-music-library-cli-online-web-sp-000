@@ -6,6 +6,7 @@ class Genre
     @name=name
     @songs=[]
     
+    
   end
   def save
     @@all<< self
@@ -25,5 +26,9 @@ class Genre
     genre=self.new(name)
     genre.save
     genre
+  end
+  
+  def artists
+    Song.all.collect{|song| song.artist}.uniq
   end
 end
