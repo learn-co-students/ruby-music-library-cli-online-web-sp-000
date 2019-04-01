@@ -11,6 +11,7 @@ class Song
    
    def artist=(artist)
      @artist=artist
+     
    end
    
    def artist
@@ -54,6 +55,8 @@ class Song
        self.create(name)
      end
   end
+  
+
   
 end
 
