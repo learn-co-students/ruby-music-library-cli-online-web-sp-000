@@ -1,7 +1,6 @@
 class MusicLibraryController
 
   def initialize(path = './db/mp3s')
-    @path = path
   musicimporter = MusicImporter.new(path)
   musicimporter.import
   end
@@ -22,16 +21,13 @@ class MusicLibraryController
       input = gets
     end
     def list_songs
-      musicimporter = MusicImporter.new(@path)
 
       songs = []
-      musicimporter.files.each {|song|  songs << song.chomp(".mp3")}
-      songs.sort!.reverse!
-
-      songs[1],songs[2],songs[3],songs[4] = songs[2],songs[1],songs[4],songs[3]
-      songs.map!.with_index {|song, position| puts "#{position + 1}. #{song}"}
-
-
+      Song.all.each {|song| songs << "#{song.artist.name} - #{song.name} - #{song.genre.name}"}
+      songs.sort_by! {|song| song.split(" - ")[1]}
+      songs.collect!.with_index {|song, position| "#{position + 1}. #{song}"}
+      songs.each{|song| puts song}
+      # binding.pry
     end
 
   end
