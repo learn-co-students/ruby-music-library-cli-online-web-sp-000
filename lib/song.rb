@@ -1,5 +1,9 @@
+require_relative '../lib/concerns/Findable.rb'
+require 'pry'
 class Song
-  attr_accessor :name
+  extend Concerns::Findable
+  attr_accessor :name, :genre
+  attr_reader :artist
   @@all=[]
   
   def initialize(name,artist=nil,genre=nil)
@@ -8,24 +12,11 @@ class Song
     @genre=genre
     save
   end
-   
-   def artist=(artist)
-     @artist=artist
-     
-   end
-   
-   def artist
-     @artist
-   end
-   
-   def genre=(genre)
-     @genre=genre
-   end
-   
-   def genre
-     @genre
-   end
-
+  
+  def artist=(artist)
+    @artist=artist
+    artist.add_song(self)
+  end
   def save
     @@all<< self
   end
@@ -44,23 +35,21 @@ class Song
     song
   end
   
-  def self.find_by_name(name)
-    @@all.detect{|song| song.name==name}
+  def self.new_from_filename(filename)
+    #"Thundercat - For Love I Come - dance.mp3"
+    
+    artist=Artist.find_or_create_by_name(filename.split(" - ")[0])
+    song=self.find_or_create_by_name(filename.split(" - ")[1])
+    genre=Genre.find_or_create_by_name(filename.split(" - ")[2].chomp(".mp3"))
+    song.artist=artist
+    song.genre=genre
   end
-  
-  def self.find_or_create_by_name(name)
-     if(self.find_by_name(name))
-       self.find_by_name(name)
-     else 
-       self.create(name)
-     end
-  end
-  
 
-  
 end
 
 #learn spec/005_songs_and_genres_spec.rb
 #learn spec/004_songs_and_artists_spec.rb
 #learn spec/006_artists_and_genres_spec.rb
 #learn spec/007_findable_songs_spec.rb
+#learn spec/009_music_importer_spec.rb
+#learn spec/008_findable_module_spec.rb
