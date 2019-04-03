@@ -37,7 +37,6 @@ class Song
   
   def self.create(name)
     song=self.new(name)
-    song.save
     song
   end
   
@@ -61,11 +60,3 @@ class Song
   end
 end
 
-#learn spec/005_songs_and_genres_spec.rb
-#learn spec/004_songs_and_artists_spec.rb
-#learn spec/006_artists_and_genres_spec.rb
-#learn spec/007_findable_songs_spec.rb
-#learn spec/009_music_importer_spec.rb
-#learn spec/008_findable_module_spec.rb
-#learn spec/010_music_library_controller_spec.rb
-#learn spec/011_music_library_cli_methods_spec.rb
