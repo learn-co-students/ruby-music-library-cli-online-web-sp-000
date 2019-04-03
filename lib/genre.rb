@@ -21,6 +21,16 @@ class Genre
   def self.destroy_all
     @@all.clear
   end
+  
+  def add_song(song)
+    if(!@songs.include?(song))
+    @songs<< song
+  end
+    if(!song.genre)
+    song.genre = self
+  end
+  end
+  
   def songs
     @songs
   end
