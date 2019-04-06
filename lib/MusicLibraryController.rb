@@ -21,13 +21,13 @@ class MusicLibraryController
       input = gets
     end
     def list_songs
-
+      binding.pry
       songs = []
       Song.all.each {|song| songs << "#{song.artist.name} - #{song.name} - #{song.genre.name}"}
       songs.sort_by! {|song| song.split(" - ")[1]}
       songs.collect!.with_index {|song, position| "#{position + 1}. #{song}"}
       songs.each{|song| puts song}
-      # binding.pry
+       binding.pry
     end
 
   end

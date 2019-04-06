@@ -34,8 +34,8 @@ def self.create(name)
 end
 
 def artist=(artist)
-  @artist = artist
-  artist.add_song(self)
+     self.artist = Artist.find_or_create_by_name(name)
+    artist.add_song(self)
 end
 
 def genre=(genre)
@@ -63,9 +63,11 @@ def self.new_from_filename(filename)
     song.artist = artist
     song.genre = genre
     song
+    #  binding.pry
 end
 
 def self.create_from_filename(filename)
+  binding.pry
   Song.new_from_filename(filename)
 end
 

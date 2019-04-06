@@ -32,11 +32,11 @@ def self.create(name)
 end
 
 def add_song(song)
-  if song.artist == nil
-    song.artist = self
-  end
-  if !(songs.include?(song))
-    songs << song
+    if song.artist == nil
+      song.artist = self
+    end
+  if !(song.artist.songs.include?(song))
+    song.artist.songs << song
     end
 end
 
