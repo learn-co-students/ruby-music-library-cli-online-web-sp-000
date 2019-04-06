@@ -3,14 +3,18 @@ require 'pry'
 class Song
   extend Concerns::Findable
   attr_accessor :name
-  attr_reader :artist, :genre
+  attr_reader :artist,:genre
   @@all=[]
-  
   def initialize(name,artist=nil,genre=nil)
     @name=name
+    @genre=genre
     self.artist=(artist) if artist
     self.genre=(genre) if genre
     save
+  end
+  
+  def self.all
+    @@all
   end
   
   def artist=(artist)
@@ -27,19 +31,14 @@ class Song
     @@all<< self
   end
   
-  def self.all
-    @@all
-  end
-  
   def self.destroy_all
     @@all.clear
   end
   
   def self.create(name)
-    song=self.new(name)
+    song=Song.new(name)
     song
   end
-  
   def self.new_from_filename(filename)
     #"Thundercat - For Love I Come - dance.mp3"
     
@@ -58,5 +57,7 @@ class Song
   def self.create_from_filename(filename)
     self.new_from_filename(filename)
   end
-end
 
+end
+#[#<Song:0x0000000002bed190 @name="kiki", @genre=nil, @artist=#<Artist:0x0000000002c06190 @name="Drake", @songs=[#<Song:0x0000000002bed190 ...>]>>]
+#learn spec/004_songs_and_artists_spec.rb
