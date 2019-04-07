@@ -7,7 +7,7 @@ class MusicImporter
   end
 
   def files
-    files = Dir["spec/fixtures/mp3s/*.mp3"].each {|filename_with_path| filename_with_path.slice!("spec/fixtures/mp3s/")}
+    files = Dir.glob("#{path}/*.mp3").collect{ |f| f.gsub("#{path}/", "") }
   end
 
   def import

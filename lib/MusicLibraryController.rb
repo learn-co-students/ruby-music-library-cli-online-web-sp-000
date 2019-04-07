@@ -20,14 +20,32 @@ class MusicLibraryController
     until input == "exit"
       input = gets
     end
+
+    ##The pry is located just below.
     def list_songs
-      binding.pry
       songs = []
       Song.all.each {|song| songs << "#{song.artist.name} - #{song.name} - #{song.genre.name}"}
       songs.sort_by! {|song| song.split(" - ")[1]}
       songs.collect!.with_index {|song, position| "#{position + 1}. #{song}"}
       songs.each{|song| puts song}
-       binding.pry
+    end
+
+    def list_artists
+      artists = []
+      Artist.all.each {|artist| artists << "#{artist.name}"}
+      artists.sort!.collect!.with_index{|artist, position| "#{position + 1}. #{artist}"}
+      artists.each {|artist| puts artist}
+    end
+
+    def list_genres
+      genres = []
+      Genre.all.each {|genre| genres << "#{genre.name}"}
+      genres.sort!.collect!.with_index{|genre, position| "#{position + 1}. #{genre}"}
+      genres.each {|genre| puts genre}
+    end
+
+    def list_songs_by_artist
+
     end
 
   end

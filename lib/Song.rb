@@ -28,14 +28,17 @@ def save
 end
 
 def self.create(name)
-  song = Song.new(name)
-  song.save
-  song
+  self.new(name).tap {|song| song.save}
+  # song = Song.new(name)
+  # song.save
+  # song
 end
 
 def artist=(artist)
-     self.artist = Artist.find_or_create_by_name(name)
+  @artist = artist
+  if !(artist.songs.include?(self))
     artist.add_song(self)
+  end
 end
 
 def genre=(genre)
@@ -50,7 +53,7 @@ def self.find_by_name(name)
 end
 
 def self.find_or_create_by_name(name)
-  self.find_by_name(name) || self.create(name)
+   self.find_by_name(name) || self.create(name)
 end
 
 def self.new_from_filename(filename)
@@ -67,7 +70,7 @@ def self.new_from_filename(filename)
 end
 
 def self.create_from_filename(filename)
-  binding.pry
+  # binding.pry
   Song.new_from_filename(filename)
 end
 
