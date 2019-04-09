@@ -7,7 +7,7 @@ class MusicImporter
   
   def files
     files = Dir.glob("#{path}/*.mp3")
-    files.collect {|file| File.basename(file, ".*")}
+    files.collect {|file| File.basename(file)}
   end
   
   def import
