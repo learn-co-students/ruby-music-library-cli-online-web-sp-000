@@ -1,4 +1,6 @@
 class Artist
+  extend Concerns::Findable
+  
   attr_accessor :name, :songs
   @@all = []
 
@@ -21,22 +23,20 @@ class Artist
     artist
   end
   
-  # stuck in a loop between song.artist= and artist.add_song
-  
   def add_song(song)
-    if song.artist != nil
-      song.artist = self
+    if !self.songs.include?(song)
       self.songs << song
+    end
+    if song.artist == nil
+      song.artist = self
     end
   end
   
   def genres
-    genres = []
-    self.songs.each do |song|
-      genres << song.genre
+    genres = self.songs.collect do |song|
+      song.genre
     end
-    genres
-    #binding.pry
+    genres.uniq
   end
   
   def self.destroy_all
