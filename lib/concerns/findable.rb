@@ -14,4 +14,10 @@ module Concerns
       end
     end
   end
+  
+  module Alphabetical
+    def alphabetical
+      self.all.sort_by{|song| song.name}
+    end
+  end
 end
