@@ -1,4 +1,6 @@
 class MusicLibraryController
+  attr_reader :input
+  
   def initialize(path="./db/mp3s")
     MusicImporter.new(path).import
   end
@@ -15,7 +17,20 @@ class MusicLibraryController
     puts "What would you like to do?"
     input = nil
     until input == "exit"
-      input = gets.chomp
+      input = gets.strip
+      if input == "list songs"
+        self.list_songs
+      elsif input == "list artists"
+        self.list_artists
+      elsif input == "list genres"
+        self.list_genres
+      elsif input == "list artist"
+        self.list_songs_by_artist
+      elsif input == "list genre"
+        self.list_songs_by_genre
+      elsif input == "play song"
+        self.play_song
+      end
     end
   end
   
@@ -42,7 +57,7 @@ class MusicLibraryController
   
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
-    input = gets.chomp
+    input = gets.strip
     if Artist.find_by_name(input)
       artist = Artist.find_by_name(input)
       alphabetical_songs = artist.songs.sort_by{|song| song.name}
@@ -54,7 +69,7 @@ class MusicLibraryController
   
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
-    input = gets.chomp
+    input = gets.strip
     if Genre.find_by_name(input)
       genre = Genre.find_by_name(input)
       alphabetical_songs = genre.songs.sort_by{|song| song.name}
@@ -65,6 +80,13 @@ class MusicLibraryController
   end
   
   def play_song
-    
+    alphabetical_songs = Song.alphabetical
+    puts "Which song number would you like to play?"
+    input = gets.strip
+    numerized_input = input.to_i
+    if numerized_input > 0 && numerized_input <= alphabetical_songs.length
+      song_choice = alphabetical_songs[numerized_input - 1]
+      puts "Playing #{song_choice.name} by #{song_choice.artist.name}"
+    end
   end
 end
