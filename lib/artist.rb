@@ -1,5 +1,7 @@
-require_relative './concerns/findable.rb'
+
+
 class Artist
+
 extend Concerns::Findable
 @@all=[]
 
@@ -32,7 +34,7 @@ end
 
 def add_song(song)
   if song.class==Song
-    @songs<<song unless @songs.include?(song)==false
+    @songs<<song unless @songs.include?(song)
     song.artist=self unless song.artist
   end
   end

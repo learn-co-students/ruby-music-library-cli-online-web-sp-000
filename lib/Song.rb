@@ -1,4 +1,5 @@
 require_relative './concerns/findable.rb'
+
 class Song
 extend Concerns::Findable
 
@@ -45,6 +46,19 @@ def genre=(genre)
    genre.songs<<self
 end
 end
+
+def self.new_from_filename(file)
+  name_group=(file.scan(/(.*) - (.*) - (.*).mp3/)).flatten
+  song=Song.find_or_create_by_name(name_group[1])
+  song.artist=Artist.find_or_create_by_name(name_group[0])
+  song.genre=Genre.find_or_create_by_name(name_group[2])
+  song
+end
+
+def self.create_from_filename(file)
+  self.new_from_filename(file).save
+end
+
 
 
 
