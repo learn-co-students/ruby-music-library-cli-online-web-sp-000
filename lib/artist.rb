@@ -23,7 +23,7 @@ def self.destroy_all
 end
 
 def save
-  self.class.all<<self
+  self.class.all<<self #unless self.class.all.include?(self)
 end
 
 def self.create(name)
