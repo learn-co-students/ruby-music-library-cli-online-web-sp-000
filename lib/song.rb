@@ -4,7 +4,6 @@ class Song
   include Concerns::InstanceMethods
   attr_accessor :name, :genre, :artist
   @@all = []
-
   def initialize (name, artist_name = nil, genre_type = nil)
     @name = name
     if artist_name != nil
@@ -28,6 +27,16 @@ class Song
     @genre = genre_type
     if !(genre_type.songs.include?(self))
       genre_type.songs << self
+    end
+  end
+  def self.find_by_name(song)
+    @@all.detect{|obj| obj.name == song}
+  end
+  def self.find_or_create_by_name(song)
+    if !(find_by_name(song)==nil)
+      find_by_name(song)
+    else
+      self.create(song)
     end
   end
 end

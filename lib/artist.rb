@@ -2,7 +2,8 @@ require 'pry'
 class Artist
   extend Concerns::ClassMethods
   include Concerns::InstanceMethods
-  attr_accessor :name, :genre, :songs
+  extend Concerns::Findable
+  attr_accessor :name, :songs, :genres
   @@all = []
   def initialize (name)
     @name = name
@@ -18,5 +19,12 @@ class Artist
     if title.artist == nil
       title.artist = self
     end
+  end
+  def genres
+    genres = @songs.map do |song|
+      song.genre
+    end
+    uniq_genres = genres.uniq
+    uniq_genres
   end
 end
