@@ -39,4 +39,18 @@ class Song
       self.create(song)
     end
   end
+  def self.new_from_filename(filename)
+    file_array = filename.split(/ - |[\.]/)
+    song_name = file_array[1]
+    artist_name = file_array[0]
+    genre_type = file_array[2]
+    song = Song.find_or_create_by_name(song_name)
+    song.artist = Artist.find_or_create_by_name(artist_name)
+    song.genre = Genre.find_or_create_by_name(genre_type)
+    song
+  end
+  def self.create_from_filename(filename)
+    song = self.new_from_filename(filename)
+    song.save
+  end
 end
