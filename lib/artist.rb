@@ -22,7 +22,9 @@ class Artist
   end 
   
   def self.create(name) 
-    @@all << Artist.new(name).save 
+    new_artist = Artist.new(name)
+    new_artist.save 
+    new_artist  
   end 
   
   def songs 
@@ -32,7 +34,7 @@ class Artist
   def add_song(song)
     if (song.artist == "artist" )
     song.artist  = self
-    @@all << song 
+    @songs << song 
     end 
   end 
   
