@@ -1,5 +1,4 @@
-require 'pry' 
-class Song 
+class Artist 
   
   attr_accessor :name 
   
@@ -9,8 +8,8 @@ class Song
     @name = name 
   end 
   
-  def self.all
-    @@all   
+  def self.all 
+    @@all 
   end 
   
   def self.destroy_all 
@@ -18,11 +17,11 @@ class Song
   end 
   
   def save 
-   @@all << self  
+    @@all << self 
   end 
   
-  def self.create(name)
-    @@all << Song.new(name).save 
+  def self.create(name) 
+    @@all << Artist.new(name).save 
   end 
   
 end 
