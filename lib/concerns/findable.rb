@@ -1,4 +1,6 @@
-module Concerns::Findable
+module Concerns
+  
+  module Findable
 
 # def find_by_name(name)
 #   self.all.each do |name|
@@ -10,4 +12,6 @@ module Concerns::Findable
 #   find_by_name(name) || Song.new(name)
 # end
 
+
+ end
 end

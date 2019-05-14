@@ -1,10 +1,7 @@
 class Genre
   attr_accessor :name, :songs
   @@all = []
-  
-  # include Findable
-  
-  
+
   def initialize(name)
     @name = name
     @songs = []
