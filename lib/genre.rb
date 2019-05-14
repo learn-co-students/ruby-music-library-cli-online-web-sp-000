@@ -1,6 +1,8 @@
+require 'pry'
 class Genre 
   
-  attr_accessor :name, :song  
+  attr_accessor :name
+  attr_reader :song 
   
   @@all = [] 
   
@@ -30,6 +32,5 @@ class Genre
   def songs 
     @songs 
   end 
-
 
 end 
