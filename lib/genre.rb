@@ -1,8 +1,8 @@
 require 'pry'
 class Genre 
   
-  attr_accessor :name
-  attr_reader :song 
+  attr_accessor :name 
+  attr_reader :song, :artist
   
   @@all = [] 
   
@@ -31,6 +31,14 @@ class Genre
 
   def songs 
     @songs 
+  end 
+  
+  def artists 
+     artists = self.songs.collect do |song|
+        song.artist 
+     end 
+        artists.uniq 
+  
   end 
 
 end 
