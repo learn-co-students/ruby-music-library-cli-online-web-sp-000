@@ -53,7 +53,7 @@ class Song
     song_name = new_file[1]
     song = Song.new(song_name)
     song_genre = new_file[2]
-    song_genre = song_genre.delete ".mp3"
+    song_genre = song_genre.gsub(".mp3", "")
     genre = Genre.find_or_create_by_name(song_genre)
     song.genre = genre 
     song.artist = artist
