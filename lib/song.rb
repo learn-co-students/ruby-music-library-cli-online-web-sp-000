@@ -45,13 +45,5 @@ class Song
       end 
   end         
   
-   def self.find_or_create_by_name(song_name)
-    #binding.pry 
-         song = find_by_name(song_name)
-          if song != nil 
-            song 
-          else 
-            song = Song.create(song_name)
-          end 
-  end
+  
 end 
