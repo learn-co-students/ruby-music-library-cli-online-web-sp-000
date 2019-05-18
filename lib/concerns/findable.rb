@@ -7,7 +7,7 @@ module Concerns::Findable
   def find_or_create_by_name(name)
     object = find_by_name(name)
           if object != nil 
-            object 
+            object
           else 
             object = self.create(name)
           end 

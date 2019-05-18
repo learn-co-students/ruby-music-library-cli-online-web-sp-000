@@ -2,7 +2,7 @@ require 'pry'
 class Song 
   extend Concerns::Findable 
   
-  attr_accessor :name   
+  attr_accessor :name
   attr_reader :artist, :genre   
   
   @@all = [] 
@@ -46,12 +46,25 @@ class Song
   end         
   
   def self.new_from_filename(file_name)
-    #binding.pry 
+   if file_name 
     new_file = file_name.split(" - ")
-    song = new_file[1]
-      new_song = song.join(" ")
-      new_song
+    artist_name = new_file[0]
+    artist = Artist.find_or_create_by_name(artist_name)
+    song_name = new_file[1]
+    song = Song.new(song_name)
+    song_genre = new_file[2]
+    song_genre = song_genre.delete ".mp3"
+    genre = Genre.find_or_create_by_name(song_genre)
+    song.genre = genre 
+    song.artist = artist
+     song 
+   end   
  end 
+    
+  def self.create_from_filename(file_name)
+    file_name = self.new_from_filename(file_name).save
+  end 
+
     
   
   
