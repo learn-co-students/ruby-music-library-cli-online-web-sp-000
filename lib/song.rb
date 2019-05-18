@@ -45,5 +45,15 @@ class Song
       end 
   end         
   
+  def self.new_from_filename(file_name)
+    #binding.pry 
+    new_file = file_name.split(" - ")
+    song = new_file[1]
+      new_song = song.join(" ")
+      new_song
+ end 
+    
+  
+  
   
 end 
