@@ -1,6 +1,6 @@
 require 'pry'
 class MusicLibraryController 
- 
+ extend Concerns::Findable 
   
   def initialize(path = "./db/mp3s")
    @path = path 
@@ -25,7 +25,6 @@ class MusicLibraryController
   end 
   
   def list_songs
-    #binding.pry 
    songs = Song.all.sort do |a,b|
      a.name<=>b.name 
    end
@@ -34,5 +33,38 @@ class MusicLibraryController
      order+=1 
      puts "#{order}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
    end 
+  end 
+  
+  def list_artists 
+    artists = Artist.all.sort do |a,b,|
+      a.name<=>b.name 
+    end 
+    
+    artists.each_with_index do |artist, order|
+      order+=1 
+      puts "#{order}. #{artist.name}"
+    end 
+
+  end
+  
+  def list_genres
+    genres = Genre.all.sort do |a,b|
+      a.name<=>b.name 
+  end 
+  
+    genres.each_with_index do |genre, order|
+      order+=1 
+      puts "#{order}. #{genre.name}"
+    end 
+  end 
+  
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    artist = gets.chomp 
+    Artist.find_by_name(artist)
+    #artist.each_with_index do |song, order|
+     # order+=1 
+     # puts "#{order}. #{artist.song}"
+    #end 
   end 
 end 
