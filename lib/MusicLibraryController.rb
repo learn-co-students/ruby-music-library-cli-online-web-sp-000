@@ -32,7 +32,6 @@ class MusicLibraryController
      order+=1 
      puts "#{order}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
    end
-   list_songs
   end 
   
   def list_artists 
@@ -94,11 +93,12 @@ class MusicLibraryController
       if input.between?(1,Song.all.count)
         
          selected = Song.all
-         puts "Playing #{selected[0].name} by #{selected[0].artist.name}"
+         puts "Playing #{selected[input].name} by #{selected[input].artist.name}"
       end 
 
       
   end 
+  
   
   
 end 
