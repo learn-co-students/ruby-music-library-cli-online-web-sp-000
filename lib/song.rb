@@ -14,9 +14,10 @@ class Song
       
       if !artist.nil?
         artist=(artist)
-      else
-        @artist = artist
       end
+      # else
+      #   @artist = artist
+      # end
     save
   end
 
