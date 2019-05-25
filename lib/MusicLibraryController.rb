@@ -21,7 +21,22 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
     user_input = gets 
+      case user_input  
+        when 'list songs' 
+          list_songs 
+        when 'list artists'
+          list_artists
+        when 'list genres'
+          list_genres
+        when 'list artist'
+          list_songs_by_artist
+        when 'list genre'
+          list_songs_by_genre
+        when 'play song'
+          play_song 
+      end 
     end 
+    
   end 
   
   def list_songs
@@ -91,14 +106,16 @@ class MusicLibraryController
      puts "Which song number would you like to play?"
      input = gets.strip.to_i    
       if input.between?(1,Song.all.count)
+        input -=1
+          selected = Song.all.sort do |a,b|
+          a.name<=>b.name   
+        end 
+          puts "Playing #{selected[input].name} by #{selected[input].artist.name}"    
+     
         
-         selected = Song.all
-         puts "Playing #{selected[input].name} by #{selected[input].artist.name}"
       end 
-
-      
+    
   end 
-  
-  
+ 
   
 end 
