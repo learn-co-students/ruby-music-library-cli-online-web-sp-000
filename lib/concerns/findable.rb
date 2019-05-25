@@ -6,10 +6,11 @@ module Concerns::Findable
 
   def find_or_create_by_name(name)
     object = find_by_name(name)
-          if object != nil 
+        if object != nil 
             object
-          else 
+        else 
             object = self.create(name)
-          end 
+        end 
   end 
+
 end 

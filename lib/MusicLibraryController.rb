@@ -1,5 +1,5 @@
-require 'pry'
 class MusicLibraryController 
+ 
  extend Concerns::Findable 
   
   def initialize(path = "./db/mp3s")
@@ -36,54 +36,50 @@ class MusicLibraryController
           play_song 
       end 
     end 
-    
   end 
   
   def list_songs
    songs = Song.all.sort do |a,b|
      a.name<=>b.name 
-   end
+    end
    songs.each_with_index do |song, order|
      order+=1 
      puts "#{order}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
-   end
+    end
   end 
   
   def list_artists 
     artists = Artist.all.sort do |a,b,|
       a.name<=>b.name 
-    end 
-    
+      end 
     artists.each_with_index do |artist, order|
       order+=1 
       puts "#{order}. #{artist.name}"
-    end 
-
+      end 
   end
   
   def list_genres
     genres = Genre.all.sort do |a,b|
       a.name<=>b.name 
-  end 
-  
+      end 
     genres.each_with_index do |genre, order|
       order+=1 
       puts "#{order}. #{genre.name}"
-    end 
+      end 
   end 
   
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.chomp 
     artist = Artist.find_by_name(input)
-     if artist 
-       songs = artist.songs.sort do |a,b|
-        a.name<=>b.name  
-      end 
-     songs.each_with_index do |song, order|
-      order+=1 
-      puts "#{order}. #{song.name} - #{song.genre.name}"
-      end
+      if artist 
+        songs = artist.songs.sort do |a,b|
+          a.name<=>b.name  
+          end 
+        songs.each_with_index do |song, order|
+        order+=1 
+        puts "#{order}. #{song.name} - #{song.genre.name}"
+          end
       end 
     end 
     
@@ -109,10 +105,8 @@ class MusicLibraryController
         input -=1
           selected = Song.all.sort do |a,b|
           a.name<=>b.name   
-        end 
+          end 
           puts "Playing #{selected[input].name} by #{selected[input].artist.name}"    
-     
-        
       end 
     
   end 

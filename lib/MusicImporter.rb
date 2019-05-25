@@ -1,12 +1,13 @@
 class MusicImporter
+ 
   extend Concerns::Findable 
+ 
   attr_accessor :file 
   
   @@all = []
   
   def initialize(path)
     @path = path   
-  
   end 
   
   def path 

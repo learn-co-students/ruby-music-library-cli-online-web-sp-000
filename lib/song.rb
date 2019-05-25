@@ -1,5 +1,5 @@
-require 'pry' 
 class Song 
+
   extend Concerns::Findable 
   
   attr_accessor :name
@@ -32,13 +32,11 @@ class Song
   end 
   
   def artist=(artist)
-    #binding.pry 
    @artist = artist
    artist.add_song(self)
   end
           
   def genre=(genre)
-   # binding.pry 
     @genre = genre 
       if !genre.songs.include?(self) 
         genre.songs << self 
@@ -64,9 +62,5 @@ class Song
   def self.create_from_filename(file_name)
     file_name = self.new_from_filename(file_name).save
   end 
-
-    
-  
-  
   
 end 
