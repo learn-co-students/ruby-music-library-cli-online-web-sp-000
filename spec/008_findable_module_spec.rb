@@ -32,6 +32,7 @@ describe "Concerns::Findable" do
   describe ".find_by_name" do
     it "is added as a class method to classes that extend the module" do
       expect(Artist).to respond_to(:find_by_name)
+
     end
 
     context "works exactly like a generic version of Song.find_by_name," do
