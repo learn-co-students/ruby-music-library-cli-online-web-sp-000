@@ -9,24 +9,24 @@ class MusicLibraryController
 
   def call
     display_menu
-    input = gets.chomp
+    input = ""
 
     while input != "exit"
-      display_menu
-      input = gets.chomp  
-
-        # case input
-        #   when 'list songs'
-        #     list_songs
-        #   when 'list artists'
-        #   when 'list genres'
-        #   when 'list artist'
-        #   when 'play song'
-        #   else
-
-        #   end
-        # end
-
+        case input
+          when 'list songs'
+            list_songs
+          when 'list artists'
+            list_artists
+          when 'list genres'
+            list_genres
+          when 'list artist'
+            list_songs_by_artist
+          when 'list genre'
+            list_songs_by_genre
+          when 'play song'
+            play_song
+        end
+      input = gets.chomp 
     end
   end
 
@@ -75,15 +75,11 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-    song_number = gets.chomp
+    song_number = gets.chomp.to_i
     songs = Song.all.sort_by { |song| song.name } 
-    binding.pry
-
-    
       if (1..songs.length).include?(song_number)
-        # puts "Playing #{list_songs[song_number -1].name} by #{list_songs[song_number - 1].artist.name}"
+        puts "Playing #{songs[song_number -1].name} by #{songs[song_number - 1].artist.name}"
       end
-      # puts "Playing #{list_songs[song_number -1].name} by #{list_songs[song_number - 1].artist.name}"
   end
 
 
