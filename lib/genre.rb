@@ -1,5 +1,6 @@
 require 'pry'
 class Genre
+  #extend Findable
   attr_accessor :name, :songs
 
   @@all = []
@@ -28,4 +29,8 @@ class Genre
     @genre.save
     @genre
   end
+  
+   def artists
+    songs.collect { |s| s.artist}.uniq
+  end 
 end

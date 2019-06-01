@@ -1,5 +1,6 @@
 require 'pry'
 class Song
+  #extend Findable
   attr_accessor :name
   attr_reader :artist, :genre
 
@@ -39,5 +40,13 @@ class Song
   def artist=(artist)
     @artist = artist
     artist.add_song(self)
+  end
+  
+  def self.find_by_name(name)
+    @@all.detect{|a| a.name == name}
+  end
+  
+  def self.find_or_create_by_name(name)
+    self.find_by_name(name) || self.create(name)
   end
 end
