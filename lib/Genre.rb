@@ -1,4 +1,4 @@
-class Artist
+class Genre
 
   attr_accessor :name
 
@@ -22,8 +22,8 @@ class Artist
   end
 
   def self.create(name)
-    self.new(name).tap do |artist|
-      artist.save
+    self.new(name).tap do |genre|
+      genre.save
     end
   end
 end
