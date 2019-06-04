@@ -7,6 +7,7 @@ class Genre
   def initialize(name)
     @name = name
     @@all
+    @songs = []
   end
 
   def self.all
@@ -25,5 +26,9 @@ class Genre
     self.new(name).tap do |genre|
       genre.save
     end
+  end
+
+  def songs
+    @songs
   end
 end
