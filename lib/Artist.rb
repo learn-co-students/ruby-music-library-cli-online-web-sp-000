@@ -7,6 +7,7 @@ class Artist
   def initialize(name)
     @name = name
     @@all
+    @songs = []
   end
 
   def self.all
@@ -25,5 +26,9 @@ class Artist
     self.new(name).tap do |artist|
       artist.save
     end
+  end
+
+  def songs
+    @songs
   end
 end
