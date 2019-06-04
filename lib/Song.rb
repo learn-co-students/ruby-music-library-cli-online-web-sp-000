@@ -1,11 +1,12 @@
 class Song
 
-  attr_accessor :name
+  attr_accessor :name, :artist
   @@all = []
 
-  def initialize(name)
+  def initialize(name, artist=nil)
     @name = name
     @@all
+    self.artist=(artist) if artist != nil
   end
 
   def self.all
@@ -24,6 +25,11 @@ class Song
    self.new(name).tap do|song|
      song.save
    end
+ end
+
+ def artist=(artist)
+   @artist = artist
+   artist.add_song(self)
  end
 
 end
