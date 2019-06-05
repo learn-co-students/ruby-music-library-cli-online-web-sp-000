@@ -1,5 +1,5 @@
 class Song
-  attr_accessor :name, :song
+  attr_accessor :name
   attr_reader :artist
   
   def initialize(name,artist = "nil")
@@ -28,13 +28,16 @@ class Song
 
 
   def artist=(artist_object)
-    Artist.add_song(artist_object)
+    artist_object.add_song(self)
+    @artist = artist_object
   end
 end
 
 # dont know how to invoke Artist add_song method inside artist= method
 
-#mora dodat artist_object
+# ---> mora dodat artist_object
+# ---> mora dodat u @artist 
+
 
 #    artist.song = self
 #   @songs << artist
