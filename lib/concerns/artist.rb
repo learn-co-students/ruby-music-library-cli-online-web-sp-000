@@ -32,9 +32,36 @@ class Artist
     end
   end
   
+
+  def genres 
+    genres_array = []  
+
+    self.songs.each do |song|  # (artist has many genres through songs)
+      
+    if genres_array.include?(song.genre) # ????
+     genres_array << song.genre
+    end
+  end
+      genres_array
+
+  end
+
+
+=begin 
+ 
+  def songsy
+    Song.all.select do |song|
+      song.artist == self
+    end
+  end
+ 
   def genres
-    genres_array = []
-    
+    array = []
+    songsy.map do |genr|
+      array << genr.genre
+    end
+    array
   end  
+=end  
 end
 
