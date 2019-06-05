@@ -29,11 +29,12 @@ class Artist
     if song.artist != self
     song.artist = self
     @songs << song
+    end
   end
-  end
+  
+  def genres
+    genres_array = []
+    
+  end  
 end
 
- # def add_song(song)
-#    song.artist = self unless song.artist == self
-#    @songs << song unless @songs.include?(song)
-#  end
