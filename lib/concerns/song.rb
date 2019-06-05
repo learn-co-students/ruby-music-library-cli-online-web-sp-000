@@ -1,11 +1,13 @@
 class Song
-  attr_accessor :name
+  attr_accessor :name, :genre
   attr_reader :artist
   
-  def initialize(name,artist = "nil")
+  def initialize(name,artist = nil, genre = nil)
     @name = name
     @@all = []
-    @artist = artist
+    self.artist = artist if artist != nil
+    self.genre = genre if genre != nil
+
   end
   
   def self.all
@@ -27,26 +29,27 @@ class Song
   end
 
 
-  def artist=(artist_object)
-    artist_object.add_song(self)
-    @artist = artist_object
+  def artist=(artist)
+    @artist = artist
+    artist.add_song(self)
   end
+  
+ # def genre=(song)
+#    song.genre = self
+#  end
 end
 
-# dont know how to invoke Artist add_song method inside artist= method
+# add songs to genre @songs array
 
-# ---> mora dodat artist_object
-# ---> mora dodat u @artist 
-
-
-#    artist.song = self
-#   @songs << artist
- 
 # Failures:
 
-#  1) Associations — Song and Artist: Song #artist= invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
-#     Failure/Error: expect(artist).to receive(:add_song)
+#  1) Associations — Song and Genre: Song #genre= adds the song to the genre's collection of songs (genre has many songs)
 
-#       (#<Artist:0x0000000002ffb9d0 @name="Neutral Milk Hotel", @songs=[]>).add_song(*(any args))
-#           expected: 1 time with any arguments
-#           received: 0 times with any arguments
+#     Failure/Error: expect(genre.songs).to include(song)
+
+#       expected [] to include #<Song:0x0000000002ffebd0 @name="In the AeroplaneOver the Sea", @genre=#<Genre:0x0000000002ffeb58 @name="indie rock", @songs=[]>>
+
+#       Diff:
+#       @@ -1,2 +1,2 @@
+#       -[#<Song:0x0000000002ffebd0 @name="In the Aeroplane Over the Sea", @genre=#<Genre:0x0000000002ffeb58 @name="indie rock", @songs=[]>>]
+#       +[]
