@@ -63,7 +63,7 @@ class Song
     song = self.new(song_name)
     artist = Artist.find_or_create_by_name(artist_name)
     artist.add_song(song)  
-    
+
     gen   = extra.split(".")[0]
     genre = Genre.find_or_create_by_name(gen)
     song.genre = genre
