@@ -27,46 +27,35 @@ class MusicLibraryController
   
   def list_songs
     
-    
+    binding.pry
   end
 end
 
 =begin
 
- describe "#call" do
-    let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+ describe "MusicLibraryController - CLI Methods" do
+  let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+  let(:other_music_library_controller) { MusicLibraryController.new("./spec/fixtures/other_mp3s") }
 
-    it "welcomes the user" do
-      allow(music_library_controller).to receive(:gets).and_return("exit")
+  describe "#list_songs" do
+    it "prints all songs in the music library in a numbered list (alphabetized by song name)" do
+      expect($stdout).to receive(:puts).with("1. Thundercat - For Love I Come - dance")
+      expect($stdout).to receive(:puts).with("2. Real Estate - Green Aisles - country")
+      expect($stdout).to receive(:puts).with("3. Real Estate - It's Real - hip-hop")
+      expect($stdout).to receive(:puts).with("4. Action Bronson - Larry Csonka - indie")
+      expect($stdout).to receive(:puts).with("5. Jurassic 5 - What's Golden - hip-hop")
 
-      expect($stdout).to receive(:puts).with("Welcome to your music library!")
-      expect($stdout).to receive(:puts).with("To list all of your songs, enter 'list songs'.")
-      expect($stdout).to receive(:puts).with("To list all of the artists in your library, enter 'list artists'.")
-      expect($stdout).to receive(:puts).with("To list all of the genres in your library, enter 'list genres'.")
-      expect($stdout).to receive(:puts).with("To list all of the songs by a particular artist, enter 'list artist'.")
-      expect($stdout).to receive(:puts).with("To list all of the songs of a particular genre, enter 'list genre'.")
-      expect($stdout).to receive(:puts).with("To play a song, enter 'play song'.")
-      expect($stdout).to receive(:puts).with("To quit, type 'exit'.")
-      expect($stdout).to receive(:puts).with("What would you like to do?")
-
-      music_library_controller.call
+      music_library_controller.list_songs
     end
 
-    it "asks the user for input" do
-      allow(music_library_controller).to receive(:gets).and_return("exit")
+    it "is not hard-coded" do
+      expect($stdout).to receive(:puts).with("1. Bob Dylan - Ballad of a Thin Man - folk")
+      expect($stdout).to receive(:puts).with("2. Alpha 9 - Bliss - trance")
+      expect($stdout).to receive(:puts).with("3. Cass McCombs - County Line - indie")
+      expect($stdout).to receive(:puts).with("4. Bob Dylan - Masters of War - folk")
 
-      expect(music_library_controller).to receive(:gets)
-
-      capture_puts { music_library_controller.call }
-    end
-
-    it "loops and asks for user input until they type in exit" do
-      allow(music_library_controller).to receive(:gets).and_return("a", "b", "c", "exit")
-
-      expect(music_library_controller).to receive(:gets).exactly(4).times
-
-      capture_puts { music_library_controller.call }
+      other_music_library_controller.list_songs
     end
   end
-end
+
 =end
