@@ -1,5 +1,9 @@
 class Song
+<<<<<<< HEAD:lib/song.rb
 #  extend Concerns::Findable
+=======
+  extend Concerns::Findable
+>>>>>>> da5e67e0dda6a11fb66dfab0d131cc0c2aa6e033:lib/song.rb
 
   attr_accessor :name
   attr_reader :artist, :genre
