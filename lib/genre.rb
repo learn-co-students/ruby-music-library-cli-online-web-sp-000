@@ -1,9 +1,5 @@
 class Genre
-<<<<<<< HEAD:lib/genre.rb
-#  extend Concerns::Findable
-=======
   extend Concerns::Findable
->>>>>>> da5e67e0dda6a11fb66dfab0d131cc0c2aa6e033:lib/genre.rb
 
   attr_accessor :name, :songs
 
@@ -34,4 +30,5 @@ class Genre
   def artists
     @songs.collect { |song| song.artist }.uniq
   end
+  
 end

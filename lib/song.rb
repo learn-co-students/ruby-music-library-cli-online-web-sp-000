@@ -1,9 +1,5 @@
+require "pry"
 class Song
-<<<<<<< HEAD:lib/song.rb
-#  extend Concerns::Findable
-=======
-  extend Concerns::Findable
->>>>>>> da5e67e0dda6a11fb66dfab0d131cc0c2aa6e033:lib/song.rb
 
   attr_accessor :name
   attr_reader :artist, :genre
@@ -59,5 +55,23 @@ class Song
     else
       create(name)
     end  
+  end
+  
+  
+  def self.new_from_filename(filename)
+    artist_name, song_name, extra = filename.split(" - ")
+    song = self.new(song_name)
+    artist = Artist.find_or_create_by_name(artist_name)
+    artist.add_song(song)  
+    
+    gen   = extra.split(".")[0]
+    genre = Genre.find_or_create_by_name(gen)
+    song.genre = genre
+  
+    song
+  end
+  
+  def self.create_from_filename(filename)
+    @@all << self.new_from_filename(filename)
   end
 end
