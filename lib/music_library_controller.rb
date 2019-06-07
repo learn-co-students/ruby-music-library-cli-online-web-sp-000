@@ -39,9 +39,9 @@ class MusicLibraryController
     number = 0
     array = Artist.all.sort_by(&:name) 
 
-    array.each do |song|
+    array.each do |artist|
     number += 1
-    puts "#{number}. #{song.name}"
+    puts "#{number}. #{artist.name}"
     end      
   end
   
@@ -49,9 +49,9 @@ class MusicLibraryController
     number = 0
     array = Genre.all.sort_by(&:name) 
 
-    array.each do |song|
+    array.each do |genre|
     number += 1
-    puts "#{number}. #{song.name}"
+    puts "#{number}. #{genre.name}"
     end      
   end
   
@@ -67,36 +67,29 @@ class MusicLibraryController
       end
     end
   end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.strip
+    
+    if genre = Genre.find_by_name(input)
+      genre.songs.sort_by(&:name).each.with_index(1) do |song,index|
+  
+    puts "#{index}. #{song.artist.name} - #{song.name}"
+      end
+   end
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"
+    input = gets.strip.to_i
+    if (1..Song.all.length).include?(input)
+      song = Song.all.sort_by(&:name)[input - 1]
+    end
+    puts "Playing #{song.name} by #{song.artist.name}" if song
+  end  
 end
 
 =begin
-
-
-
-
-
-    array.each.with_index(1) do |song,index|
-
-    it "prints all songs by a particular artist in a numbered list (alphabetized by song name)" do
-      Song.create_from_filename("Real Estate - Wonder Years - dream pop.mp3")
-
-      allow(music_library_controller).to receive(:gets).and_return("Real Estate")
-
-      expect($stdout).to receive(:puts).with("Please enter the name of an artist:")
-      expect($stdout).to receive(:puts).with("1. Green Aisles - country")
-      expect($stdout).to receive(:puts).with("2. It's Real - hip-hop")
-      expect($stdout).to receive(:puts).with("3. Wonder Years - dream pop")
-
-      music_library_controller.list_songs_by_artist
-    end
-
-Failures:
-
-  1) MusicLibraryController - CLI Methods #list_songs_by_artist prints all songs by a particular artist in a numbered list (alphabetized by song name)
-     Failure/Error: expect($stdout).to receive(:puts).with("1. Green Aisles - country")
-
-       (#<IO:<STDOUT>>).puts("1. Green Aisles - country")
-           expected: 1 time with arguments: ("1. Green Aisles - country") real estate
-           received: 0 times
 
 =end
