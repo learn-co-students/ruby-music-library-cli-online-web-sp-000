@@ -42,4 +42,14 @@ class Song
    end
  end
 
+ def self.find_by_name(name)
+   @@all.detect do |song|
+     if song.name == name
+       song
+     else
+       nil
+     end
+   end
+ end
+
 end
