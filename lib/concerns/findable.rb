@@ -1,3 +1,1 @@
-module Concerns::Findable
 
-end
