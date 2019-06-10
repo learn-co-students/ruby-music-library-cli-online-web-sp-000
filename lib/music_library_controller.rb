@@ -32,6 +32,10 @@ class MusicLibraryController
           list_songs_by_genre
         when "play song"
           play_song
+        when "list artist"
+          list_songs_by_artist
+        when "list genre"
+          list_songs_by_genre
         end
       end
     end
@@ -81,13 +85,10 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-    list_songs
-    user_input = gets.chomp
-    song = user_iput[index + 1] 
-      if song 
-        song.sort{|a,b| a.name<=>b.name}.each_with_index.find(user_input[index + 1]) do
-          
-        puts "Playing #{s.name} by #{s.artist.name}"
+    user_input = gets.chomp.to_i
+      if (1..Song.all.length).include?(user_input)
+        song = Song.all.sort {|a,b| a.name<=>b.name} [user_input - 1]
+        puts "Playing #{song.name} by #{song.artist.name}"
     end
   end
 end
