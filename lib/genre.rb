@@ -33,4 +33,10 @@ class Genre
         @songs << song
       end
     end
+
+    def artists
+      songs.collect do |song|
+        song.artist
+      end.uniq
+      end
 end
