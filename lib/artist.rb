@@ -15,11 +15,11 @@ class Artist
   end
 
   def self.destroy_all
-    @@all = []
+    all.clear
   end
 
   def save
-    @@all << self
+    self.class.all << self
   end
 
   def self.create(artist)
@@ -27,18 +27,15 @@ class Artist
   end
 
   def add_song(song)
-    if song.artist == nil
-      song.artist = self
-    end
-
-    if !@songs.include?(song)
-      @songs << song
-    end
+   song.artist = self unless song.artist
+   songs.push song unless songs.include?(song)
   end
 
-  def genre
-    @songs.map do |song|
+  def genres
+    songs.collect do |song|
       song.genre
+      genre.uniq
   end
-end
+  end
+
 end
