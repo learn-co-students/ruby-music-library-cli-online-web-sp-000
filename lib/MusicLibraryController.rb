@@ -8,11 +8,11 @@ class MusicLibraryController
 
   def call
     puts "Welcome to your music library!"
-    
+
     input = gets.strip
 
-    if input != exit
-
+    until input = "exit"
+      puts "To list all of your songs, enter 'list songs'."
     end
   end
 
