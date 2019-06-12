@@ -7,11 +7,13 @@ class MusicLibraryController
   end
 
   def call
+    puts "Welcome to your music library!"
+    
     input = gets.strip
 
     if input != exit
-      puts "Welcome"
-    end   
+
+    end
   end
 
 end
