@@ -22,6 +22,21 @@ class MusicLibraryController
       puts "What would you like to do?"
     
       reply = gets
+      
+      case reply
+        when "list songs"
+          list_songs
+        when "list artists"
+          list_artists
+        when "list genres"
+          list_genres
+        when "list artist"
+          list_songs_by_artist
+        when "list genre"
+          list_songs_by_genre
+        when "play song"
+          play_song
+      end
     end
   end
   
@@ -60,20 +75,55 @@ class MusicLibraryController
   
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
-    
     reply = gets.strip
-    #puts reply
     
+    artist = nil
     artist = Artist.all.detect {|item| item.name == reply}
     
-    songs = artist.songs
-    songs.sort_by! {|song| song.name}
-    i = 0
+    if artist
+      songs = artist.songs
+      songs.sort_by! {|song| song.name}
+      i = 0
     
-    while i < songs.length
-      puts "#{i + 1}. #{songs[i].name} - #{songs[i].genre.name}"
-      i += 1
+      while i < songs.length
+        puts "#{i + 1}. #{songs[i].name} - #{songs[i].genre.name}"
+        i += 1
+      end
     end
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    reply = gets.strip
+    
+    genre = nil
+    genre = Genre.all.detect {|item| item.name == reply}
+    
+    if genre
+      songs = genre.songs
+      songs.sort_by! {|song| song.name}
+      i = 0
+      
+      while i < songs.length
+        puts "#{i + 1}. #{songs[i].artist.name} - #{songs[i].name}"
+        i += 1
+      end
+    end
+  end
+  
+  def play_song
+    #list_songs
+    puts "Which song number would you like to play?"
+    song_number = gets.strip.to_i
+    songs = Song.all
+    songs.sort_by! {|song| song.name}
+    
+    if (song_number > 0) && (song_number <= songs.length)
+      if songs[song_number - 1]
+        puts "Playing #{songs[song_number - 1].name} by #{songs[song_number - 1].artist.name}"
+      end
+    end
+    
   end
   
 end
