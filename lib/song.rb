@@ -1,36 +1,14 @@
 require 'pry'
 class Song
   attr_accessor :name
+  attr_reader :artist, :genre
 
-  @@all=[]
+  @@all = []
 
-  def initialize(name, artist = nil, genre = nil)
+  def initialize(name, artist=nil, genre=nil)
     @name = name
-    if artist != nil
-      self.artist = artist
-    end
-    if genre != nil
-      self.genre = genre
-    end
-    save
-  end
-
-  def artist
-    @artist
-  end
-
-  def artist=(artist)
-    @artist = artist
-    artist.add_song(self)
-  end
-
-  def genre
-    @genre
-  end
-
-  def genre=(genre)
-    @genre = genre
-    genre.add_song(self)
+    self.artist=artist if artist
+    self.genre=genre if genre
   end
 
   def self.all
@@ -47,9 +25,26 @@ class Song
 
   def self.create(name)
     newsong = self.new(name)
+    newsong.save
+    newsong
+  end
+
+  def artist=(artist)
+    @artist=artist
+    artist.add_song(self)
+  end
+
+  def genre=(genre)
+    @genre=genre
+    genre.songs << self if !genre.songs.include?(self)
   end
 
   def self.find_by_name(name)
-    all.find {|song| song.name == name}
+    self.all.find {|song| song.name == name}
   end
+
+  def self.find_or_create_by_name(name)
+    self.find_by_name(name) || create(name)
+  end
+
 end
