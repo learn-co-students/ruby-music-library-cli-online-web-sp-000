@@ -1,6 +1,9 @@
 class Song
   extend Concerns::Findable
-  attr_reader :artist, :genre
+  include Concerns::Nameable
+  include Concerns::Instance_all
+  extend Concerns::Class_all
+  attr_reader :name, :artist, :genre
 
   @@all = []
 
@@ -10,13 +13,13 @@ class Song
     self.genre=(genre) unless genre == nil
   end
 
-  def name
-    @name
-  end
-
-  def name=(name)
-    @name = name
-  end
+  # def name
+  #   @name
+  # end
+  #
+  # def name=(name)
+  #   @name = name
+  # end
 
   def artist=(artist)
     @artist = artist
@@ -32,20 +35,20 @@ class Song
     @@all
   end
 
-  def self.destroy_all
-    @@all.clear
-  end
-
-  def save
-    @@all << self
-  end
-
-  def self.create(song)
-    instance = Song.new(song).tap do |i|
-      i.name = song
-      i.save
-    end
-  end
+  # def self.destroy_all
+  #   @@all.clear
+  # end
+  #
+  # def save
+  #   @@all << self
+  # end
+  #
+  # def self.create(song)
+  #   instance = Song.new(song).tap do |i|
+  #     i.name = song
+  #     i.save
+  #   end
+  # end
 
   def self.new_from_filename(file)
     artist_s, song_s, genre_mp3 = file.split(" - ")
@@ -56,6 +59,6 @@ class Song
   def self.create_from_filename(file)
     imported_song = self.new_from_filename(file).tap do |i|
       i.save unless self.all.include?(i)
-    end 
+    end
   end
 end
