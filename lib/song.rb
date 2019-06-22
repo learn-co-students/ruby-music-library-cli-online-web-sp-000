@@ -9,6 +9,7 @@ class Song
     @name = name
     self.artist =(artist) unless artist == nil
     self.genre = (genre) unless genre == nil
+    save
   end
   
   def genre=(genre)
@@ -41,7 +42,6 @@ class Song
   
   def self.create(song, artist=nil, genre=nil)
     new_song = Song.new(song, artist, genre)
-    save
   end
   
   def self.find_by_name(name)
