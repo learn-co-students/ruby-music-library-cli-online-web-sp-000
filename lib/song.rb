@@ -4,6 +4,7 @@ class Song
   include Concerns::Instance_all
   extend Concerns::Class_all
   attr_reader :name, :artist, :genre
+  attr_reader :artist, :genre
 
   @@all = []
 
