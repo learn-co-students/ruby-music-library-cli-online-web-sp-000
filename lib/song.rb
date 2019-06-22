@@ -25,12 +25,7 @@ class Song
     artist.add_song(self)
   end 
   
-  
   @@all = []
-  
-  def initialize(name)
-    @name = name
-  end
   
   def self.all
     @@all
@@ -47,6 +42,10 @@ class Song
   def self.create(song, artist=nil, genre=nil)
     new_song = Song.new(song, artist, genre)
     save
+  end
+  
+  def self.find_by_name(name)
+    @@all.find{ |song| song.name == name}
   end
     
 end

@@ -7,6 +7,7 @@ class Genre
   def initialize(name)
     @name = name
     @songs = []
+    save
   end
   
   def songs
@@ -26,10 +27,17 @@ class Genre
   end
   
   def self.create(name)
-    song = self.new(name)
-    song.save
-    song
+     new_genre = Genre.new(name)
   end
     
+  def add_song(song)
+    self.songs << song unless @songs.include?(song)
+    self.artist << song.artist unless @songs.include?(song)
+    song.genre = self if song.genre.nil?
+  end  
+  
+  def artists
+   @songs.collect {|song| song.artist}.uniq
+  end
   
 end
