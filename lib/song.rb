@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song 
   
   extend Concerns::Findable
