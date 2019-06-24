@@ -20,7 +20,8 @@ class MusicLibraryController
       answer = gets.chomp
       case answer
       when "list songs"
-        
+        list_songs
+      end
     end
   end
   
@@ -30,6 +31,5 @@ class MusicLibraryController
     end
   end
       
-  end
   
 end
