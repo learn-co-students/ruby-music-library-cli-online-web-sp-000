@@ -1,4 +1,5 @@
 class Genre
+  extend Concerns::Findable
   attr_accessor :name
 
   @@all = []    #@@all init as an empty array
