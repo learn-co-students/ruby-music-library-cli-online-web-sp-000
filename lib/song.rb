@@ -15,6 +15,4 @@ class Song
     return @@all.clear
   end
 
-
-
 end
