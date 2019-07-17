@@ -46,4 +46,18 @@ class Song
     find_by_name(name) || create(name)
   end
 
+  #sets the artist object to belong to the song
+  def self.new_from_filename(filename)
+    parts = filename.split(" - ")
+    artist_name, song_name, genre_name = parts[0], parts[1], parts[2].gsub(".mp3", "")
+
+    artist = Artist.find_or_create_by_name(artist_name)
+    genre = Genre.find_or_create_by_name(genre_name)
+
+    new(song_name, artist, genre)
+  end
+
+  def self.create_from_filename(filename)         #initializes and saves a song based on the passed-in filename
+    new_from_filename(filename).tap{ |s| s.save } #invokes .new_from_filename instead of re-coding the same functionality
+  end
 end
