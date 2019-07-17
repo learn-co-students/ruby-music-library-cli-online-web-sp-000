@@ -1,6 +1,5 @@
 class Artist
   extend Concerns::Findable                #Artist extend Concerns::Findable
-
   attr_accessor :name
   attr_reader :songs
 
@@ -40,6 +39,6 @@ class Artist
   end
 
   def genres                            #returns a collection of genres for all of the artist's songs
-    songs.collect {|song| song.genre}.uniq
+    songs.collect {|song| song.genre}.uniq    #artits has many genres through songs
   end
 end

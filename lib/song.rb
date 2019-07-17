@@ -1,4 +1,5 @@
 class Song
+  #extend Concerns::Findable
   attr_accessor :name
   attr_reader :artist, :genre         #song belongs to artist. returns the genre of the song (song belongs to genre)
 
@@ -11,7 +12,7 @@ class Song
     self.genre = genre if genre
   end
   #writer/setter
-  def artist=(artist)     #invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
+  def artist=(artist)               #invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
     @artist = artist
     artist.add_song(self)
   end
@@ -32,18 +33,18 @@ class Song
     @@all << self
   end
 
-  def self.create(name)
-    song = new(name)          #creates song
-    song.save                 #saves song
-    return song               #returns song
-  end
-
-  def self.find_by_name(name)         #finds a song instance in @@all by the name property of the song
+  def self.find_by_name(name)                 #finds a song instance in @@all by the name property of the song
     @@all.detect {|song| song.name == name}
   end
 
   def self.find_or_create_by_name(name)
     find_by_name(name) || create(name)
+  end
+
+  def self.create(name)
+    song = new(name)          #creates song
+    song.save                 #saves song
+    return song               #returns song
   end
 
   #sets the artist object to belong to the song
