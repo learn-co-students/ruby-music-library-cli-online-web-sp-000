@@ -23,3 +23,7 @@ require_all 'lib'
 #we created an environment file to handle those requirements for us
 #Because the environment.rb file is read and loaded into memory in line order,
 #if Artist requires Findable, then Artist must be required after requiring Findable
+
+#Our spec_helper file, which is required by each individual spec file, required only this config/environment.rb file,
+#instead of each and every file from the lib directory. As we start to build larger and more complex programs,
+#it begins to make sense to handle all of our requirements in one place.
