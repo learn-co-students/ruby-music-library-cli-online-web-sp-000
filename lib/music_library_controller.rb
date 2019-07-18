@@ -1,3 +1,4 @@
+require "pry"
 class MusicLibraryController
   
   def initialize(path = './db/mp3s')
@@ -38,12 +39,80 @@ class MusicLibraryController
  
  def list_songs
    index = 0
+   @list = []
    songs = Song.all
-   
-   sorted_songs = songs.map{|s| index += 1
-   puts "#{index}. #{s.artist.name} - #{s.name} - #{s.genre.name}"}
-   
+   sorted_songs = songs.sort {|song_a,song_b| song_a.name <=> song_b.name}
+   sorted_songs.map {|s| 
+      index += 1
+      puts "#{index}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+      @list[index] = ["#{s.name} by #{s.artist.name}"] 
+   }
  end
+ 
+  def list_artists
+   index = 0
+   artists = Artist.all
+   sorted_artists = artists.sort {|a,b| a.name <=> b.name}
+   sorted_artists.each {|a| 
+      index += 1
+      puts "#{index}. #{a.name}"
+   }
+ end
+ 
+  def list_genres
+   index = 0
+   genres = Genre.all
+   sorted_genres = genres.sort {|a,b| a.name <=> b.name}
+   sorted_genres.each {|g| 
+      index += 1
+      puts "#{index}. #{g.name}"
+   }
+ end
+ 
+ def list_songs_by_artist
+   index = 0
+   puts "Please enter the name of an artist:"
+   input = gets.strip
+   Artist.all.each {|a|
+      if a.name == input
+        sorted = a.songs.sort {|x,y| x.name <=> y.name}
+            sorted.each {|o| 
+            index += 1
+            puts "#{index}. #{o.name} - #{o.genre.name}"}
+      else nil 
+      end
+   }
+ end
+ 
+  def list_songs_by_genre
+   index = 0
+   puts "Please enter the name of a genre:"
+   input = gets.strip
+   Genre.all.each {|a|
+      if a.name == input
+        sorted = a.songs.sort {|x,y| x.name <=> y.name}
+            sorted.each {|o| 
+            index += 1
+            puts "#{index}. #{o.artist.name} - #{o.name}"}
+      else nil 
+      end
+   }
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"  
+    input = gets.strip.to_i
+    range = list_songs.size 
+      if input.between?(1, range)
+          puts "Now Playing #{@list[input]}"
+          
+      else
+      nil
+      end
+  end
+ 
+ 
+ 
  
 end
    

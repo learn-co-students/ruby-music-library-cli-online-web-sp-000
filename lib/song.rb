@@ -46,10 +46,11 @@ class Song
   end
   
    def self.new_from_filename(file)
+     
     array = file.split(" - ")
     s = find_or_create_by_name(array[1])
     a = Artist.find_or_create_by_name(array[0])
-    g = Genre.find_or_create_by_name(array[2].delete!'.mp3')
+    g = Genre.find_or_create_by_name(array[2].chomp('.mp3'))
     s.artist = a
     s.genre = g
     s
@@ -57,7 +58,6 @@ class Song
   
   def self.create_from_filename(file)
     c = new_from_filename(file)
-    @@all << c
     c
   end
  
