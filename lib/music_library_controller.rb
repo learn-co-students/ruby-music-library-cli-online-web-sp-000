@@ -5,6 +5,8 @@ class MusicLibraryController
    new_importer = MusicImporter.new(path)
    new_importer.import 
   end
+  
+
  
  def call 
    data = " "
@@ -22,15 +24,15 @@ class MusicLibraryController
     data = gets.strip
       case data
       when "list songs"
-      songs
+      list_songs
       when "list artists"
-      artists
+      list_artists
       when "list genres"
-      genres
+      list_genres
       when "list artist"
-      list_artist
+      list_songs_by_artist
       when "list genre"
-      list_genre
+      list_songs_by_genre
       when "play song"
       play_song
       end 
@@ -39,14 +41,14 @@ class MusicLibraryController
  
  def list_songs
    index = 0
-   @list = []
    songs = Song.all
    sorted_songs = songs.sort {|song_a,song_b| song_a.name <=> song_b.name}
    sorted_songs.map {|s| 
       index += 1
       puts "#{index}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
-      @list[index] = ["#{s.name} by #{s.artist.name}"] 
+      { :index => "#{s.name} by #{s.artist.name}"}
    }
+   
  end
  
   def list_artists
@@ -100,19 +102,25 @@ class MusicLibraryController
   end
   
   def play_song
-    puts "Which song number would you like to play?"  
-    input = gets.strip.to_i
-    range = list_songs.size 
-      if input.between?(1, range)
-          puts "Now Playing #{@list[input]}"
-          
-      else
+    index = 0
+    list = []
+    songs = Song.all
+    sorted_songs = songs.sort {|song_a,song_b| song_a.name <=> song_b.name}
+      sorted_songs.each {|s| 
+      index += 1
+      list[index] = "#{s.name} by #{s.artist.name}"
+      }
+      
+      puts "Which song number would you like to play?"  
+      input = gets.strip.to_i
+      if input.between?(1,list.size - 1)
+      puts "Playing #{list[input]}"
+      else 
       nil
       end
+    #binding.pry
   end
- 
- 
- 
+
  
 end
    
