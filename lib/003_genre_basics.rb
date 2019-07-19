@@ -4,6 +4,17 @@ attr_reader :name
 
 def initialize(name)
   @name = name
+  @songs = []
+end
+def artists
+  all_artists = []
+  @songs.each do |song|
+   all_artists << song.artist
+ end
+ all_artists.uniq
+end
+def songs
+  @songs
 end
 
 def name=(name)

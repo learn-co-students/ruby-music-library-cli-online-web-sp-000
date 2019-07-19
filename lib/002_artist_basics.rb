@@ -6,6 +6,14 @@ def initialize(name)
   @name = name
   @songs = []
 end
+def genres
+  all_genres = []
+    @songs.each do |song|
+    all_genres << song.genre
+  end
+   all_genres.uniq
+end
+
 
 def add_song(song)
   # song = Song.new(name, self)
