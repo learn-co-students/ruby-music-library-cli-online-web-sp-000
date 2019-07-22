@@ -1,4 +1,7 @@
+require_relative "./findable_module.rb"
+
 class Artist
+  extend Concerns::Findable
 attr_reader :name, :songs, :genres
 @@all = []
 
