@@ -25,17 +25,18 @@ def self.find_or_create_by_name(name)
 end
 
 def self.new_from_filename(song_file)
-  name = song_file.split(" - ")[1]
-  artist = song_file.split(" - ")[0]
-  genre = song_file.split(" - ")[2]
-  find_or_create_by_name(artist)
-  find_or_create_by_name(name)
-# binding.pry
+  file = song_file.gsub(".mp3", "").split(" - ")
+   artist = Artist.find_or_create_by_name(file[0])
+   genre = Genre.find_or_create_by_name(file[2])
+   self.new(file[1], artist, genre)
 end
 
-# def create_from_filename(song_file)
-#   if
-def artist=(artist)
+def self.create_from_filename(song_file)
+    song = self.new_from_filename(song_file)
+    song.save
+  end
+
+  def artist=(artist)
   @artist = artist
   artist.add_song(self)
   # binding.pry
