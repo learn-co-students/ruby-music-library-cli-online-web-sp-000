@@ -1,12 +1,15 @@
+require "pry"
 class Genre
+ 
 
-attr_accessor :name
+attr_accessor :name, :songs
 
 @@all = []
 
   def initialize(name)
   @name=name
   @@all << self
+  @songs = []
   end
   
   def self.all
@@ -26,5 +29,25 @@ attr_accessor :name
   genre.save
   genre
 end
+
+
+def add_genre(song)
+    if song.genre == nil
+      song.genre = self
+    end
+    if !@songs.include?(song)
+    @songs << song
+  end
+end
+
+def find_songs
+  Song.all.select {|song| song.genre == self}
+end
+
+def artists 
+  find_songs.map {|song| song.artist }.uniq
+end
+  
+
   
 end
