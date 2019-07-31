@@ -63,9 +63,3 @@ class Song
   end
 
 end
-
-# def create(name)
-#   new_instance = self.new(name)
-#   new_instance.save
-#   new_instance
-# end
