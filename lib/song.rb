@@ -1,3 +1,4 @@
+require "pry" 
 class Song 
   
   attr_accessor :name
@@ -47,6 +48,13 @@ class Song
   
   def self.find_or_create_by_name(name)
     find_by_name(name) || create(name)
+  end
+  
+  def self.new_from_filename(file)
+    artist, song, genre = file.split(" - ") #destructuring 
+    artist = Artist.find_or_create_by_name(artist)
+    genre = Genre.find_or_create_by_name(genre)
+    binding.pry     
   end
   
 end
