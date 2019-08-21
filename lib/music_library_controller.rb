@@ -1,4 +1,3 @@
-require 'pry'
 class MusicLibraryController
 
   def initialize(path = "./db/mp3s")
@@ -22,7 +21,9 @@ class MusicLibraryController
   end
 
   def list_songs
-    binding.pry
+    Song.all.sorty_by(&:name).each.with_index(1) do |song, index|
+      puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
 
 end
