@@ -29,9 +29,19 @@ class Genre
   end
 
   def songs
-    Song.all.select do |song|
-      song.genre == self
-    end
+    @songs
+  #   Song.all.select do |song|
+  #     song.genre == self
+  #   end
+  end
+
+  def add_song(song)
+      song.genre = self unless song.genre
+      songs << song unless songs.include?(song)
+  end
+
+  def artists
+    songs.map{|x| x.artist}.uniq
   end
 
 end
