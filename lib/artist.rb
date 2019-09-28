@@ -1,4 +1,6 @@
+require_relative '../lib/concerns/Findable'
 class Artist
+  extend Concerns::Findable
   attr_accessor :name, :songs
 
   @@all = []

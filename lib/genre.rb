@@ -1,5 +1,6 @@
-
+require_relative '../lib/concerns/Findable'
 class Genre
+  extend Concerns::Findable
   attr_accessor :name, :songs
 
   @@all = []
