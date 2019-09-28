@@ -29,7 +29,17 @@ class MusicLibraryController
   end
 
   def list_artists
-    Artist.all.sort_by{|x| x.name}.each_with_index{|x, i| puts "#{i+1}. #{x.artist.name}"}
+    Artist.all.sort_by{|x| x.name}.each_with_index{|x, i| puts "#{i+1}. #{x.name}"}
+  end
+
+  def list_genres
+    Genre.all.sort_by{|x| x.name}.each_with_index{|x, i| puts "#{i+1}. #{x.name}"}
+  end
+
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets.strip
+    # Artist.all.sort_by{|x| x.name}.each_with_index{|x, i| puts "#{i+1}. #{x.name}"}
   end
 
 end
