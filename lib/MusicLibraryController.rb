@@ -21,6 +21,19 @@ class MusicLibraryController
       puts "What would you like to do?"
       until user_input == "exit"
       user_input = gets.chomp
+      if user_input == "list songs"
+        list_songs
+      elsif user_input == "list artists"
+        list_artists
+      elsif user_input == "list genres"
+        list_genres
+      elsif user_input == "list artist"
+        list_songs_by_artist
+      elsif user_input == "list genre"
+        list_songs_by_genre
+      elsif user_input == "play song"
+        play_song
+      end
     end
   end
 
@@ -39,7 +52,23 @@ class MusicLibraryController
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.strip
-    # Artist.all.sort_by{|x| x.name}.each_with_index{|x, i| puts "#{i+1}. #{x.name}"}
+    Song.all.select{|x| input == x.artist.name}.sort{|x, y| x.name <=> y.name }.each_with_index{|x, i| puts "#{i+1}. #{x.name} - #{x.genre.name}"}
+  end
+
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.strip
+    Song.all.select{|x| input == x.genre.name}.sort{|x, y| x.name <=> y.name }.each_with_index{|x, i| puts "#{i+1}. #{x.artist.name} - #{x.name}"}
+  end
+
+  def play_song
+    puts "Which song number would you like to play?"
+       user_input = gets.chomp.to_i
+       song = nil
+       if user_input <= Song.all.length && user_input > 0
+         song = Song.all.sort{|x,y| x.name <=> y.name}.uniq[user_input-1]
+       end
+      puts "Playing #{song.name} by #{song.artist.name}" if song
   end
 
 end
