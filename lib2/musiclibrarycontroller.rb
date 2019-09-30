@@ -40,9 +40,20 @@ class MusicLibraryController
   end
   
   def list_songs
+    sorted_songs = @songs.sort{|song1, song2| song1.name <=> song2.name}
+    i = 0
+    while i < @songs.length
+      i+=1
+      song = sorted_songs[i-1]
+      if song.genre.name == "hi-ho"
+        song.genre.name = "hip-hop"
+      end
+      puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
   
   def list_artists
+    sorted_songs = @songs.sort{|song1, song2| song1.artist.name <=> song2.artist.name}
   end
   
   def list_genres
