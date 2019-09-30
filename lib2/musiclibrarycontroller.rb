@@ -54,17 +54,12 @@ class MusicLibraryController
   
   def list_artists
     sorted_songs = @songs.sort{|song1, song2| song1.artist.name <=> song2.artist.name}
-    i = 0
-    artists = []
-    artist = sorted_songs[i].artist
-    while i < @songs.length
-      if artists.include?(artist) != true
+    i = 1
+    sorted_songs.map{|song|
+        artist = song.artist.name
+        puts "#{i}. #{artist}".to_s
         i+=1
-        artist = sorted_songs[i-1].artist
-        artists << artist
-        puts "#{i}. #{artist.name}"
-      end
-    end
+    }
   end
   
   def list_genres
