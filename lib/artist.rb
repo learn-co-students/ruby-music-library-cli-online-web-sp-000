@@ -2,7 +2,7 @@ class Artist
 extend Concerns::Findable
   
   attr_accessor :name
-  attr_reader :songs, :genres
+  attr_reader :songs, :genre
   
  @@all = []
   
