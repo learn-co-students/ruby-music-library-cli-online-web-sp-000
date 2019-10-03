@@ -1,4 +1,5 @@
 class Genre
+  
   extend Concerns::Findable
 
   attr_accessor :name
@@ -27,12 +28,10 @@ class Genre
     genre = new(name)
     genre.save
     genre
-
-    # Or, as a one-liner:
-    # new(name).tap{ |g| g.save }
   end
 
   def artists
     songs.collect{ |s| s.artist }.uniq
   end
+  
 end

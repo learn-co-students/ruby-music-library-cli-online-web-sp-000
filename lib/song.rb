@@ -1,4 +1,5 @@
 class Song
+  
   attr_accessor :name
   attr_reader :artist, :genre
 
@@ -36,9 +37,6 @@ class Song
     song = new(name)
     song.save
     song
-
-    # Or, as a one-liner:
-    # new(name).tap{ |s| s.save }
   end
 
   def self.find_by_name(name)
@@ -62,4 +60,5 @@ class Song
   def self.create_from_filename(filename)
     new_from_filename(filename).tap{ |s| s.save }
   end
+  
 end
