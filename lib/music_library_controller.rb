@@ -7,9 +7,6 @@ class MusicLibraryController
   end
   
   def call
-
-    input = gets.chomp
-    
     
       puts "Welcome to your music library!"
       
@@ -25,8 +22,18 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       
       puts "What would you like to do?"
+      
+      count = 1 
+      until count > 4
+        input = gets.chomp
+        count += 1 
+      end
 
   end
   
+  def list_songs
+    Song.all.sort {|a,b| a.sort <=> b.sort}.each_with_index do |song, i|
+        puts ""
+      end
   
 end
