@@ -1,3 +1,4 @@
+require 'pry'
 class MusicLibraryController
   def initialize(path="./db/mp3s")
     MusicImporter.new(path).import
@@ -18,6 +19,16 @@ class MusicLibraryController
      puts "What would you like to do?"
  input = gets.strip
  end
+ 
+  def list_songs
+    Song.all.sort {|a, b| a.name <=> b.name} #Sort alphabetically by song name
+    #
+    
+    
+    
+    each_with_index {|song, index| "#{song}, #{index}"
+    #1. Thundercat - For Love I Come - dance"
+  end
  end
   #call method starts cli and prompts user for input
 end
