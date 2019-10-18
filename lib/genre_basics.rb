@@ -7,8 +7,13 @@ class Genre
   def initialize(name)
     @name = name
     save
+    @songs = []
   end
   
+  def songs
+    @songs
+  end
+    
   def self.all
     @@all
   end
@@ -25,5 +30,10 @@ class Genre
     genre = self.new(genre)
     genre.save
     genre
+  end
+  
+  def artists
+     artists = songs.map {|song| song.artist}
+     artists.uniq
   end
 end
