@@ -40,6 +40,14 @@ class Song
     song
   end
   
+  def self.new_from_filename(filename)
+    name = filename.split(" - ")[1]
+    artist = filename.split(" - ")[0]
+    new_song = self.new(name)
+    new_song.artist = artist
+    new_song
+  end
+  
   # def self.find_by_name(name)
   #   self.all.find {|n| n.name == name}
   # end
