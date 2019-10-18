@@ -1,12 +1,12 @@
 class Genre
-  
+  extend Findable::ClassMethods
+
   attr_accessor :name
   
   @@all = []
   
   def initialize(name)
     @name = name
-    save
     @songs = []
   end
   

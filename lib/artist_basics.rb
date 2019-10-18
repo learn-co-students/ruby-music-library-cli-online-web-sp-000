@@ -1,5 +1,6 @@
 class Artist
-  
+  extend Findable::ClassMethods
+
   attr_accessor :name, :song, :songs
   
   @@all = []
