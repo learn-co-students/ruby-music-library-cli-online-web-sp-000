@@ -21,14 +21,15 @@ class MusicLibraryController
  end
  
   def list_songs
-    Song.all.sort {|a, b| a.name <=> b.name} #Sort alphabetically by song name
-    #
-    
-    
-    
-    each_with_index {|song, index| "#{song}, #{index}"
-    #1. Thundercat - For Love I Come - dance"
+    song_list = Song.all.sort {|a, b| a.name <=> b.name} #Sort alphabetically by song name
+    song_list.each.with_index(1) {|song, index| puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
   end
  end
-  #call method starts cli and prompts user for input
+
+  def list_artists
+    artist_list = Artist.all.sort {|a, b| a.artist <=> b.artist}
+    artist_list.each.with_index(1) {|artist, index| puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
+    end
+  end
+
 end
