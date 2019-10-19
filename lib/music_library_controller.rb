@@ -17,8 +17,8 @@ class MusicLibraryController
      puts "To play a song, enter 'play song'."
      puts "To quit, type 'exit'."
      puts "What would you like to do?"
- input = gets.strip
- end
+  input = gets.strip
+  end
  
   def list_songs
     song_list = Song.all.sort {|a, b| a.name <=> b.name} #Sort alphabetically by song name
@@ -33,19 +33,39 @@ class MusicLibraryController
     end
   end
 
+
   def list_genres
     Genre.all.sort {|a, b| a.name <=> b.name}.each.with_index(1) do |genre, index| 
       puts "#{index}. #{genre.name}"
+    end
   end
-end
 
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.strip
-    if input = Artist.find_by_name(input)
-    #prompts user to enter artist
-    #accepts input
-    #prints songs by a particular artist in numbered list
-    #if no matching artist, does nothing
+    if artist = Artist.find_by_name(input)
+      artist.songs.sort {|a, b| a.name <=> b.name}.each.with_index(1) do |song, index| 
+        puts "#{index}. #{song.name} - #{song.genre.name}"
+      end
+    end
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.strip
+    if genre = Genre.find_by_name(input)
+      genre.songs.sort {|a, b| a.name <=> b.name}.each.with_index(1) do |song, index|
+        puts "#{index}. #{song.artist.name} - #{song.name}"
+      end
+    end
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"
+    input = gets.strip
+    if song = Song.find_by_name(input) #if song input matches existing song (is valid input)
+    
+    #pulls matching input from list_songs
+    #puts "playing (song) by (artist)"
   end
 end
