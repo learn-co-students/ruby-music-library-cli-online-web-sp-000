@@ -1,2 +1,2 @@
-class Artist > Base
+class Artist < Base
 end
