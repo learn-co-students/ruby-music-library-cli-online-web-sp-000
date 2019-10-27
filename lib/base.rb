@@ -1,5 +1,4 @@
 class Base
-  
   @@all = []
   attr_accessor :name
   

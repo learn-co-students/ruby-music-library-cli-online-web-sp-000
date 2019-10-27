@@ -2,28 +2,29 @@
 An error occurred while loading spec_helper.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
 # ./spec/spec_helper.rb:1:in `require_relative'
 # ./spec/spec_helper.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/001_song_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -31,19 +32,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/001_song_basics_spec.rb:1:in `require'
 # ./spec/001_song_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/001_song_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -51,19 +50,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/001_song_basics_spec.rb:1:in `require'
 # ./spec/001_song_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/002_artist_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -71,19 +68,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/002_artist_basics_spec.rb:1:in `require'
 # ./spec/002_artist_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/002_artist_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -91,19 +86,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/002_artist_basics_spec.rb:1:in `require'
 # ./spec/002_artist_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/003_genre_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -111,19 +104,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/003_genre_basics_spec.rb:1:in `require'
 # ./spec/003_genre_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/003_genre_basics_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -131,19 +122,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/003_genre_basics_spec.rb:1:in `require'
 # ./spec/003_genre_basics_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/004_songs_and_artists_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -151,19 +140,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/004_songs_and_artists_spec.rb:1:in `require'
 # ./spec/004_songs_and_artists_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/004_songs_and_artists_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -171,19 +158,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/004_songs_and_artists_spec.rb:1:in `require'
 # ./spec/004_songs_and_artists_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/005_songs_and_genres_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -191,19 +176,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/005_songs_and_genres_spec.rb:1:in `require'
 # ./spec/005_songs_and_genres_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/005_songs_and_genres_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -211,19 +194,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/005_songs_and_genres_spec.rb:1:in `require'
 # ./spec/005_songs_and_genres_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/006_artists_and_genres_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -231,19 +212,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/006_artists_and_genres_spec.rb:1:in `require'
 # ./spec/006_artists_and_genres_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/006_artists_and_genres_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -251,19 +230,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/006_artists_and_genres_spec.rb:1:in `require'
 # ./spec/006_artists_and_genres_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/008_findable_module_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -271,19 +248,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/008_findable_module_spec.rb:1:in `require'
 # ./spec/008_findable_module_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/008_findable_module_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -291,19 +266,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/008_findable_module_spec.rb:1:in `require'
 # ./spec/008_findable_module_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/009_music_importer_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -311,19 +284,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/009_music_importer_spec.rb:1:in `require'
 # ./spec/009_music_importer_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/009_music_importer_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -331,19 +302,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/009_music_importer_spec.rb:1:in `require'
 # ./spec/009_music_importer_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/010_music_library_controller_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -351,19 +320,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/010_music_library_controller_spec.rb:1:in `require'
 # ./spec/010_music_library_controller_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/010_music_library_controller_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -371,19 +338,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/010_music_library_controller_spec.rb:1:in `require'
 # ./spec/010_music_library_controller_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/011_music_library_cli_methods_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -391,19 +356,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/011_music_library_cli_methods_spec.rb:1:in `require'
 # ./spec/011_music_library_cli_methods_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/011_music_library_cli_methods_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -411,19 +374,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/011_music_library_cli_methods_spec.rb:1:in `require'
 # ./spec/011_music_library_cli_methods_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/012_music_library_cli_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -431,19 +392,17 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/012_music_library_cli_spec.rb:1:in `require'
 # ./spec/012_music_library_cli_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 An error occurred while loading ./spec/012_music_library_cli_spec.rb.
 Failure/Error: require_relative "../config/environment.rb"
 
-RequireAll::LoadError:
-  Could not require /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb (uninitialized constant Base). Please require the necessary files
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:102:in `rescue in block in require_all'
-# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:97:in `block in require_all'
+SyntaxError:
+  /home/plucky-tuple-1270/ruby-music-library-cli-online-web-sp-000/lib/artist.rb:1: syntax error, unexpected '>'
+  class Artist > Base
+               ^
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:208:in `__require'
+# /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:98:in `block in require_all'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `each'
 # /usr/local/rvm/gems/ruby-2.6.1/gems/require_all-2.0.0/lib/require_all.rb:96:in `require_all'
 # ./config/environment.rb:7:in `<top (required)>'
@@ -451,17 +410,12 @@ RequireAll::LoadError:
 # ./spec/spec_helper.rb:1:in `<top (required)>'
 # ./spec/012_music_library_cli_spec.rb:1:in `require'
 # ./spec/012_music_library_cli_spec.rb:1:in `<top (required)>'
-# ------------------
-# --- Caused by: ---
-# NameError:
-#   uninitialized constant Base
-#   ./lib/artist.rb:1:in `<top (required)>'
 
 
-Finished in 0.00025 seconds (files took 0.37086 seconds to load)
+Finished in 0.00028 seconds (files took 0.408 seconds to load)
 0 examples, 0 failures, 12 errors occurred outside of examples
 
-Finished in 0.00025 seconds (files took 0.37086 seconds to load)
+Finished in 0.00028 seconds (files took 0.408 seconds to load)
 0 examples, 0 failures, 12 errors occurred outside of examples
 
 

@@ -1,0 +1,2 @@
+class Genre < Base
+end
