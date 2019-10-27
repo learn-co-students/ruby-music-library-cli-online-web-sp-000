@@ -1,0 +1,1130 @@
+
+Song
+  #initialize
+    accepts a name for the new song (FAILED - 1)
+  #name
+    retrieves the name of a song (FAILED - 2)
+  #name=
+    can set the name of a song (FAILED - 3)
+  @@all
+    is initialized as an empty array (FAILED - 4)
+  .all
+    returns the class variable @@all (FAILED - 5)
+  .destroy_all
+    resets the @@all class variable to an empty array (FAILED - 6)
+  #save
+    adds the Song instance to the @@all class variable (FAILED - 7)
+  .create
+    initializes, saves, and returns the song (FAILED - 8)
+
+Artist
+  #initialize
+    accepts a name for the new artist (FAILED - 9)
+  #name
+    retrieves the name of an artist (FAILED - 10)
+  #name=
+    can set the name of an artist (FAILED - 11)
+  @@all
+    is initialized as an empty array (FAILED - 12)
+  .all
+    returns the class variable @@all (FAILED - 13)
+  .destroy_all
+    resets the @@all class variable to an empty array (FAILED - 14)
+  #save
+    adds the Artist instance to the @@all class variable (FAILED - 15)
+  .create
+    initializes and saves the artist (FAILED - 16)
+
+Genre
+  #initialize
+    accepts a name for the new genre (FAILED - 17)
+  #name
+    retrieves the name of a genre (FAILED - 18)
+  #name=
+    can set the name of a genre (FAILED - 19)
+  @@all
+    is initialized as an empty array (FAILED - 20)
+  .all
+    returns the class variable @@all (FAILED - 21)
+  .destroy_all
+    resets the @@all class variable to an empty array (FAILED - 22)
+  #save
+    adds the Genre instance to the @@all class variable (FAILED - 23)
+  .create
+    initializes and saves the genre (FAILED - 24)
+
+Associations — Song and Artist:
+  Artist
+    #initialize
+      creates a 'songs' property set to an empty array (artist has many songs) (FAILED - 25)
+    #songs
+      returns the artist's 'songs' collection (artist has many songs) (FAILED - 26)
+  Song
+    #initialize
+      can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist) (FAILED - 27)
+    #artist
+      returns the artist of the song (song belongs to artist) (FAILED - 28)
+    #artist=
+      assigns an artist to the song (song belongs to artist) (FAILED - 29)
+  Artist
+    #add_song
+      assigns the current artist to the song's 'artist' property (song belongs to artist) (FAILED - 30)
+      does not assign the artist if the song already has an artist (FAILED - 31)
+      adds the song to the current artist's 'songs' collection (FAILED - 32)
+      does not add the song to the current artist's collection of songs if it already exists therein (FAILED - 33)
+  Song
+    #artist=
+      invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs) (FAILED - 34)
+    #initialize
+      invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization (FAILED - 35)
+
+Associations — Song and Genre:
+  Genre
+    #initialize
+      creates a 'songs' property set to an empty array (genre has many songs) (FAILED - 36)
+    #songs
+      returns the genre's 'songs' collection (genre has many songs) (FAILED - 37)
+  Song
+    #initialize
+      can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre) (FAILED - 38)
+    #genre
+      returns the genre of the song (song belongs to genre) (FAILED - 39)
+    #genre=
+      assigns a genre to the song (song belongs to genre) (FAILED - 40)
+      adds the song to the genre's collection of songs (genre has many songs) (FAILED - 41)
+      does not add the song to the genre's collection of songs if it already exists therein (FAILED - 42)
+    #initialize
+      invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization (FAILED - 43)
+
+Associations — Artist and Genre:
+  Artist
+    #genres
+      returns a collection of genres for all of the artist's songs (artist has many genres through songs) (FAILED - 44)
+      does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs) (FAILED - 45)
+      collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs) (FAILED - 46)
+  Genre
+    #artists
+      returns a collection of artists for all of the genre's songs (genre has many artists through songs) (FAILED - 47)
+      does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs) (FAILED - 48)
+      collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs) (FAILED - 49)
+
+Song
+  .find_by_name
+    finds a song instance in @@all by the name property of the song (FAILED - 50)
+  .find_or_create_by_name
+    returns (does not recreate) an existing song with the provided name if one exists in @@all (FAILED - 51)
+    invokes .find_by_name instead of re-coding the same functionality (FAILED - 52)
+    creates a song if an existing match is not found (FAILED - 53)
+    invokes .create instead of re-coding the same functionality (FAILED - 54)
+
+Concerns::Findable
+  defines a module named Concerns::Findable (FAILED - 55)
+
+Artist
+  extends the Concerns::Findable module (FAILED - 56)
+
+Genre
+  extends the Concerns::Findable module (FAILED - 57)
+
+Concerns::Findable
+  .find_by_name
+    is added as a class method to classes that extend the module (FAILED - 58)
+    isn't hard-coded (FAILED - 59)
+    works exactly like a generic version of Song.find_by_name,
+      searching the extended class's @@all variable for an instance that matches the provided name (FAILED - 60)
+  .find_or_create_by_name
+    is added as a class method to classes that extend the module (FAILED - 61)
+    works exactly like a generic version of Song.find_or_create_by_name:
+      finds (does not recreate) an existing instance with the provided name if one exists in @@all (FAILED - 62)
+      isn't hard-coded (FAILED - 63)
+      invokes .find_by_name instead of re-coding the same functionality (FAILED - 64)
+      invokes the extended class's .create method, passing in the provided name, if an existing match is not found (FAILED - 65)
+
+MusicImporter
+  #initialize
+    accepts a file path to parse MP3 files from (FAILED - 66)
+  #path
+    retrieves the path provided to the MusicImporter object (FAILED - 67)
+  #files
+    loads all the MP3 files in the path directory (FAILED - 68)
+    normalizes the filename to just the MP3 filename with no path (FAILED - 69)
+
+Song
+  .new_from_filename
+    initializes a song based on the passed-in filename (FAILED - 70)
+    invokes the appropriate Findable methods so as to avoid duplicating objects (FAILED - 71)
+  .create_from_filename
+    initializes and saves a song based on the passed-in filename (FAILED - 72)
+    invokes .new_from_filename instead of re-coding the same functionality (FAILED - 73)
+
+MusicImporter
+  #import
+    imports the files into the library by invoking Song.create_from_filename (FAILED - 74)
+
+MusicLibraryController
+  #initialize
+    accepts one argument, the path to the MP3 files to be imported (FAILED - 75)
+    creates a new MusicImporter object, passing in the 'path' value (FAILED - 76)
+    the 'path' argument defaults to './db/mp3s' (FAILED - 77)
+    invokes the #import method on the created MusicImporter object (FAILED - 78)
+  #call
+    welcomes the user (FAILED - 79)
+    asks the user for input (FAILED - 80)
+    loops and asks for user input until they type in exit (FAILED - 81)
+
+MusicLibraryController - CLI Methods
+  #list_songs
+    prints all songs in the music library in a numbered list (alphabetized by song name) (FAILED - 82)
+    is not hard-coded (FAILED - 83)
+  #list_artists
+    prints all artists in the music library in a numbered list (alphabetized by artist name) (FAILED - 84)
+    is not hard-coded (FAILED - 85)
+  #list_genres
+    prints all genres in the music library in a numbered list (alphabetized by genre name) (FAILED - 86)
+    is not hard-coded (FAILED - 87)
+  #list_songs_by_artist
+    prompts the user to enter an artist (FAILED - 88)
+    accepts user input (FAILED - 89)
+    prints all songs by a particular artist in a numbered list (alphabetized by song name) (FAILED - 90)
+    does nothing if no matching artist is found (FAILED - 91)
+  #list_songs_by_genre
+    prompts the user to enter a genre (FAILED - 92)
+    accepts user input (FAILED - 93)
+    prints all songs by a particular genre in a numbered list (alphabetized by song name) (FAILED - 94)
+    does nothing if no matching genre is found (FAILED - 95)
+  #play_song
+    prompts the user to choose a song from the alphabetized list output by #list_songs (FAILED - 96)
+    accepts user input (FAILED - 97)
+    upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs (FAILED - 98)
+    does not 'puts' anything out if a matching song is not found (FAILED - 99)
+    checks that the user entered a number between 1 and the total number of songs in the library (FAILED - 100)
+
+MusicLibraryController - CLI Commands
+  'list songs'
+    triggers #list_songs (FAILED - 101)
+  'list artists'
+    triggers #list_artists (FAILED - 102)
+  'list genres'
+    triggers #list_genres (FAILED - 103)
+  'list artist'
+    triggers #list_songs_by_artist (FAILED - 104)
+  'list genre'
+    triggers #list_songs_by_genre (FAILED - 105)
+  'play song'
+    triggers #play_song (FAILED - 106)
+
+Failures:
+
+  1) Song #initialize accepts a name for the new song
+     Failure/Error: new_song = Song.new("Alison")
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  2) Song #name retrieves the name of a song
+     Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+     # ./spec/001_song_basics_spec.rb:18:in `block (3 levels) in <top (required)>'
+
+  3) Song #name= can set the name of a song
+     Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+     # ./spec/001_song_basics_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  4) Song @@all is initialized as an empty array
+     Failure/Error: all = Song.class_variable_get(:@@all)
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:34:in `block (3 levels) in <top (required)>'
+
+  5) Song .all returns the class variable @@all
+     Failure/Error: expect(Song.all).to match_array([])
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:42:in `block (3 levels) in <top (required)>'
+
+  6) Song .destroy_all resets the @@all class variable to an empty array
+     Failure/Error: Song.class_variable_set(:@@all, [song])
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:52:in `block (3 levels) in <top (required)>'
+
+  7) Song #save adds the Song instance to the @@all class variable
+     Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+     # ./spec/001_song_basics_spec.rb:62:in `block (3 levels) in <top (required)>'
+
+  8) Song .create initializes, saves, and returns the song
+     Failure/Error: created_song = Song.create("Kaohsiung Christmas")
+
+     NameError:
+       uninitialized constant Song
+     # ./spec/001_song_basics_spec.rb:70:in `block (3 levels) in <top (required)>'
+
+  9) Artist #initialize accepts a name for the new artist
+     Failure/Error: new_artist = Artist.new("Slowdive")
+
+     NameError:
+       uninitialized constant Artist
+     # ./spec/002_artist_basics_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  10) Artist #name retrieves the name of an artist
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/002_artist_basics_spec.rb:18:in `block (3 levels) in <top (required)>'
+
+  11) Artist #name= can set the name of an artist
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/002_artist_basics_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  12) Artist @@all is initialized as an empty array
+      Failure/Error: all = Artist.class_variable_get(:@@all)
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:34:in `block (3 levels) in <top (required)>'
+
+  13) Artist .all returns the class variable @@all
+      Failure/Error: expect(Artist.all).to match_array([])
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:42:in `block (3 levels) in <top (required)>'
+
+  14) Artist .destroy_all resets the @@all class variable to an empty array
+      Failure/Error: Artist.class_variable_set(:@@all, [artist])
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:52:in `block (3 levels) in <top (required)>'
+
+  15) Artist #save adds the Artist instance to the @@all class variable
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/002_artist_basics_spec.rb:62:in `block (3 levels) in <top (required)>'
+
+  16) Artist .create initializes and saves the artist
+      Failure/Error: created_artist = Artist.create("Fear of Tigers")
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/002_artist_basics_spec.rb:70:in `block (3 levels) in <top (required)>'
+
+  17) Genre #initialize accepts a name for the new genre
+      Failure/Error: new_genre = Genre.new("shoegaze")
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  18) Genre #name retrieves the name of a genre
+      Failure/Error: let(:genre) { Genre.new("indie rock") }
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/003_genre_basics_spec.rb:18:in `block (3 levels) in <top (required)>'
+
+  19) Genre #name= can set the name of a genre
+      Failure/Error: let(:genre) { Genre.new("indie rock") }
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/003_genre_basics_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  20) Genre @@all is initialized as an empty array
+      Failure/Error: all = Genre.class_variable_get(:@@all)
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:34:in `block (3 levels) in <top (required)>'
+
+  21) Genre .all returns the class variable @@all
+      Failure/Error: expect(Genre.all).to match_array([])
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:42:in `block (3 levels) in <top (required)>'
+
+  22) Genre .destroy_all resets the @@all class variable to an empty array
+      Failure/Error: Genre.class_variable_set(:@@all, [genre])
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:52:in `block (3 levels) in <top (required)>'
+
+  23) Genre #save adds the Genre instance to the @@all class variable
+      Failure/Error: let(:genre) { Genre.new("indie rock") }
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/003_genre_basics_spec.rb:62:in `block (3 levels) in <top (required)>'
+
+  24) Genre .create initializes and saves the genre
+      Failure/Error: created_genre = Genre.create("shoegaze")
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/003_genre_basics_spec.rb:70:in `block (3 levels) in <top (required)>'
+
+  25) Associations — Song and Artist: Artist #initialize creates a 'songs' property set to an empty array (artist has many songs)
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  26) Associations — Song and Artist: Artist #songs returns the artist's 'songs' collection (artist has many songs)
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:17:in `block (4 levels) in <top (required)>'
+
+  27) Associations — Song and Artist: Song #initialize can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)
+      Failure/Error: song_with_artist = Song.new("Two-Headed Boy", artist)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/004_songs_and_artists_spec.rb:29:in `block (4 levels) in <top (required)>'
+
+  28) Associations — Song and Artist: Song #artist returns the artist of the song (song belongs to artist)
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:38:in `block (4 levels) in <top (required)>'
+
+  29) Associations — Song and Artist: Song #artist= assigns an artist to the song (song belongs to artist)
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:46:in `block (4 levels) in <top (required)>'
+
+  30) Associations — Song and Artist: Artist #add_song assigns the current artist to the song's 'artist' property (song belongs to artist)
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:58:in `block (4 levels) in <top (required)>'
+
+  31) Associations — Song and Artist: Artist #add_song does not assign the artist if the song already has an artist
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:64:in `block (4 levels) in <top (required)>'
+
+  32) Associations — Song and Artist: Artist #add_song adds the song to the current artist's 'songs' collection
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:72:in `block (4 levels) in <top (required)>'
+
+  33) Associations — Song and Artist: Artist #add_song does not add the song to the current artist's collection of songs if it already exists therein
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:78:in `block (5 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:78:in `times'
+      # ./spec/004_songs_and_artists_spec.rb:78:in `block (4 levels) in <top (required)>'
+
+  34) Associations — Song and Artist: Song #artist= invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
+      Failure/Error: let(:artist) { Artist.new("Neutral Milk Hotel") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/004_songs_and_artists_spec.rb:89:in `block (4 levels) in <top (required)>'
+
+  35) Associations — Song and Artist: Song #initialize invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization
+      Failure/Error: expect_any_instance_of(Song).to receive(:artist=).with(artist)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/004_songs_and_artists_spec.rb:97:in `block (4 levels) in <top (required)>'
+
+  36) Associations — Song and Genre: Genre #initialize creates a 'songs' property set to an empty array (genre has many songs)
+      Failure/Error: let(:genre) { Genre.new("indie rock") }
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/005_songs_and_genres_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:10:in `block (4 levels) in <top (required)>'
+
+  37) Associations — Song and Genre: Genre #songs returns the genre's 'songs' collection (genre has many songs)
+      Failure/Error: let(:genre) { Genre.new("indie rock") }
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/005_songs_and_genres_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:17:in `block (4 levels) in <top (required)>'
+
+  38) Associations — Song and Genre: Song #initialize can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre)
+      Failure/Error: artist = Artist.new("Neutral Milk Hotel")
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/005_songs_and_genres_spec.rb:29:in `block (4 levels) in <top (required)>'
+
+  39) Associations — Song and Genre: Song #genre returns the genre of the song (song belongs to genre)
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:39:in `block (4 levels) in <top (required)>'
+
+  40) Associations — Song and Genre: Song #genre= assigns a genre to the song (song belongs to genre)
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:47:in `block (4 levels) in <top (required)>'
+
+  41) Associations — Song and Genre: Song #genre= adds the song to the genre's collection of songs (genre has many songs)
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:53:in `block (4 levels) in <top (required)>'
+
+  42) Associations — Song and Genre: Song #genre= does not add the song to the genre's collection of songs if it already exists therein
+      Failure/Error: let(:song) { Song.new("In the Aeroplane Over the Sea") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:59:in `block (5 levels) in <top (required)>'
+      # ./spec/005_songs_and_genres_spec.rb:59:in `times'
+      # ./spec/005_songs_and_genres_spec.rb:59:in `block (4 levels) in <top (required)>'
+
+  43) Associations — Song and Genre: Song #initialize invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization
+      Failure/Error: artist = Artist.new("Neutral Milk Hotel")
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/005_songs_and_genres_spec.rb:68:in `block (4 levels) in <top (required)>'
+
+  44) Associations — Artist and Genre: Artist #genres returns a collection of genres for all of the artist's songs (artist has many genres through songs)
+      Failure/Error: Song.new("The Luckiest Guy on the Lower East Side", artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:12:in `block (4 levels) in <top (required)>'
+
+  45) Associations — Artist and Genre: Artist #genres does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs)
+      Failure/Error: Song.new("In the Aeroplane Over the Sea", other_artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:21:in `block (4 levels) in <top (required)>'
+
+  46) Associations — Artist and Genre: Artist #genres collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs)
+      Failure/Error: Song.new("In the Aeroplane Over the Sea", other_artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:29:in `block (4 levels) in <top (required)>'
+
+  47) Associations — Artist and Genre: Genre #artists returns a collection of artists for all of the genre's songs (genre has many artists through songs)
+      Failure/Error: Song.new("The Luckiest Guy on the Lower East Side", artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:39:in `block (4 levels) in <top (required)>'
+
+  48) Associations — Artist and Genre: Genre #artists does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs)
+      Failure/Error: Song.new("In the Aeroplane Over the Sea", other_artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:48:in `block (4 levels) in <top (required)>'
+
+  49) Associations — Artist and Genre: Genre #artists collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs)
+      Failure/Error: Song.new("In the Aeroplane Over the Sea", other_artist, genre)
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/006_artists_and_genres_spec.rb:56:in `block (4 levels) in <top (required)>'
+
+  50) Song .find_by_name finds a song instance in @@all by the name property of the song
+      Failure/Error: let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'
+
+  51) Song .find_or_create_by_name returns (does not recreate) an existing song with the provided name if one exists in @@all
+      Failure/Error: let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'
+
+  52) Song .find_or_create_by_name invokes .find_by_name instead of re-coding the same functionality
+      Failure/Error: let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'
+
+  53) Song .find_or_create_by_name creates a song if an existing match is not found
+      Failure/Error: let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'
+
+  54) Song .find_or_create_by_name invokes .create instead of re-coding the same functionality
+      Failure/Error: let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'
+
+  55) Concerns::Findable defines a module named Concerns::Findable
+      Failure/Error: expect(defined?(Concerns::Findable)).to be_truthy
+
+        expected: truthy value
+             got: nil
+      # ./spec/008_findable_module_spec.rb:5:in `block (2 levels) in <top (required)>'
+
+  56) Artist extends the Concerns::Findable module
+      Failure/Error: artist_extends_concerns_findable = Artist.singleton_class.ancestors.include?(Concerns::Findable)
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:13:in `block (2 levels) in <top (required)>'
+
+  57) Genre extends the Concerns::Findable module
+      Failure/Error: genre_extends_concerns_findable = Genre.singleton_class.ancestors.include?(Concerns::Findable)
+
+      NameError:
+        uninitialized constant Genre
+      # ./spec/008_findable_module_spec.rb:20:in `block (2 levels) in <top (required)>'
+
+  58) Concerns::Findable .find_by_name is added as a class method to classes that extend the module
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  59) Concerns::Findable .find_by_name isn't hard-coded
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  60) Concerns::Findable .find_by_name works exactly like a generic version of Song.find_by_name, searching the extended class's @@all variable for an instance that matches the provided name
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  61) Concerns::Findable .find_or_create_by_name is added as a class method to classes that extend the module
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  62) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: finds (does not recreate) an existing instance with the provided name if one exists in @@all
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  63) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: isn't hard-coded
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  64) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes .find_by_name instead of re-coding the same functionality
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  65) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes the extended class's .create method, passing in the provided name, if an existing match is not found
+      Failure/Error: let!(:artist_one) { Artist.create("Madonna") }
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'
+
+  66) MusicImporter #initialize accepts a file path to parse MP3 files from
+      Failure/Error: let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/009_music_importer_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  67) MusicImporter #path retrieves the path provided to the MusicImporter object
+      Failure/Error: let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/009_music_importer_spec.rb:15:in `block (3 levels) in <top (required)>'
+
+  68) MusicImporter #files loads all the MP3 files in the path directory
+      Failure/Error: let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/009_music_importer_spec.rb:21:in `block (3 levels) in <top (required)>'
+
+  69) MusicImporter #files normalizes the filename to just the MP3 filename with no path
+      Failure/Error: let(:music_importer) { MusicImporter.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/009_music_importer_spec.rb:25:in `block (3 levels) in <top (required)>'
+
+  70) Song .new_from_filename initializes a song based on the passed-in filename
+      Failure/Error: song = Song.new_from_filename("Thundercat - For Love I Come - dance.mp3")
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/009_music_importer_spec.rb:36:in `block (3 levels) in <top (required)>'
+
+  71) Song .new_from_filename invokes the appropriate Findable methods so as to avoid duplicating objects
+      Failure/Error: artist = Artist.create("Thundercat")
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/009_music_importer_spec.rb:44:in `block (3 levels) in <top (required)>'
+
+  72) Song .create_from_filename initializes and saves a song based on the passed-in filename
+      Failure/Error: song = Song.create_from_filename("Thundercat - For Love I Come - dance.mp3")
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/009_music_importer_spec.rb:59:in `block (3 levels) in <top (required)>'
+
+  73) Song .create_from_filename invokes .new_from_filename instead of re-coding the same functionality
+      Failure/Error: expect(Song).to receive(:new_from_filename).and_return(double(save: true))
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/009_music_importer_spec.rb:65:in `block (3 levels) in <top (required)>'
+
+  74) MusicImporter #import imports the files into the library by invoking Song.create_from_filename
+      Failure/Error: expect(Song).to receive(:create_from_filename).with("Action Bronson - Larry Csonka - indie.mp3")
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/009_music_importer_spec.rb:77:in `block (3 levels) in <top (required)>'
+
+  75) MusicLibraryController #initialize accepts one argument, the path to the MP3 files to be imported
+      Failure/Error: expect{ MusicLibraryController.new("./spec/fixtures/mp3s") }.to_not raise_error
+
+        expected no Exception, got #<NameError: uninitialized constant MusicLibraryController> with backtrace:
+          # ./spec/010_music_library_controller_spec.rb:6:in `block (4 levels) in <top (required)>'
+          # ./spec/010_music_library_controller_spec.rb:6:in `block (3 levels) in <top (required)>'
+      # ./spec/010_music_library_controller_spec.rb:6:in `block (3 levels) in <top (required)>'
+
+  76) MusicLibraryController #initialize creates a new MusicImporter object, passing in the 'path' value
+      Failure/Error: expect(MusicImporter).to receive(:new).with("./spec/fixtures/mp3s").and_return(double(MusicImporter, import: true))
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/010_music_library_controller_spec.rb:10:in `block (3 levels) in <top (required)>'
+
+  77) MusicLibraryController #initialize the 'path' argument defaults to './db/mp3s'
+      Failure/Error: expect(MusicImporter).to receive(:new).with("./db/mp3s").and_return(double(MusicImporter, import: true))
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/010_music_library_controller_spec.rb:16:in `block (3 levels) in <top (required)>'
+
+  78) MusicLibraryController #initialize invokes the #import method on the created MusicImporter object
+      Failure/Error: music_importer = MusicImporter.new("./spec/fixtures/mp3s")
+
+      NameError:
+        uninitialized constant MusicImporter
+      # ./spec/010_music_library_controller_spec.rb:22:in `block (3 levels) in <top (required)>'
+
+  79) MusicLibraryController #call welcomes the user
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'
+      # ./spec/010_music_library_controller_spec.rb:35:in `block (3 levels) in <top (required)>'
+
+  80) MusicLibraryController #call asks the user for input
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'
+      # ./spec/010_music_library_controller_spec.rb:51:in `block (3 levels) in <top (required)>'
+
+  81) MusicLibraryController #call loops and asks for user input until they type in exit
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'
+      # ./spec/010_music_library_controller_spec.rb:59:in `block (3 levels) in <top (required)>'
+
+  82) MusicLibraryController - CLI Methods #list_songs prints all songs in the music library in a numbered list (alphabetized by song name)
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:15:in `block (3 levels) in <top (required)>'
+
+  83) MusicLibraryController - CLI Methods #list_songs is not hard-coded
+      Failure/Error: let(:other_music_library_controller) { MusicLibraryController.new("./spec/fixtures/other_mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  84) MusicLibraryController - CLI Methods #list_artists prints all artists in the music library in a numbered list (alphabetized by artist name)
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:35:in `block (3 levels) in <top (required)>'
+
+  85) MusicLibraryController - CLI Methods #list_artists is not hard-coded
+      Failure/Error: Artist.create("ZZ Top")
+
+      NameError:
+        uninitialized constant Artist
+      # ./spec/011_music_library_cli_methods_spec.rb:39:in `block (3 levels) in <top (required)>'
+
+  86) MusicLibraryController - CLI Methods #list_genres prints all genres in the music library in a numbered list (alphabetized by genre name)
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:57:in `block (3 levels) in <top (required)>'
+
+  87) MusicLibraryController - CLI Methods #list_genres is not hard-coded
+      Failure/Error: let(:other_music_library_controller) { MusicLibraryController.new("./spec/fixtures/other_mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:5:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:65:in `block (3 levels) in <top (required)>'
+
+  88) MusicLibraryController - CLI Methods #list_songs_by_artist prompts the user to enter an artist
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:71:in `block (3 levels) in <top (required)>'
+
+  89) MusicLibraryController - CLI Methods #list_songs_by_artist accepts user input
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:79:in `block (3 levels) in <top (required)>'
+
+  90) MusicLibraryController - CLI Methods #list_songs_by_artist prints all songs by a particular artist in a numbered list (alphabetized by song name)
+      Failure/Error: Song.create_from_filename("Real Estate - Wonder Years - dream pop.mp3")
+
+      NameError:
+        uninitialized constant Song
+      # ./spec/011_music_library_cli_methods_spec.rb:87:in `block (3 levels) in <top (required)>'
+
+  91) MusicLibraryController - CLI Methods #list_songs_by_artist does nothing if no matching artist is found
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:100:in `block (3 levels) in <top (required)>'
+
+  92) MusicLibraryController - CLI Methods #list_songs_by_genre prompts the user to enter a genre
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:111:in `block (3 levels) in <top (required)>'
+
+  93) MusicLibraryController - CLI Methods #list_songs_by_genre accepts user input
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:119:in `block (3 levels) in <top (required)>'
+
+  94) MusicLibraryController - CLI Methods #list_songs_by_genre prints all songs by a particular genre in a numbered list (alphabetized by song name)
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:127:in `block (3 levels) in <top (required)>'
+
+  95) MusicLibraryController - CLI Methods #list_songs_by_genre does nothing if no matching genre is found
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:137:in `block (3 levels) in <top (required)>'
+
+  96) MusicLibraryController - CLI Methods #play_song prompts the user to choose a song from the alphabetized list output by #list_songs
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:148:in `block (3 levels) in <top (required)>'
+
+  97) MusicLibraryController - CLI Methods #play_song accepts user input
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:158:in `block (3 levels) in <top (required)>'
+
+  98) MusicLibraryController - CLI Methods #play_song upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:166:in `block (3 levels) in <top (required)>'
+
+  99) MusicLibraryController - CLI Methods #play_song does not 'puts' anything out if a matching song is not found
+      Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+      NameError:
+        uninitialized constant MusicLibraryController
+      # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+      # ./spec/011_music_library_cli_methods_spec.rb:175:in `block (3 levels) in <top (required)>'
+
+  100) MusicLibraryController - CLI Methods #play_song checks that the user entered a number between 1 and the total number of songs in the library
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/011_music_library_cli_methods_spec.rb:184:in `block (3 levels) in <top (required)>'
+
+  101) MusicLibraryController - CLI Commands 'list songs' triggers #list_songs
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  102) MusicLibraryController - CLI Commands 'list artists' triggers #list_artists
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:18:in `block (3 levels) in <top (required)>'
+
+  103) MusicLibraryController - CLI Commands 'list genres' triggers #list_genres
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:28:in `block (3 levels) in <top (required)>'
+
+  104) MusicLibraryController - CLI Commands 'list artist' triggers #list_songs_by_artist
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:38:in `block (3 levels) in <top (required)>'
+
+  105) MusicLibraryController - CLI Commands 'list genre' triggers #list_songs_by_genre
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:48:in `block (3 levels) in <top (required)>'
+
+  106) MusicLibraryController - CLI Commands 'play song' triggers #play_song
+       Failure/Error: let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+
+       NameError:
+         uninitialized constant MusicLibraryController
+       # ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'
+       # ./spec/012_music_library_cli_spec.rb:58:in `block (3 levels) in <top (required)>'
+
+Finished in 0.05175 seconds (files took 0.39068 seconds to load)
+106 examples, 106 failures
+
+Failed examples:
+
+rspec ./spec/001_song_basics_spec.rb:7 # Song #initialize accepts a name for the new song
+rspec ./spec/001_song_basics_spec.rb:17 # Song #name retrieves the name of a song
+rspec ./spec/001_song_basics_spec.rb:23 # Song #name= can set the name of a song
+rspec ./spec/001_song_basics_spec.rb:33 # Song @@all is initialized as an empty array
+rspec ./spec/001_song_basics_spec.rb:41 # Song .all returns the class variable @@all
+rspec ./spec/001_song_basics_spec.rb:51 # Song .destroy_all resets the @@all class variable to an empty array
+rspec ./spec/001_song_basics_spec.rb:61 # Song #save adds the Song instance to the @@all class variable
+rspec ./spec/001_song_basics_spec.rb:69 # Song .create initializes, saves, and returns the song
+rspec ./spec/002_artist_basics_spec.rb:7 # Artist #initialize accepts a name for the new artist
+rspec ./spec/002_artist_basics_spec.rb:17 # Artist #name retrieves the name of an artist
+rspec ./spec/002_artist_basics_spec.rb:23 # Artist #name= can set the name of an artist
+rspec ./spec/002_artist_basics_spec.rb:33 # Artist @@all is initialized as an empty array
+rspec ./spec/002_artist_basics_spec.rb:41 # Artist .all returns the class variable @@all
+rspec ./spec/002_artist_basics_spec.rb:51 # Artist .destroy_all resets the @@all class variable to an empty array
+rspec ./spec/002_artist_basics_spec.rb:61 # Artist #save adds the Artist instance to the @@all class variable
+rspec ./spec/002_artist_basics_spec.rb:69 # Artist .create initializes and saves the artist
+rspec ./spec/003_genre_basics_spec.rb:7 # Genre #initialize accepts a name for the new genre
+rspec ./spec/003_genre_basics_spec.rb:17 # Genre #name retrieves the name of a genre
+rspec ./spec/003_genre_basics_spec.rb:23 # Genre #name= can set the name of a genre
+rspec ./spec/003_genre_basics_spec.rb:33 # Genre @@all is initialized as an empty array
+rspec ./spec/003_genre_basics_spec.rb:41 # Genre .all returns the class variable @@all
+rspec ./spec/003_genre_basics_spec.rb:51 # Genre .destroy_all resets the @@all class variable to an empty array
+rspec ./spec/003_genre_basics_spec.rb:61 # Genre #save adds the Genre instance to the @@all class variable
+rspec ./spec/003_genre_basics_spec.rb:69 # Genre .create initializes and saves the genre
+rspec ./spec/004_songs_and_artists_spec.rb:9 # Associations — Song and Artist: Artist #initialize creates a 'songs' property set to an empty array (artist has many songs)
+rspec ./spec/004_songs_and_artists_spec.rb:16 # Associations — Song and Artist: Artist #songs returns the artist's 'songs' collection (artist has many songs)
+rspec ./spec/004_songs_and_artists_spec.rb:28 # Associations — Song and Artist: Song #initialize can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)
+rspec ./spec/004_songs_and_artists_spec.rb:37 # Associations — Song and Artist: Song #artist returns the artist of the song (song belongs to artist)
+rspec ./spec/004_songs_and_artists_spec.rb:45 # Associations — Song and Artist: Song #artist= assigns an artist to the song (song belongs to artist)
+rspec ./spec/004_songs_and_artists_spec.rb:57 # Associations — Song and Artist: Artist #add_song assigns the current artist to the song's 'artist' property (song belongs to artist)
+rspec ./spec/004_songs_and_artists_spec.rb:63 # Associations — Song and Artist: Artist #add_song does not assign the artist if the song already has an artist
+rspec ./spec/004_songs_and_artists_spec.rb:71 # Associations — Song and Artist: Artist #add_song adds the song to the current artist's 'songs' collection
+rspec ./spec/004_songs_and_artists_spec.rb:77 # Associations — Song and Artist: Artist #add_song does not add the song to the current artist's collection of songs if it already exists therein
+rspec ./spec/004_songs_and_artists_spec.rb:88 # Associations — Song and Artist: Song #artist= invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
+rspec ./spec/004_songs_and_artists_spec.rb:96 # Associations — Song and Artist: Song #initialize invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization
+rspec ./spec/005_songs_and_genres_spec.rb:9 # Associations — Song and Genre: Genre #initialize creates a 'songs' property set to an empty array (genre has many songs)
+rspec ./spec/005_songs_and_genres_spec.rb:16 # Associations — Song and Genre: Genre #songs returns the genre's 'songs' collection (genre has many songs)
+rspec ./spec/005_songs_and_genres_spec.rb:28 # Associations — Song and Genre: Song #initialize can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre)
+rspec ./spec/005_songs_and_genres_spec.rb:38 # Associations — Song and Genre: Song #genre returns the genre of the song (song belongs to genre)
+rspec ./spec/005_songs_and_genres_spec.rb:46 # Associations — Song and Genre: Song #genre= assigns a genre to the song (song belongs to genre)
+rspec ./spec/005_songs_and_genres_spec.rb:52 # Associations — Song and Genre: Song #genre= adds the song to the genre's collection of songs (genre has many songs)
+rspec ./spec/005_songs_and_genres_spec.rb:58 # Associations — Song and Genre: Song #genre= does not add the song to the genre's collection of songs if it already exists therein
+rspec ./spec/005_songs_and_genres_spec.rb:67 # Associations — Song and Genre: Song #initialize invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization
+rspec ./spec/006_artists_and_genres_spec.rb:11 # Associations — Artist and Genre: Artist #genres returns a collection of genres for all of the artist's songs (artist has many genres through songs)
+rspec ./spec/006_artists_and_genres_spec.rb:20 # Associations — Artist and Genre: Artist #genres does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs)
+rspec ./spec/006_artists_and_genres_spec.rb:28 # Associations — Artist and Genre: Artist #genres collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs)
+rspec ./spec/006_artists_and_genres_spec.rb:38 # Associations — Artist and Genre: Genre #artists returns a collection of artists for all of the genre's songs (genre has many artists through songs)
+rspec ./spec/006_artists_and_genres_spec.rb:47 # Associations — Artist and Genre: Genre #artists does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs)
+rspec ./spec/006_artists_and_genres_spec.rb:55 # Associations — Artist and Genre: Genre #artists collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs)
+rspec ./spec/007_findable_songs_spec.rb:6 # Song .find_by_name finds a song instance in @@all by the name property of the song
+rspec ./spec/007_findable_songs_spec.rb:12 # Song .find_or_create_by_name returns (does not recreate) an existing song with the provided name if one exists in @@all
+rspec ./spec/007_findable_songs_spec.rb:19 # Song .find_or_create_by_name invokes .find_by_name instead of re-coding the same functionality
+rspec ./spec/007_findable_songs_spec.rb:25 # Song .find_or_create_by_name creates a song if an existing match is not found
+rspec ./spec/007_findable_songs_spec.rb:31 # Song .find_or_create_by_name invokes .create instead of re-coding the same functionality
+rspec ./spec/008_findable_module_spec.rb:4 # Concerns::Findable defines a module named Concerns::Findable
+rspec ./spec/008_findable_module_spec.rb:12 # Artist extends the Concerns::Findable module
+rspec ./spec/008_findable_module_spec.rb:19 # Genre extends the Concerns::Findable module
+rspec ./spec/008_findable_module_spec.rb:32 # Concerns::Findable .find_by_name is added as a class method to classes that extend the module
+rspec ./spec/008_findable_module_spec.rb:42 # Concerns::Findable .find_by_name isn't hard-coded
+rspec ./spec/008_findable_module_spec.rb:37 # Concerns::Findable .find_by_name works exactly like a generic version of Song.find_by_name, searching the extended class's @@all variable for an instance that matches the provided name
+rspec ./spec/008_findable_module_spec.rb:48 # Concerns::Findable .find_or_create_by_name is added as a class method to classes that extend the module
+rspec ./spec/008_findable_module_spec.rb:53 # Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: finds (does not recreate) an existing instance with the provided name if one exists in @@all
+rspec ./spec/008_findable_module_spec.rb:57 # Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: isn't hard-coded
+rspec ./spec/008_findable_module_spec.rb:61 # Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes .find_by_name instead of re-coding the same functionality
+rspec ./spec/008_findable_module_spec.rb:66 # Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes the extended class's .create method, passing in the provided name, if an existing match is not found
+rspec ./spec/009_music_importer_spec.rb:7 # MusicImporter #initialize accepts a file path to parse MP3 files from
+rspec ./spec/009_music_importer_spec.rb:14 # MusicImporter #path retrieves the path provided to the MusicImporter object
+rspec ./spec/009_music_importer_spec.rb:20 # MusicImporter #files loads all the MP3 files in the path directory
+rspec ./spec/009_music_importer_spec.rb:24 # MusicImporter #files normalizes the filename to just the MP3 filename with no path
+rspec ./spec/009_music_importer_spec.rb:35 # Song .new_from_filename initializes a song based on the passed-in filename
+rspec ./spec/009_music_importer_spec.rb:43 # Song .new_from_filename invokes the appropriate Findable methods so as to avoid duplicating objects
+rspec ./spec/009_music_importer_spec.rb:58 # Song .create_from_filename initializes and saves a song based on the passed-in filename
+rspec ./spec/009_music_importer_spec.rb:64 # Song .create_from_filename invokes .new_from_filename instead of re-coding the same functionality
+rspec ./spec/009_music_importer_spec.rb:76 # MusicImporter #import imports the files into the library by invoking Song.create_from_filename
+rspec ./spec/010_music_library_controller_spec.rb:5 # MusicLibraryController #initialize accepts one argument, the path to the MP3 files to be imported
+rspec ./spec/010_music_library_controller_spec.rb:9 # MusicLibraryController #initialize creates a new MusicImporter object, passing in the 'path' value
+rspec ./spec/010_music_library_controller_spec.rb:15 # MusicLibraryController #initialize the 'path' argument defaults to './db/mp3s'
+rspec ./spec/010_music_library_controller_spec.rb:21 # MusicLibraryController #initialize invokes the #import method on the created MusicImporter object
+rspec ./spec/010_music_library_controller_spec.rb:34 # MusicLibraryController #call welcomes the user
+rspec ./spec/010_music_library_controller_spec.rb:50 # MusicLibraryController #call asks the user for input
+rspec ./spec/010_music_library_controller_spec.rb:58 # MusicLibraryController #call loops and asks for user input until they type in exit
+rspec ./spec/011_music_library_cli_methods_spec.rb:8 # MusicLibraryController - CLI Methods #list_songs prints all songs in the music library in a numbered list (alphabetized by song name)
+rspec ./spec/011_music_library_cli_methods_spec.rb:18 # MusicLibraryController - CLI Methods #list_songs is not hard-coded
+rspec ./spec/011_music_library_cli_methods_spec.rb:29 # MusicLibraryController - CLI Methods #list_artists prints all artists in the music library in a numbered list (alphabetized by artist name)
+rspec ./spec/011_music_library_cli_methods_spec.rb:38 # MusicLibraryController - CLI Methods #list_artists is not hard-coded
+rspec ./spec/011_music_library_cli_methods_spec.rb:51 # MusicLibraryController - CLI Methods #list_genres prints all genres in the music library in a numbered list (alphabetized by genre name)
+rspec ./spec/011_music_library_cli_methods_spec.rb:60 # MusicLibraryController - CLI Methods #list_genres is not hard-coded
+rspec ./spec/011_music_library_cli_methods_spec.rb:70 # MusicLibraryController - CLI Methods #list_songs_by_artist prompts the user to enter an artist
+rspec ./spec/011_music_library_cli_methods_spec.rb:78 # MusicLibraryController - CLI Methods #list_songs_by_artist accepts user input
+rspec ./spec/011_music_library_cli_methods_spec.rb:86 # MusicLibraryController - CLI Methods #list_songs_by_artist prints all songs by a particular artist in a numbered list (alphabetized by song name)
+rspec ./spec/011_music_library_cli_methods_spec.rb:99 # MusicLibraryController - CLI Methods #list_songs_by_artist does nothing if no matching artist is found
+rspec ./spec/011_music_library_cli_methods_spec.rb:110 # MusicLibraryController - CLI Methods #list_songs_by_genre prompts the user to enter a genre
+rspec ./spec/011_music_library_cli_methods_spec.rb:118 # MusicLibraryController - CLI Methods #list_songs_by_genre accepts user input
+rspec ./spec/011_music_library_cli_methods_spec.rb:126 # MusicLibraryController - CLI Methods #list_songs_by_genre prints all songs by a particular genre in a numbered list (alphabetized by song name)
+rspec ./spec/011_music_library_cli_methods_spec.rb:136 # MusicLibraryController - CLI Methods #list_songs_by_genre does nothing if no matching genre is found
+rspec ./spec/011_music_library_cli_methods_spec.rb:147 # MusicLibraryController - CLI Methods #play_song prompts the user to choose a song from the alphabetized list output by #list_songs
+rspec ./spec/011_music_library_cli_methods_spec.rb:157 # MusicLibraryController - CLI Methods #play_song accepts user input
+rspec ./spec/011_music_library_cli_methods_spec.rb:165 # MusicLibraryController - CLI Methods #play_song upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs
+rspec ./spec/011_music_library_cli_methods_spec.rb:174 # MusicLibraryController - CLI Methods #play_song does not 'puts' anything out if a matching song is not found
+rspec ./spec/011_music_library_cli_methods_spec.rb:183 # MusicLibraryController - CLI Methods #play_song checks that the user entered a number between 1 and the total number of songs in the library
+rspec ./spec/012_music_library_cli_spec.rb:7 # MusicLibraryController - CLI Commands 'list songs' triggers #list_songs
+rspec ./spec/012_music_library_cli_spec.rb:17 # MusicLibraryController - CLI Commands 'list artists' triggers #list_artists
+rspec ./spec/012_music_library_cli_spec.rb:27 # MusicLibraryController - CLI Commands 'list genres' triggers #list_genres
+rspec ./spec/012_music_library_cli_spec.rb:37 # MusicLibraryController - CLI Commands 'list artist' triggers #list_songs_by_artist
+rspec ./spec/012_music_library_cli_spec.rb:47 # MusicLibraryController - CLI Commands 'list genre' triggers #list_songs_by_genre
+rspec ./spec/012_music_library_cli_spec.rb:57 # MusicLibraryController - CLI Commands 'play song' triggers #play_song
+
