@@ -8,7 +8,8 @@ class MusicImporter
     Dir["#{@path}/*"].collect { |fpath| File.basename(fpath)  }
   end
   
-  def self.import
+  def import
+    files.each { |song_path| Song.create_from_filename(song_path) }
   end
 
   
