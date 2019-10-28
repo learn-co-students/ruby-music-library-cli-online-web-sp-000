@@ -57,9 +57,10 @@ class Song
     Song.new(song_name, artist, genre)
     # binding.pry
   end
-  
-  # def self.create_from_file_name(filename)
-  # end
+
+  def self.create_from_file_name(filename)
+    self.save(self.new_from_filename(filename))
+  end
   
   
   
