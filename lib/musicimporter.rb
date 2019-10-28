@@ -14,8 +14,6 @@ class MusicImporter
   
   def call
     user_input = ""
-    
-    
     while user_input != "exit"
       puts "Welcome to your music library!"
       puts "To list all of your songs, enter 'list songs'."
@@ -28,7 +26,6 @@ class MusicImporter
       puts "What would you like to do?"
       user_input = gets.strip!
     end
-    
   end
   
   def list_songs

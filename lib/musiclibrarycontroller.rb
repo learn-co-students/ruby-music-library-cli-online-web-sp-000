@@ -5,7 +5,7 @@ class MusicLibraryController
   end
   
   def call
-    
+    puts 
   end
   
 end
