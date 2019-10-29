@@ -8,6 +8,7 @@ class MusicLibraryController
     user_input = ""
     safety = 0 # prevent infinite loop
     while user_input != "exit"
+      # Welcome and Infor
       puts "Welcome to your music library!"
       puts "To list all of your songs, enter 'list songs'."
       puts "To list all of the artists in your library, enter 'list artists'."
@@ -17,28 +18,9 @@ class MusicLibraryController
       puts "To play a song, enter 'play song'."
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
-
+      #input
       user_input = gets.strip
-      # case input
-      #   when "list songs"
-      #     safety = 0
-      #     list_songs
-      #   when "list artists"
-      #     safety = 0
-      #     list_artists
-      #   when "list genres"
-      #     safety = 0
-      #     list_genres
-      #   when "list artist"
-      #     safety = 0
-      #     list_songs_by_artist
-      #   when "list genre"
-      #     safety = 0
-      #     list_songs_by_genre
-      #   when "play song"
-      #     safety = 0
-      #     play_song
-      #   end
+      
       # prevent infinite loop
       raise "break Possible infinite loop"  if safety >= 15
       safety += 1
@@ -90,13 +72,11 @@ class MusicLibraryController
     end
   end
 
-  def play_song
+   def play_song
     puts "Which song number would you like to play?"
-    list_artists
     user_select = gets.strip.to_i
-    if user_select > 0 && user_select < Song.all.length
-      # do something
-    end
-    
+    song = Song.all.sort[user_select - 1] if user_select.positive? 
+    puts "Playing #{song.name} by #{song.artist.name}" if song
   end
+  
 end
