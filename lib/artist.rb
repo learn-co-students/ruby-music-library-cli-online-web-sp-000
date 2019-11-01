@@ -3,11 +3,11 @@ require 'pry'
 class Artist
 
   extend Findable::ClassMethods
-  include Paramable::InstanceMethods
+
   attr_accessor :name
   attr_reader :songs
 
-  @@artists = []
+  @@all = []
 
   def initialize
     super
@@ -15,7 +15,7 @@ class Artist
   end
 
   def self.all
-    @@artists
+    @@all
   end
 
   def add_song(song)
