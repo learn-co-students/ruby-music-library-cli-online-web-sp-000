@@ -3,10 +3,11 @@ class Genre
   attr_accessor :name
 
   @@all = []
+  @songs = []
 
   def initialize(name)
     @name = name
-
+    @songs = songs
   end
 
   def self.all
@@ -30,6 +31,10 @@ class Genre
   def self.destroy_all
     self.all.clear
   end
+
+  def artists
+    self.songs.map { |song| song.artist }
+  end
 end
 #
 #   def songs
@@ -38,9 +43,5 @@ end
 #     end
 #   end
 #
-#   def artists
-#     self.songs.map { |song| song.artist }
-#
-#   end
 #
 # end

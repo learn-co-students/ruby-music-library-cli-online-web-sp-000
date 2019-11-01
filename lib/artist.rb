@@ -9,8 +9,10 @@ class Artist
 #
   @@all = []
 
+
   def initialize(name)
       @name = name
+      @songs = []
 #
   end
 
@@ -32,18 +34,24 @@ class Artist
     return artist
   end
 
+  def add_song(song)
+    # songs.each { |song| add_song(song) }
+    @songs << song
+    song.artist = self
+  end
+
+  def genres
+    self.songs.map { |song| song.genre }
+  end
+
   def self.destroy_all
     self.all.clear
   end
 end
 
 #
-#   def add_song(song)
-#     @songs << song
-#     song.artist = self
-#   end
 #
 #   def add_songs(songs)
-#     songs.each { |song| add_song(song) }
+#
 #   end
 # end
