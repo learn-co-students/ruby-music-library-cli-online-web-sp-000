@@ -1,6 +1,6 @@
 class Song
 
-  extend Findable::ClassMethods
+  # extend Findable::ClassMethods
 
   attr_accessor :name
   attr_reader :artist
@@ -8,7 +8,7 @@ class Song
   @@all = []
 
   def initialize
-    super
+    @name = name
   end
 
   def save
