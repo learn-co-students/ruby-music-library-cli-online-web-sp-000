@@ -12,11 +12,31 @@ class Artist
   def initialize(name)
       @name = name
 #
-#   end
-#
-#   def self.all
-#     @@all
-#   end
+  end
+
+  def self.all
+    @@all
+  end
+
+  def save
+    @@all << self
+  end
+
+  def self.all
+    @@all
+  end
+
+  def self.create(artist)
+    artist = self.new(artist)
+    artist.save
+    return artist
+  end
+
+  def self.destroy_all
+    self.all.clear
+  end
+end
+
 #
 #   def add_song(song)
 #     @songs << song

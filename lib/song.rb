@@ -4,7 +4,7 @@ class Song
   # extend Findable::ClassMethods
 
   attr_accessor :name
-  attr_reader :artist :genre
+  attr_reader :artist
 
   @@all = []
 
@@ -23,7 +23,6 @@ class Song
   def self.create(song)
     song = self.new(song)
     song.save
-    # binding.pry
     return song
   end
 
