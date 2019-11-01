@@ -1,17 +1,17 @@
 require 'pry'
 
-# class Artist
-#
+class Artist
+
 #   extend Findable::ClassMethods
 #
-#   attr_accessor :name
-#   attr_reader :songs
+  attr_accessor :name
+  attr_reader :songs
 #
-#   @@all = []
+  @@all = []
+
+  def initialize(name)
+      @name = name
 #
-#   def initialize
-#     super
-#     @songs = []
 #   end
 #
 #   def self.all
