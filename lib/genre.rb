@@ -1,7 +1,7 @@
 # require './song.rb'
 # require './artist.rb'
 class Genre
-  extend Findable::ClassMethods
+  extend Concerns::Findable
 
   attr_accessor :name
 

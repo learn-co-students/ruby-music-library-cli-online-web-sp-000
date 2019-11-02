@@ -41,23 +41,17 @@ class Song
     genre.songs << self unless genre.songs.include?(self)
   end
 
-  def find_by_name(name)
-    @@all.detect { |a| a.name == name }
-    # binding.pry
-  end
-
-  def self.find_or_create_by_name(name)
-    if self.find_by_name(name)
-        self.find_by_name(name)
-      else
-        self.create(name)
-    end
-  end
-
-
-
-  # def self.find_by_name(name)
-  #   self.detect {|a| a.name == name}
+  # def find_by_name(name)
+  #   @@all.detect { |a| a.name == name }
+  #   # binding.pry
+  # end
+  #
+  # def self.find_or_create_by_name(name)
+  #   if self.find_by_name(name)
+  #       self.find_by_name(name)
+  #     else
+  #       self.create(name)
+  #   end
   # end
 
   def self.destroy_all
