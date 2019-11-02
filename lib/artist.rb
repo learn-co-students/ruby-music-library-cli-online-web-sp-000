@@ -3,17 +3,15 @@ require 'pry'
 class Artist
 
 #   extend Findable::ClassMethods
-#
   attr_accessor :name
   attr_reader :songs
-#
-  @@all = []
 
+  @@all = []
 
   def initialize(name)
     @name = name
     @songs = []
-#
+
   end
 
   def self.all
@@ -39,8 +37,6 @@ class Artist
       song.artist = self
       @songs << song
     end
-
-    # binding.pry
   end
 
   def songs
@@ -48,7 +44,7 @@ class Artist
   end
 
   def genres
-    self.songs.map { |song| song.genre }
+    self.songs.map { |song| song.genre }.uniq
   end
 
   def self.destroy_all
@@ -56,6 +52,7 @@ class Artist
   end
 end
 
+# self.songs.each { |song| song.genre }
 #
 #
 #   def add_songs(songs)
