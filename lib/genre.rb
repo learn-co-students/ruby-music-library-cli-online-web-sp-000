@@ -1,5 +1,5 @@
 # require './song.rb'
-# require './artist.rb'
+require_relative '../lib/concerns/findable'
 class Genre
   extend Concerns::Findable
 

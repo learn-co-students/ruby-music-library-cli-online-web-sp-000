@@ -1,5 +1,5 @@
 require 'pry'
-# require './genre.rb'
+require_relative '../lib/concerns/findable'
 # require './song.rb'
 
 class Artist
