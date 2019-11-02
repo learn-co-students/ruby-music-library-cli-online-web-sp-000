@@ -11,8 +11,8 @@ class Artist
 
 
   def initialize(name)
-      @name = name
-      @songs = []
+    @name = name
+    @songs = []
 #
   end
 
@@ -35,9 +35,16 @@ class Artist
   end
 
   def add_song(song)
-    # songs.each { |song| add_song(song) }
-    @songs << song
-    song.artist = self
+    if song.artist == nil
+      song.artist = self
+      @songs << song
+    end
+
+    # binding.pry
+  end
+
+  def songs
+    @songs
   end
 
   def genres

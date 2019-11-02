@@ -3,14 +3,14 @@ class Song
 
   # extend Findable::ClassMethods
 
-  attr_accessor :name
-  attr_reader :artist, :genre
+  attr_accessor :name, :artist, :genre
+
 
   @@all = []
 
-  def initialize(name)
+  def initialize(name, artist = nil)
     @name = name
-
+    self.artist= artist
   end
 
   def save
@@ -28,8 +28,10 @@ class Song
   end
 
   def artist=(artist)
-  @artist = artist
-  Artist.
+    if @artist = artist
+      artist.add_song(self)
+    end
+
   end
 
   def self.destroy_all
