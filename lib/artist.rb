@@ -1,8 +1,11 @@
 require 'pry'
+# require './genre.rb'
+# require './song.rb'
 
 class Artist
 
-#   extend Findable::ClassMethods
+  # extend Concerns::Findable
+
   attr_accessor :name
   attr_reader :songs
 
@@ -33,10 +36,8 @@ class Artist
   end
 
   def add_song(song)
-    if song.artist == nil
-      song.artist = self
-      @songs << song
-    end
+      song.artist = self unless song.artist
+      songs << song unless songs.include?(song)
   end
 
   def songs
@@ -51,11 +52,3 @@ class Artist
     self.all.clear
   end
 end
-
-# self.songs.each { |song| song.genre }
-#
-#
-#   def add_songs(songs)
-#
-#   end
-# end
