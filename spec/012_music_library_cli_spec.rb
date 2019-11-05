@@ -1,7 +1,9 @@
+require "pry"
 require "spec_helper"
 
 describe "MusicLibraryController - CLI Commands" do
   let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
+  # binding.pry
 
   describe "'list songs'" do
     it "triggers #list_songs" do
