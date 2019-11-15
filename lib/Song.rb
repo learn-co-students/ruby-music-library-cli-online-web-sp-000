@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song
 
   attr_accessor :name
@@ -44,6 +46,17 @@ class Song
 
   def self.destroy_all
     @@all.clear
+  end
+
+  def self.find_by_name(name)
+    Song.all.detect {|song| song.name == name}
+  end
+
+  def self.find_or_create_by_name(name)
+    binding.pry
+    if self.find_by_name(name) != self.class
+      new_song = self.create(name)
+    end
   end
 
 end
