@@ -6,27 +6,22 @@ module Concerns
   module Findable
     module ClassMethods
       def find_by_name(name)
+
         objects = []
-        ObjectSpace.each_object(self){|obj| objects << obj}
-        objects.reverse.detect{|a| a.name == name}
+        self.all.each do |obj|
+          objects << obj
+        end
+        objects.detect{|a| a.name == name}
       end
 
       def find_or_create_by_name(name)
 
         if self.find_by_name(name) == nil
-          object = self.create(name)
+          obj = self.create(name)
         else
-          object = self.find_by_name(name)
+          obj = self.find_by_name(name)
         end
-        object
-        # object_found = self.find_by_name(name)
-        #
-        # if object_found == nil
-        #   new_object = self.create(name)
-        #   new_object
-        # else
-        #   object_found
-        # end
+        obj
       end
 
     end
@@ -35,9 +30,6 @@ end
 
 require_all 'lib'
 
-class Song
-  extend Concerns::Findable::ClassMethods
-end
 
 class Artist
   extend Concerns::Findable::ClassMethods
