@@ -13,14 +13,20 @@ module Concerns
 
       def find_or_create_by_name(name)
 
-        object_found = self.find_by_name(name)
-
-        if object_found == nil
-          new_object = self.create(name)
-          new_object
+        if self.find_by_name(name) == nil
+          object = self.create(name)
         else
-          object_found
+          object = self.find_by_name(name)
         end
+        object
+        # object_found = self.find_by_name(name)
+        #
+        # if object_found == nil
+        #   new_object = self.create(name)
+        #   new_object
+        # else
+        #   object_found
+        # end
       end
 
     end
