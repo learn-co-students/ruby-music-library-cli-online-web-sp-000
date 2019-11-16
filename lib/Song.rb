@@ -67,16 +67,16 @@ class Song
     @@all.clear
   end
 
-  # def self.find_by_name(name)
-  #   Song.all.detect {|song| song.name == name}
-  # end
+  def self.find_by_name(name)
+    Song.all.detect {|song| song.name == name}
+  end
 
-  # def self.find_or_create_by_name(name)
-  #   if Song.find_by_name(name) == nil
-  #     new_song = self.create(name)
-  #   else
-  #     Song.find_by_name(name)
-  #   end
-  # end
+  def self.find_or_create_by_name(name)
+    if Song.find_by_name(name) == nil
+      new_song = self.create(name)
+    else
+      Song.find_by_name(name)
+    end
+  end
 
 end
