@@ -19,14 +19,6 @@ class Artist
 
   def save
     @@all << self
-    # names = []
-    # self.class.all.each do |object|
-    #   names << object.name
-    # end
-    #
-    # if !names.include?(self.name)
-    #   self.class.all << self
-    # end
   end
 
   def self.create(name)
@@ -34,17 +26,6 @@ class Artist
     new_object = Artist.new(name)
     new_object.save
     new_object
-
-    # names = []
-    # self.all.each do |object|
-    #   names << object.name
-    # end
-    #
-    # if !names.include?(name)
-    #   new_object = self.new(name)
-    #   new_object.save
-    #   new_object
-    # end
   end
 
   def songs
