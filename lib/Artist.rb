@@ -2,7 +2,7 @@ class Artist
 
   attr_accessor :name
 
-  @@all = []
+  @@artists = []
 
   def initialize(name)
     @name = name
@@ -10,21 +10,35 @@ class Artist
   end
 
   def self.all
-    @@all
+    @@artists
   end
 
   def self.destroy_all
-    @@all.clear
+    @@artists.clear
   end
 
   def save
-    @@all << self
+    names = []
+    self.class.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(self.name)
+      self.class.all << self
+    end
   end
 
   def self.create(name)
-    new_artist = Artist.new(name)
-    new_artist.save
-    new_artist
+    names = []
+    self.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(name)
+      new_object = self.new(name)
+      new_object.save
+      new_object
+    end
   end
 
   def songs

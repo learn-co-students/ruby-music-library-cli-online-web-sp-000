@@ -5,7 +5,7 @@ class Song
   attr_accessor :name
   attr_reader :artist, :genre
 
-  @@all = []
+  @@songs = []
 
   def initialize(name, artist=nil, genre=nil)
     @name = name
@@ -31,21 +31,38 @@ class Song
   end
 
   def self.all
-    @@all
+    @@songs
   end
 
   def save
-    @@all << self
+    names = []
+    self.class.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(self.name)
+      self.class.all << self
+    end
   end
 
   def self.create(name)
-    new_song = Song.new(name)
-    new_song.save
-    new_song
+    names = []
+    self.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(name)
+      new_object = self.new(name)
+      new_object.save
+      new_object
+    end
+    # new_song = Song.new(name)
+    # new_song.save
+    # new_song
   end
 
   def self.destroy_all
-    @@all.clear
+    @@songs.clear
   end
 
   # def self.find_by_name(name)

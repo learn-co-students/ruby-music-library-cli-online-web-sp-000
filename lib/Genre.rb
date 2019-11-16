@@ -4,30 +4,43 @@ class Genre
 
   attr_accessor :name
 
-  @@all = []
+  @@genres = []
 
   def initialize(name)
     @name = name
     @songs = []
-    #self.artists = []
   end
 
   def self.all
-    @@all
+    @@genres
   end
 
   def self.destroy_all
-    @@all.clear
+    @@genres.clear
   end
 
   def save
-    @@all << self
+    names = []
+    self.class.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(self.name)
+      self.class.all << self
+    end
   end
 
   def self.create(name)
-    new_genre = Genre.new(name)
-    new_genre.save
-    new_genre
+    names = []
+    self.all.each do |object|
+      names << object.name
+    end
+
+    if !names.include?(name)
+      new_object = self.new(name)
+      new_object.save
+      new_object
+    end
   end
 
   def songs
