@@ -1,6 +1,6 @@
 module Concerns
   module Findable
-    module ClassMethods
+    #module ClassMethods
       def find_by_name(name)
 
         objects = []
@@ -19,7 +19,7 @@ module Concerns
         end
         obj
       end
-    end
+    #end
   end
 end
 
