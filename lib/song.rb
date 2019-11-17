@@ -60,4 +60,12 @@ class Song
     end
   end
 
+  def self.new_from_filename(filename)
+
+    parsedFileName = filename.split("-")
+    binding.pry
+    #new_song = Song.new()
+
+  end
+
 end
