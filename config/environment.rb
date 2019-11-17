@@ -2,12 +2,14 @@ require 'pry'
 require 'bundler'
 Bundler.require
 
+require_relative '../lib/concerns/findable'
 
 module Concerns
+
 end
 
 require_all 'lib'
-require_relative '../lib/concerns/findable'
+
 
 class Artist
   extend Concerns::Findable::ClassMethods
