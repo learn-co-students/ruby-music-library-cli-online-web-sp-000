@@ -54,18 +54,35 @@ class Song
 
   def self.find_or_create_by_name(name)
     if Song.find_by_name(name) == nil
-      new_song = self.create(name)
+      # new_song = self.create(name)
+      song = self.create(name)
     else
-      Song.find_by_name(name)
+      # Song.find_by_name(name)
+      song = Song.find_by_name(name)
     end
+    song
   end
 
   def self.new_from_filename(filename)
 
-    parsedFileName = filename.split("-")
-    binding.pry
-    #new_song = Song.new()
+    parsed_file_name = filename.split("-")
+    song_name = parsed_file_name[1].strip
+    artist_name = parsed_file_name[0].strip
+    genre_name = parsed_file_name[2].strip.strip.gsub(".mp3","")
 
+    if Song.find_by_name(song_name) == nil
+      song_artist = Artist.find_or_create_by_name(artist_name)
+      song_genre = Genre.find_or_create_by_name(genre_name)
+
+      new_song = Song.new(song_name, song_artist, song_genre)
+      new_song
+    end
   end
+
+  def self.create_from_filename(filename)
+    created_song = Song.new_from_filename(filename)
+    created_song.save
+  end
+
 
 end

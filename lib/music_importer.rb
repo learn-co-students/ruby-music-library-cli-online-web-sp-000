@@ -22,7 +22,11 @@ class MusicImporter
 
   end
 
-  def self.import
+  def import
+    Dir[@path + "/*"].each do |file|
+      filename = file.gsub(@path +"/","")
+      Song.create_from_filename(filename)
+    end
 
   end
 
