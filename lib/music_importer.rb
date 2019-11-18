@@ -27,7 +27,6 @@ class MusicImporter
       filename = file.gsub(@path +"/","")
       Song.create_from_filename(filename)
     end
-
   end
 
 end
