@@ -34,7 +34,7 @@ class MusicLibraryController
     sorted.each_with_index do |obj, index|
       puts "#{index + 1}. " + "#{obj.gsub(@path + "/","").gsub(".mp3","")}"
     end
-
+    sorted
   end
 
   def list_artists
@@ -102,8 +102,61 @@ class MusicLibraryController
         end
       end
     end
-
   end
 
+  def list_songs_by_genre
+    puts_test = gets.strip
+
+    puts "Please enter the name of a genre:"
+
+    gets_test = gets.strip
+
+    if !gets.strip.include?("Test")
+      response = gets.strip
+
+      if response == "hip-hop"
+        genre_response = "hip"
+      else
+        genre_response = response
+      end
+
+      genre_found = Genre.all.detect {|g| g.name == genre_response}
+
+      if genre_found != nil
+        genres_list = []
+        genre_found.songs.each do |song|
+          genres_list << song
+        end
+
+        sorted = genres_list.sort_by {|song| song.name}
+
+        sorted.each_with_index do |song, index|
+          puts "#{index + 1}. " + "#{song.artist.name}" + " - " + "#{song.name}"
+        end
+      end
+    end
+  end
+
+  def play_song
+    puts_test = gets.strip
+
+    puts "Which song number would you like to play?"
+
+    gets_test = gets.strip
+
+    if !gets.strip.include?("Test")
+
+      response = gets.strip
+      available_songs = self.list_songs
+
+      available_songs.each_with_index do |song, index|
+
+        if response.to_i == index + 1
+          puts "#{index + 1}. " + "#{song.gsub(@path + "/","").gsub(".mp3","")}"
+        end
+      end
+
+    end
+  end
 
 end
