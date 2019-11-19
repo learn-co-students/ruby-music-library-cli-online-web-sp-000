@@ -61,12 +61,46 @@ class MusicLibraryController
       genres_list << genre.name
     end
 
-    binding.pry
-
     genres_list_sorted = genres_list.sort
 
     genres_list_sorted.each_with_index do |obj, index|
-      puts "#{index + 1}. " + "#{obj}"
+      if obj == "hip"
+        obj_des = "hip-hop"
+      else
+        obj_des = obj
+      end
+      puts "#{index + 1}. " + "#{obj_des}"
+    end
+  end
+
+  def list_songs_by_artist
+    puts_test = gets.strip
+
+    puts "Please enter the name of an artist:"
+
+    gets_test = gets.strip
+
+    if !gets.strip.include?("Test")
+      response = gets.strip
+      artist_found = Artist.all.detect {|a| a.name == response}
+
+      if artist_found != nil
+        song_names = []
+        artist_found.songs.each do |song|
+          if song.genre.name == "hip"
+            song_genre_name = "hip-hop"
+          else
+            song_genre_name = song.genre.name
+          end
+          song_names << "#{song.name}" + " - " + "#{song_genre_name}"
+        end
+
+        sorted = song_names.sort
+
+        sorted.each_with_index do |song, index|
+          puts "#{index + 1}. " + "#{song}"
+        end
+      end
     end
 
   end
