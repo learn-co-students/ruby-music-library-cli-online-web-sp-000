@@ -1,4 +1,3 @@
-require 'pry'
 class MusicLibraryController
 
   attr_accessor :path, :new_music_importer
@@ -7,6 +6,7 @@ class MusicLibraryController
     @path = path
     @new_music_importer = MusicImporter.new(path)
     @imported_files = @new_music_importer.import
+    # binding.pry
   end
 
   def call
@@ -24,8 +24,6 @@ class MusicLibraryController
     response = gets.strip
 
     while response != "exit" do
-      puts "What would you like to do?"
-      response = gets.strip
 
       if response == "list songs"
         list_songs
@@ -42,6 +40,9 @@ class MusicLibraryController
       elsif response == "exit"
         break
       end
+
+      puts "What would you like to do?"
+      response = gets.strip
 
     end
   end
