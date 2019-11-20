@@ -24,6 +24,10 @@ class MusicLibraryController
     while response != "exit" do
       puts "What would you like to do?"
       response = gets.strip
+
+      if response == "list songs"
+        list_songs
+      end
     end
   end
 
