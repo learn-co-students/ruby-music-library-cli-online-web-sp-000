@@ -37,8 +37,6 @@ class MusicLibraryController
         list_songs_by_genre
       elsif response == "play song"
         play_song
-      elsif response == "exit"
-        break
       end
 
       puts "What would you like to do?"
