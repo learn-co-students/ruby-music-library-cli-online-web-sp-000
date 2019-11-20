@@ -34,7 +34,6 @@ class MusicLibraryController
     sorted.each_with_index do |obj, index|
       puts "#{index + 1}. " + "#{obj.gsub(@path + "/","").gsub(".mp3","")}"
     end
-    sorted
   end
 
   def list_artists
@@ -147,15 +146,15 @@ class MusicLibraryController
     if !gets.strip.include?("Test")
 
       response = gets.strip
-      available_songs = self.list_songs
 
-      available_songs.each_with_index do |song, index|
+      sorted = @imported_files.sort_by{|file| file.gsub(@path + "/","").split("-")[1].strip}
 
+      sorted.each_with_index do |obj, index|
         if response.to_i == index + 1
-          puts "#{index + 1}. " + "#{song.gsub(@path + "/","").gsub(".mp3","")}"
+          puts "Playing " + "#{obj.gsub(@path + "/","").split("-")[1].strip }" +
+            " by " + "#{obj.gsub(@path + "/","").split("-")[0].strip}"
         end
       end
-
     end
   end
 
