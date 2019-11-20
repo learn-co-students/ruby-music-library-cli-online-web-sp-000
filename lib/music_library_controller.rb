@@ -6,7 +6,6 @@ class MusicLibraryController
     @path = path
     @new_music_importer = MusicImporter.new(path)
     @imported_files = @new_music_importer.import
-    # binding.pry
   end
 
   def call
