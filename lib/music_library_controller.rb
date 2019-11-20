@@ -1,3 +1,4 @@
+require 'pry'
 class MusicLibraryController
 
   attr_accessor :path, :new_music_importer
@@ -9,6 +10,7 @@ class MusicLibraryController
   end
 
   def call
+
     puts "Welcome to your music library!"
     puts "To list all of your songs, enter 'list songs'."
     puts "To list all of the artists in your library, enter 'list artists'."
@@ -27,7 +29,20 @@ class MusicLibraryController
 
       if response == "list songs"
         list_songs
+      elsif response == "list artists"
+        list_artists
+      elsif response == "list genres"
+        list_genres
+      elsif response == "list artist"
+        list_songs_by_artist
+      elsif response == "list genre"
+        list_songs_by_genre
+      elsif response == "play song"
+        play_song
+      elsif response == "exit"
+        break
       end
+
     end
   end
 
