@@ -15,7 +15,6 @@ attr_accessor :name, :songs
   def initialize(name)
     self.name = name
     @songs = []
-    save
   end
 
   def self.destroy_all
