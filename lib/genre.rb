@@ -10,12 +10,13 @@
 # immediately.
 
 class Genre
-  attr_accessor :name
+  attr_accessor :name, :songs 
 
   @@all = []
 
   def initialize(name)
     @name = name
+    @songs = []
     save
   end
 
@@ -34,7 +35,7 @@ class Genre
   def self.create(genre)
     genre = Genre.new(self)
     genre.save
-    genre  
+    genre
   end
 
 end
