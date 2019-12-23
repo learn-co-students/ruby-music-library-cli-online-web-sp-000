@@ -29,11 +29,11 @@ class Genre
   end
 
   def save
-    @@all << self
+    self.class.all << self
   end
 
   def self.create(genre)
-    genre = Genre.new(self)
+    genre = Genre.new(genre)
     genre.save
     genre
   end
@@ -43,7 +43,7 @@ class Genre
   end
 
   def artists
-    self.songs.collect{|song| song.artist}.uniq 
+    self.songs.collect{|song| song.artist}.uniq
   end
 
 end

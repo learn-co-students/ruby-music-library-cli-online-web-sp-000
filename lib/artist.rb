@@ -29,17 +29,17 @@ class Artist
   end
 
   def save
-    @@all << self
+    self.class.all << self
   end
 
-  def self.create(artist)
-    artist = Artist.new(self)
+  def self.create(name)
+    artist = Artist.new(name)
     artist.save
     artist
   end
 
   def add_song(song)
-    song.artist = self unless song.artist == self
+    song.artist = self unless song.artist 
     @songs << song unless @songs.include?(song)
   end
 
