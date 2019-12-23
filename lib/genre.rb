@@ -9,6 +9,11 @@
 # an instance using .new but also invokes #save on that instance, forcing it to persist
 # immediately.
 
-class Genre 
+class Genre
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end 
 
 end
