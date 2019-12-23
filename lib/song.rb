@@ -9,7 +9,9 @@
 # an instance using .new but also invokes #save on that instance, forcing it to persist immediately.
 
 class Song
-  attr_accessor :artist, :genre, :name
+  # extend Findable 
+  attr_reader :artist, :genre
+  attr_accessor :name
 
   @@all = []
 
@@ -17,16 +19,6 @@ class Song
     @name = name
     self.artist = artist if artist
     self.genre = genre if genre
-  end
-
-  def artist=(artist)
-    @artist = artist
-    artist.add_song(self)
-  end
-
-  def genre=(genre)
-    @genre = genre
-    genre.songs << self unless genre.songs.include?(self)
   end
 
   def self.all
@@ -42,25 +34,32 @@ class Song
   end
 
   def self.create(name)
-    #binding.pry
     song = Song.new(name)
     song.save
     song
   end
+
+ def artist=(artist)
+   @artist = artist
+   artist.add_song(self)
+ end
+
+ def genre=(genre)
+   @genre = genre
+   genre.songs << self unless genre.songs.include?(self)
+ end
 
  def self.find_by_name(name)
    self.all.detect{|song| song.name == name}
  end
 
  def self.find_or_create_by_name(name)
-    #binding.pry
-   find_by_name(name) || create(name)
    #  returns (does not recreate) an existing song with the provided name if one exists in @@all
-  #  if !self.find_by_name(name)
-  #    self.create(name)
-  #  else
-  #    self.find_by_name(name)
-  #  end
+    if find_by_name(name) == nil
+      create(name)
+    else
+      find_by_name(name)
+    end
  end
 
 end
