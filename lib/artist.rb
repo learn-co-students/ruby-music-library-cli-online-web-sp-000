@@ -12,8 +12,29 @@
 class Artist
   attr_accessor :name, :song
 
+  @@all = []
+
   def initialize(name)
     @name = name
+    save
   end
 
-end 
+  def self.all
+    @@all
+  end
+
+  def self.destroy_all
+    @@all.clear
+  end
+
+  def save
+    @@all << self
+  end
+
+  def self.create(artist)
+    artist = Artist.new(self)
+    artist.save
+    artist 
+  end
+
+end
