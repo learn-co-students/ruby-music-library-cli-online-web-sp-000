@@ -9,6 +9,7 @@
 # an instance using .new but also invokes #save on that instance, forcing it to persist immediately.
 
 class Song
+  # extend Findable 
   attr_reader :artist, :genre
   attr_accessor :name
 

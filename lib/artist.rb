@@ -10,6 +10,7 @@
 # immediately.
 
 class Artist
+  # extend Concerns::Findable 
   attr_accessor :name, :song, :songs
 
   @@all = []
