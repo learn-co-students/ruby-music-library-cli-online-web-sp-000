@@ -10,7 +10,7 @@
 # immediately.
 
 class Genre
-  attr_accessor :name, :songs 
+  attr_accessor :name, :song, :songs
 
   @@all = []
 
@@ -36,6 +36,14 @@ class Genre
     genre = Genre.new(self)
     genre.save
     genre
+  end
+
+  def songs
+    @songs
+  end
+
+  def artists
+    self.songs.collect{|song| song.artist}.uniq 
   end
 
 end
