@@ -39,7 +39,9 @@ class Artist
     # binding.pry
     if song.artist == nil 
        song.artist = self
-       @songs << song 
+    end 
+    if !@songs.include?(song) 
+    @songs << song 
     end 
   end 
 
