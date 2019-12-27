@@ -60,7 +60,8 @@ class MusicLibraryController
 
   def play_song
     # prompts the user to choose a song from the alphabetized list output by #list_songs
-    puts "Which song would you like to choose?"
-    user_input = gets.strip 
+    puts "Which song number would you like to play?"
+    user_input = gets.strip
+    # upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs
   end
 end
