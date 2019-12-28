@@ -9,7 +9,7 @@ class Song
     @name = name 
     self.artist = artist if artist 
     self.genre = genre if genre
-    @@all << self 
+    # @@all << self 
   end 
 
   def artist=(artist)
@@ -31,7 +31,7 @@ class Song
   end 
 
   def save
-    @@all << @song 
+    @@all << self
   end 
 
   def self.create(name)
@@ -46,5 +46,8 @@ class Song
     end 
   end 
 
+  def self.find_or_create_by_name(name)
+    find_by_name(name) || self.create(name)
+  end 
 
 end 

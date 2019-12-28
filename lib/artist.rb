@@ -1,5 +1,6 @@
 require 'pry'
 class Artist 
+  extend Concerns::Findable
 
   attr_accessor :name, :songs
 
@@ -8,7 +9,7 @@ class Artist
   def initialize(name)
     @name = name 
     @songs = []
-    @@all << self 
+    # @@all << self 
   end 
 
   def self.all 
@@ -20,10 +21,10 @@ class Artist
   end 
 
   def save
-    @@all << @artist
+    @@all << self
   end 
 
-    def self.create(name)
+  def self.create(name)
     new_artist = Artist.new(name)
     new_artist.save
     new_artist
