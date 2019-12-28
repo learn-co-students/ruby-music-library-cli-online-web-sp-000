@@ -6,7 +6,6 @@ module Concerns
     end
 
     def find_or_create_by_name(name)
-      #  returns (does not recreate) an existing song with the provided name if one exists in @@all
        if find_by_name(name) == nil
          create(name)
        else

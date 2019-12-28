@@ -1,8 +1,3 @@
-# Upon initialization, accepts an optional path to the library of MP3 files,
-# defaulting to ./db/mp3s/. It should then instantiate a MusicImporter object,
-# which it will use to import songs from the specified library.
-# Has a #call method that starts the CLI and prompts the user for input. Read the tests carefully for specifics.
-
 class MusicLibraryController
   attr_accessor :path
 
@@ -73,13 +68,10 @@ class MusicLibraryController
   end
 
   def play_song
-    # prompts the user to choose a song from the alphabetized list output by #list_songs
     puts "Which song number would you like to play?"
     user_input = gets.strip.to_i
-    # upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs
     if (1..Song.all.length).include?(user_input)
       song = Song.all.sort_by(&:name)[user_input.to_i - 1]
-    #binding.pry
       puts "Playing #{song.name} by #{song.artist.name}"
     end
   end

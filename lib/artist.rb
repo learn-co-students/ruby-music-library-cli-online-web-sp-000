@@ -33,10 +33,6 @@ class Artist
   end
 
   def genres
-    # returns a collection of genres for all of the artist's songs (artist has many genres through songs)
-    # genres does not return duplicate genres if the artist has
-    # more than one song of a particular genre
-    # binding.pry
     self.songs.collect do |song|
       song.genre
     end.uniq
