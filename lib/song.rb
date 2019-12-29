@@ -50,4 +50,16 @@ class Song
     find_by_name(name) || self.create(name)
   end 
 
+  def self.new_from_filename(filename)
+    song_data = filename.split(" - ")
+    self.find_or_create_by_name(song_data[1]).tap do |song|
+      song.artist = Artist.find_or_create_by_name(song_data[0])
+      song.genre = Genre.find_or_create_by_name(song_data[2].sub(".mp3", ""))
+    end
+  end
+
+  def self.create_from_filename(filename)
+    self.new_from_filename(filename)
+  end 
+
 end 
