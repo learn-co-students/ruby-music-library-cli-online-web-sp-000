@@ -61,8 +61,6 @@ describe "Associations — Song and Artist:" do
       end
 
       it "does not assign the artist if the song already has an artist" do
-        puts "we are heeeeeerreeeeeeeeee  ------>>>>>>"
-        binding.pry
  
         song.instance_variable_set(:@artist, artist)
 
