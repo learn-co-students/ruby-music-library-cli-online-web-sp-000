@@ -1,4 +1,3 @@
-
 class MusicImporter
   attr_accessor :path
 
@@ -17,4 +16,5 @@ class MusicImporter
       Song.create_from_filename(file)
     end
   end
+
 end
