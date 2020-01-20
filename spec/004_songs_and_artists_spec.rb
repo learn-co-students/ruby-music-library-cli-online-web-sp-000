@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 
 describe "Associations — Song and Artist:" do
   let(:song) { Song.new("In the Aeroplane Over the Sea") }
@@ -27,7 +28,6 @@ describe "Associations — Song and Artist:" do
     describe "#initialize" do
       it "can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)" do
         song_with_artist = Song.new("Two-Headed Boy", artist)
-
         expect(song_with_artist.instance_variable_defined?(:@artist)).to be(true)
         expect(song_with_artist.instance_variable_get(:@artist)).to be(artist)
       end
