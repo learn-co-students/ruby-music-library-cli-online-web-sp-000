@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song
 
   attr_accessor :name, :artist, :genre
@@ -28,7 +30,9 @@ class Song
   # initializes, saves, and returns the song
   def self.create(song)
     song = self.new(song)
-    @@all << song
+    if @@all.include?(song) == false
+      @@all << song
+    end
     song
   end
 
@@ -48,6 +52,21 @@ class Song
   def genre=(genre)
     @genre = genre
     genre.songs << self unless genre.songs.include?(self)
+  end
+
+  # finds a song instance in @@all by the name property of the song
+  # iterate through @@all array to find song.name
+  def self.find_by_name(title)
+    # song variable is a song instance
+    @@all.find {|song| song.name == title}
+  end
+
+  # returns an existing song with the provided name if one exists in @@all
+  # invokes .find_by_name instead of re-coding the same functionality
+  # creates a song if an existing match is not found
+  # invokes .create instead of re-coding the same functionality
+  def self.find_or_create_by_name(name)
+    find_by_name(name) || create(name)
   end
 
 end
