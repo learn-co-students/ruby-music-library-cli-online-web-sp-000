@@ -69,4 +69,18 @@ class Song
     find_by_name(name) || create(name)
   end
 
+  # initializes a song based on the passed-in filename
+  # invokes the appropriate Findable methods so as to avoid duplicating objects
+  def self.new_from_filename(filename)
+
+    file = filename.split(" - ")
+    song_artist = file[0]
+    song_title = file[1]
+    song_genre = file[2].split(".")[0]
+    artist = Artist.find_or_create_by_name(song_artist)
+    genre = Genre.find_or_create_by_name(song_genre)
+binding.pry
+  end
+
+
 end
