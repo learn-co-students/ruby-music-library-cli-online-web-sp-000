@@ -16,4 +16,12 @@ class MusicImporter
     Dir.entries(@path).reject { |f| File.directory?(f) }
   end
 
+  # imports the files into the library by invoking Song.create_from_filename
+  # instantiating a new Song object for each file
+  def import
+    files.each do |new_song|
+      Song.create_from_filename(new_song)
+    end
+  end
+
 end

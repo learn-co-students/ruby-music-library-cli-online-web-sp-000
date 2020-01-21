@@ -71,16 +71,31 @@ class Song
 
   # initializes a song based on the passed-in filename
   # invokes the appropriate Findable methods so as to avoid duplicating objects
+  # which instantiates a new Song object based on a provided filename
+  # Thundercat - For Love I Come - dance.mp3
   def self.new_from_filename(filename)
-
     file = filename.split(" - ")
-    song_artist = file[0]
-    song_title = file[1]
+    musician = file[0]
+    title = file[1]
     song_genre = file[2].split(".")[0]
-    artist = Artist.find_or_create_by_name(song_artist)
+    # gives me an artist instance with "Thundercat" as the name property
+    artist = Artist.find_or_create_by_name(musician)
+    # gives me a genre instance with "dance" as the name property
     genre = Genre.find_or_create_by_name(song_genre)
-binding.pry
+    # gives me a song instance with "For Love I Come" as the name property
+    song = Song.find_or_create_by_name(title)
+
+    song.genre = genre
+    song.artist = artist
+    song
   end
 
+  # initializes and saves a song based on the passed-in filename
+  # invokes .new_from_filename instead of re-coding the same functionality
+  def self.create_from_filename(filename)
+    saving = new_from_filename(filename)
+    saving.save
+    saving
+  end
 
 end
