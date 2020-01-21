@@ -4,12 +4,12 @@
 module Concerns::Findable
   # Implement a generic #find_by_name method that uses the .all method
   # defined by the class to find an instance of the class by name.
-  def self.find_by_name(name)
+  def find_by_name(name)
     self.all.find {|i| i.name == name}
   end
-end
 
-# How it's written in Song
-# def self.find_by_name(title)
-  # @@all.find {|song| song.name == title}
-# end
+  def find_or_create_by_name(name)
+    find_by_name(name) || create(name)
+  end
+
+end
