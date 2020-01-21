@@ -1,3 +1,4 @@
+require "./lib/concerns/findable"
 class Artist
     
     extend Concerns::Findable
