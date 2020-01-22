@@ -28,6 +28,23 @@ class MusicLibraryController
       puts "What would you like to do?"
       )
       input = gets.chomp
+
+      case input
+      when 'list songs'
+          self.list_songs
+      when 'list artists'
+          self.list_artists
+      when 'list genres'
+          self.list_genres
+      when 'list artist'
+          self.list_songs_by_artist
+      when 'list genre'
+          self.list_songs_by_genre
+      when 'play song'
+          self.play_song
+      else
+          "please select a valid option"
+      end
     end
   end
 
@@ -39,9 +56,8 @@ class MusicLibraryController
   # how do I list out in numbered order
   def list_songs
     # print songs out in alphabetical order with index
-    # binding.pry
+    # 'each.with_index' allows for index to start at 1
     Song.all.uniq.sort { |title1, title2| title1.name <=> title2.name }.each.with_index(1) do |song, i|
-      # index_plus_1 = i + 1
       puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
   end
@@ -109,5 +125,6 @@ class MusicLibraryController
       puts "Playing #{song.name} by #{song.artist.name}"
     end
   end
+
 
 end
