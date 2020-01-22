@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicLibraryController
 
   # Upon initialization, accepts an optional path to the library of MP3 files,
@@ -32,8 +34,13 @@ class MusicLibraryController
   # how do I alphabetize by song name?
   # how do I list out in numbered order
   def list_songs
-    Song.all
+
+    sorted_song_name = Song.all.sort_by do |song|
+      song.name
+    end
+    sorted_song_name
     binding.pry
+
   end
 
 end
