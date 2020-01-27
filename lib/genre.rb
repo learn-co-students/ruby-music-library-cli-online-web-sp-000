@@ -1,3 +1,4 @@
+require "./lib/concerns/findable"
 class Genre
 
     extend Concerns::Findable

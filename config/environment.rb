@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require 'bundler'
 Bundler.require
 
@@ -18,3 +19,12 @@ module Concerns
 end
 
 require_all 'lib'
+=======
+require 'bundler'
+Bundler.require
+
+module Concerns
+end
+
+require_all 'lib'
+>>>>>>> e7c439f241e8b790ede788c845d059e095f44604
