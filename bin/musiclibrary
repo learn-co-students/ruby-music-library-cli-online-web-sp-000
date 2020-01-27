@@ -2,8 +2,5 @@
 
 require_relative '../config/environment'
 
-# MusicLibraryController.new.call
-
-musicImporter = MusicImporter.new("./spec/fixtures/mp3s")
-musicImporter.import
+MusicLibraryController.new.call
 
