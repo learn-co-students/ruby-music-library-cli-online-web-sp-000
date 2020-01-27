@@ -22,4 +22,23 @@ class MusicLibraryController
             input = gets.strip()
         end
     end
+
+    def list_songs
+        Song.all.sort_by{|song| song.name}.each.with_index(1) { |song, index|
+            puts "#{index.to_s}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+        }
+    end
+
+    def list_artists
+        Artist.all.sort_by{|artist| artist.name}.each.with_index(1) { |artist, index|
+            puts "#{index.to_s}. #{artist.name}"
+        }
+    end
+
+    def list_genres
+        Genre.all.sort_by{|genre| genre.name}.each.with_index(1) { |genre, index|
+            puts "#{index.to_s}. #{genre.name}"
+        }
+    end
+
 end
