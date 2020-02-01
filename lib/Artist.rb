@@ -39,8 +39,8 @@ class Artist
         song.artist.songs << song
         # does not add the song to the current artist's collection of songs if it already exists therein
         # If the song already exists in the artist songs array don't add the song to the artist's songs array 
-
-        binding.pry
+        song.artist.songs.uniq!
+        # binding.pry
     end
 
 end
