@@ -29,9 +29,18 @@ class Artist
         created_artist
     end
 
-    # Create a 'songs' property that is set to an empty array
-    # Create a song= method and make the instance var equal to an array
     def song 
         @songs = []
     end
+
+    def add_song(song)
+        song.artist = self if song.artist == nil
+        # Add song the song to the artist's songs array
+        song.artist.songs << song
+        # does not add the song to the current artist's collection of songs if it already exists therein
+        # If the song already exists in the artist songs array don't add the song to the artist's songs array 
+
+        binding.pry
+    end
+
 end
