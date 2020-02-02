@@ -7,6 +7,7 @@ class Genre
 
     def initialize(name)
         @name = name
+        @songs = []
     end
 
     def self.all
@@ -25,7 +26,10 @@ class Genre
         created_genre = self.new(genre)
         created_genre.save 
         created_genre
-        binding.pry
     end
+
+    def songs
+        @songs
+    end 
 
 end

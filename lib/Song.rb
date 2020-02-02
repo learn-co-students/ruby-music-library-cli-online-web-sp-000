@@ -1,23 +1,22 @@
 require 'pry'
 
 class Song
-    attr_accessor :name, :artist
+    attr_accessor :name, :artist, :genre
 
     @@all = []
 
-    # Make an optional second argument
-    # The optional argument will be?
-    def initialize(name, artist = nil)
+    def initialize(name, artist = nil, genre = nil)
         @name = name
-        self.artist=(artist)
+        self.artist=(artist) if artist != nil
+        self.genre=(genre) if genre != nil 
     end
 
     def self.all
-       @@all  
+        @@all
     end
 
     def self.destroy_all
-        all.clear
+        @@all.clear
     end
 
     def save
@@ -29,9 +28,18 @@ class Song
         created_song.save
         created_song
     end
-
+    
     def artist=(artist)
         @artist = artist
+        artist.add_song(self)
+        # binding.pry
+    end 
+
+    def genre=(genre)
+        @genre = genre 
+        genre.songs << self
+        # binding.pry
     end 
 
 end
+
