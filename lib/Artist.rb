@@ -37,10 +37,14 @@ class Artist
         song.artist = self if song.artist == nil
         # Add song the song to the artist's songs array
         song.artist.songs << song
-        # does not add the song to the current artist's collection of songs if it already exists therein
         # If the song already exists in the artist songs array don't add the song to the artist's songs array 
         song.artist.songs.uniq!
         # binding.pry
     end
+
+    def genres
+        # returns a collection of genres for all of the artist's songs (artist has many genres through songs)
+        # Return an array of genres for all of the artist's songs
+    end 
 
 end
