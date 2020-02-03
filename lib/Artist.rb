@@ -43,8 +43,11 @@ class Artist
     end
 
     def genres
-        # returns a collection of genres for all of the artist's songs (artist has many genres through songs)
-        # Return an array of genres for all of the artist's songs
+        # Return an array of genres for all of the artist's songs (artist has many genres through songs)
+        songs.map{|song| song.genre}.uniq
+        # does not return duplicate genres if the artist has more than one song of a particular genre 
+        # if the artist has more than one song of a particular genre it does not return duplicate genres
+        
     end 
 
 end
