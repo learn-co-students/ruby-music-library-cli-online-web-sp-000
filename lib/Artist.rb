@@ -1,6 +1,8 @@
 require 'pry'
 
 class Artist
+    extend Concerns::Findable
+    
     attr_accessor :name
     attr_reader :songs
 
@@ -47,7 +49,6 @@ class Artist
         songs.map{|song| song.genre}.uniq
         # does not return duplicate genres if the artist has more than one song of a particular genre 
         # if the artist has more than one song of a particular genre it does not return duplicate genres
-        
     end 
 
 end
