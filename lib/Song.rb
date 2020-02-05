@@ -44,6 +44,10 @@ class Song
         self.all.detect{|song| song.name == song_name}
     end
 
+    def self.find_or_create_by_name(name)
+        find_by_name(name) || create(name)
+    end
+
     def self.new_from_filename(file_name)
 
         parts = file_name.split(" - ")
