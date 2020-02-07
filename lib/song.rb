@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song 
   attr_accessor :name, :artist, :genre  
   @@all = []
@@ -9,7 +11,6 @@ class Song
     if(genre != nil )
       self.genre=(genre) 
     end 
-    save 
   end 
   def self.all 
     @@all 
@@ -25,11 +26,13 @@ class Song
     new_song.save 
     new_song 
   end 
-  def artist=(name)
-    @artist = Artist.find_or_create_by_name(name)
+  def artist=(artist)
+    @artist = artist
+    artist.add_song(self)
   end 
   def genre=(genre)
-    @genre = Genre.find_or_create_by_name(genre)
+    @genre = genre
+    genre.songs << self unless genre.songs.include?(self)
   end 
   def self.new_from_filename(filename)
     splits = filename.split(" - ")
@@ -38,6 +41,7 @@ class Song
     newSong = Song.new(name)
     newSong.artist=(artistName)
     newSong 
+    save 
   end 
   def self.create_from_filename(file_name)
     new_from_filename(file_name)
