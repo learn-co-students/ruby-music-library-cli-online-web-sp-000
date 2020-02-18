@@ -33,13 +33,12 @@ class Artist
     end
   end
   def genres
-    genres = []
+    artist_genres = []
     songs = Song.all.select {|song| song.artist == self}
     songs.each do |song|
-        genres << song.genre
-      end
+      artist_genres.push(song.genre)
     end
-    genres
+    artist_genres
     binding.pry
   end
 end

@@ -1,27 +1,28 @@
 class MusicLibraryController
-  def initialize(path='./db/mp3s/')
+  def initialize(path='./db/mp3s')
     importer = MusicImporter.new(path)
     importer.import
   end
   def call
-    input = ""
-    while input != "exit"
-      puts "Welcome to your music library! What would you like to do?"
-      input = gets.strip
-      case input
-      when 'list songs'
-        list_songs
-      when 'list artists'
-        list_artists
-      when 'list genres'
-        list_genres
-      when 'list artist'
-        list_songs_by_artist
-      when 'list genre'
-        list_songs_by_genre
-      when 'play_song'
-        play_song
-      end
+    puts "Welcome to your music library! What would you like to do?"
+    input = gets.strip
+    case input
+    when 'list songs'
+      list_songs
+    when 'list artists'
+      list_artists
+    when 'list genres'
+      list_genres
+    when 'list artist'
+      list_songs_by_artist
+    when 'list genre'
+      list_songs_by_genre
+    when 'play_song'
+      play_song
+    when 'exit'
+      exit
+    else
+      puts "I'm sorry, that's not a recognized command."
     end
   end
   def list_songs
@@ -56,4 +57,4 @@ class MusicLibraryController
     reply = gets.strip
     #check if valid number
   end
-end 
+end
