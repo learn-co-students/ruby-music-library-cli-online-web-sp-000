@@ -4,7 +4,8 @@ class MusicLibraryController
     importer.import
   end
   def call
-    puts "Welcome to your music library! What would you like to do?"
+    puts "Welcome to your music library!"
+    puts "What would you like to do?"
     input = gets.strip
     case input
     when 'list songs'

@@ -31,15 +31,11 @@ class Artist
   end
 
   def add_song(song)
-    if !(song.artist)
-      song.artist = self
-      if !(self.songs.include?(song))
-        self.songs << song
-      end
-    end
+    song.artist = self unless song.artist
+    self.songs << song unless songs.include?(song)
   end
 
   def genres
-    songs.map {|song| song.genre}
+    songs.map {|song| song.genre}.uniq
   end
 end

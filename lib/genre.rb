@@ -23,6 +23,6 @@ class Genre
     new_genre 
   end 
   def artists 
-    Song.all.select {|song| song.genre == self} 
+    songs.map {|song| song.artist}.uniq  
   end 
 end 

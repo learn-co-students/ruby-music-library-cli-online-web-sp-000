@@ -1,5 +1,6 @@
 require 'pry'
 require_relative './concerns/Findable.rb'
+require_relative './artist.rb'
 
 class Song
   extend Concerns::Findable
@@ -38,24 +39,14 @@ class Song
   end
   def self.new_from_filename(filename)
     splits = filename.split(" - ")
-    name = splits[1]
-    artistName = splits[0]
-    newSong = Song.new(name)
-    newSong.artist=(artistName)
-    newSong
-    save
+    song_name = splits[1]
+    artist_name = splits[0]
+    new_song = self.find_or_create_by_name(song_name)
+    new_artist = Artist.find_or_create_by_name(artist_name)
+    new_song.artist=(new_artist)
+    #binding.pry
   end
   def self.create_from_filename(file_name)
-    new_from_filename(file_name)
+    self.new_from_filename(file_name)
   end
-  # def self.find_or_create_by_name(name)
-  #   if !(self.find_by_name(name))
-  #     self.create(name)
-  #   else
-  #     self.find_by_name(name)
-  #   end
-  # end
-  # def self.find_by_name(name)
-  #   self.all.select {|song| song.name = self}
-  # end
 end
