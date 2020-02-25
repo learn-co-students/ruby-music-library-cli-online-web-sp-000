@@ -32,7 +32,7 @@ class Artist
 
   def add_song(song)
     # assigns current artist to song's artist property
-    song.artist = self if song.artist == ""
+    song.artist = self if song.artist == nil
     songs << song if !songs.detect {|s| s.name == song.name}
   end
 end
