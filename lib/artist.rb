@@ -35,4 +35,7 @@ class Artist
     song.artist = self if song.artist == nil
     songs << song if !songs.detect {|s| s.name == song.name}
   end
+
+  def genres
+  end
 end
