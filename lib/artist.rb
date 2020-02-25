@@ -31,7 +31,7 @@ class Artist
   end
 
   def add_song(song)
-    binding.pry
+    # assigns current artist to song's artist property
     song.artist = self if song.artist == ""
     songs << song if !songs.detect {|s| s.name == song.name}
   end
