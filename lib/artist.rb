@@ -29,4 +29,10 @@ class Artist
   def songs
     @songs
   end
+
+  def add_song(song)
+    binding.pry
+    song.artist = self if song.artist == ""
+    songs << song if !songs.detect {|s| s.name == song.name}
+  end
 end
