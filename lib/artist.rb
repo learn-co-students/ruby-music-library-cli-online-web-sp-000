@@ -1,6 +1,7 @@
 class Artist 
   
-  attr_accessor :name, :songs 
+  extend Concerns::Findable
+  attr_accessor :name, :songs
   
   @@all = []
   
@@ -31,5 +32,9 @@ class Artist
     new_song.artist = self if new_song.artist == nil 
     @songs << new_song if @songs.none?{|song| song == new_song}
   end
+  
+  def genres 
+    songs.map{|song| song.genre}.uniq 
+  end 
   
 end 
