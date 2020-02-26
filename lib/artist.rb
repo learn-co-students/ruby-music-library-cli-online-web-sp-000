@@ -39,8 +39,7 @@ class Artist
   def genres
     list = []
     songs.each do |s|
-      # binding.pry
-      list << s.genre.name if list.none?(s.genre.name)
+      list << s.genre if list.none?(s.genre)
     end
     list
   end

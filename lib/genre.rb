@@ -34,4 +34,12 @@ class Genre
     song.genre = self if song.genre == nil
     songs << song if !songs.detect {|s| s.name == song.name}
   end
+
+  def artists
+    list = []
+    songs.each do |s|
+      list << s.artist if list.none?(s.artist)
+    end
+    list
+  end
 end
