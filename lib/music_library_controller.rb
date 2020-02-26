@@ -7,9 +7,9 @@ class MusicLibraryController
   def initialize(path='./db/mp3s')
     @path = path 
     @importer = MusicImporter.new(path).import
-    @artist_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[0]}.uniq 
-    @genre_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[2].gsub(".mp3","")}.uniq 
-    @full_song_names = MusicImporter.new(path).files.map{|file| file.gsub(".mp3","")}.uniq 
+    @artist_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[0]}.uniq.sort 
+    @genre_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[2].gsub(".mp3","")}.uniq.sort 
+    @full_song_names = MusicImporter.new(path).files.map{|file| file.gsub(".mp3","")}.uniq.sort{|a,b| a.split(" - ")[1]<=>b.split(" - ")[1]} 
     @@all << self 
   end
   
@@ -31,40 +31,43 @@ class MusicLibraryController
   end 
   
   def list_songs
-    array = self.full_song_names.sort{|a,b| a.split(" - ")[1]<=>b.split(" - ")[1]}
-    array.each{|song| puts "#{array.index(song) + 1}. #{song}"}
+    self.full_song_names.each{|song| puts "#{full_song_names.index(song) + 1}. #{song}"}
   end 
   #binding.pry
   def list_artists
     #binding.pry
-    array = self.artist_names.sort
-    array.each{|artist| puts "#{array.index(artist) + 1}. #{artist}"}
+    self.artist_names.each{|artist| puts "#{artist_names.index(artist) + 1}. #{artist}"}
   end 
   
   def list_genres
-    array = self.genre_names.sort
-    array.each{|genre| puts "#{array.index(genre) + 1}. #{genre}"}
+    self.genre_names.each{|genre| puts "#{genre_names.index(genre) + 1}. #{genre}"}
   end 
   
   def list_songs_by_artist
+    #binding.pry
     puts "Please enter the name of an artist:"
     input = gets.strip
-    array = self.full_song_names.sort{|a,b| a.split(" - ")[1]<=>b.split(" - ")[1]}
-    songs_by_artist = array.filter{|song| song.split(" - ")[0] == input}
-    songs_by_artist.each{|song| puts "#{songs_by_artist.index(song) + 1}. #{song.gsub("#{input} - ","")}"}
+    songs_by_artist = self.full_song_names.filter{|song| song.split(" - ")[0] == input}
+    if artist_names.include?(input)
+      songs_by_artist.each{|song| puts "#{songs_by_artist.index(song) + 1}. #{song.gsub("#{input} - ","")}"} 
+    end 
   end 
   
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
     input = gets.strip
-    array = self.full_song_names.sort{|a,b| a.split(" - ")[1]<=>b.split(" - ")[1]}
-    songs_by_genre = array.filter{|song| song.split(" - ")[2] == input}
-    songs_by_genre.each{|song| puts "#{songs_by_genre.index(song) + 1}. #{song.gsub("#{input} - ","")}"}
+    songs_by_genre = self.full_song_names.filter{|song| song.split(" - ")[2] == input}
+    if artist_names.include?(input)
+      songs_by_genre.each{|song| puts "#{songs_by_genre.index(song) + 1}. #{song.gsub("#{input} - ","")}"}
+    end 
   end 
   
   def play_song
     puts "Which song number would you like to play?"
-    input = gets
+    input = gets.strip
+    if [0..full_song_names.length].include?(input.to_i) 
+      puts "Playing #{full_song_names[input.to_i - 1].split(" - ")[1]} by #{full_song_names[input.to_i - 1].split(" - ")[0]}"
+    end 
   end 
   
 end 
