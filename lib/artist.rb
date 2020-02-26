@@ -1,5 +1,5 @@
 class Artist
-  attr_accessor :name
+  attr_accessor :name; :genre
 
  @@all = []
 
@@ -37,5 +37,11 @@ class Artist
   end
 
   def genres
+    list = []
+    songs.each do |s|
+      # binding.pry
+      list << s.genre.name if list.none?(s.genre.name)
+    end
+    list
   end
 end
