@@ -35,7 +35,7 @@ class MusicLibraryController
   end 
   #binding.pry
   def list_artists
-    #binding.pry
+    binding.pry
     self.artist_names.each{|artist| puts "#{artist_names.index(artist) + 1}. #{artist}"}
   end 
   
@@ -65,7 +65,7 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     input = gets.strip
-    if [0..full_song_names.length].include?(input.to_i) 
+    if [1...full_song_names.length].include?(input.to_i) 
       puts "Playing #{full_song_names[input.to_i - 1].split(" - ")[1]} by #{full_song_names[input.to_i - 1].split(" - ")[0]}"
     end 
   end 
