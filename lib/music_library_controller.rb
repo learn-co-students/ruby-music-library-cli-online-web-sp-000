@@ -7,9 +7,9 @@ class MusicLibraryController
   def initialize(path='./db/mp3s')
     @path = path 
     @importer = MusicImporter.new(path).import
-    @artist_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[0]}.uniq.sort 
-    @genre_names = MusicImporter.new(path).files.map{|file| file.split(" - ")[2].gsub(".mp3","")}.uniq.sort 
-    @full_song_names = MusicImporter.new(path).files.map{|file| file.gsub(".mp3","")}.uniq.sort{|a,b| a.split(" - ")[1]<=>b.split(" - ")[1]} 
+    @artist_names = Artist.all.sort{|a,b| a.name<=>b.name}.map{|artist| artist.name}.uniq
+    @genre_names = Genre.all.sort{|a,b| a.name<=>b.name}.map{|genre| genre.name}.uniq
+    @full_song_names = Song.all.sort{|a,b| a.name<=>b.name}.map{|song| "#{song.artist.name} - #{song.name} - #{song.genre.name}"}.uniq
     @@all << self 
   end
   
@@ -24,6 +24,20 @@ class MusicLibraryController
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
     input = gets.strip
+    case input
+      when 'list songs'
+        self.list_songs
+      when 'list artists'
+        self.list_artists
+      when 'list genres'
+        self.list_genres
+      when 'list artist'
+        self.list_songs_by_artist
+      when 'list genre'
+        self.list_songs_by_genre
+      when 'play song'
+        self.play_song
+    end
     until input == 'exit' do 
       puts "What would you like to do?"
       input = gets.strip
@@ -35,7 +49,7 @@ class MusicLibraryController
   end 
   #binding.pry
   def list_artists
-    binding.pry
+    #binding.pry
     self.artist_names.each{|artist| puts "#{artist_names.index(artist) + 1}. #{artist}"}
   end 
   
@@ -57,17 +71,21 @@ class MusicLibraryController
     puts "Please enter the name of a genre:"
     input = gets.strip
     songs_by_genre = self.full_song_names.filter{|song| song.split(" - ")[2] == input}
-    if artist_names.include?(input)
-      songs_by_genre.each{|song| puts "#{songs_by_genre.index(song) + 1}. #{song.gsub("#{input} - ","")}"}
+    if genre_names.include?(input)
+      songs_by_genre.each{|song| puts "#{songs_by_genre.index(song) + 1}. #{song.gsub(" - #{input}","")}"}
     end 
   end 
   
   def play_song
+    #binding.pry
     puts "Which song number would you like to play?"
-    input = gets.strip
-    if [1...full_song_names.length].include?(input.to_i) 
-      puts "Playing #{full_song_names[input.to_i - 1].split(" - ")[1]} by #{full_song_names[input.to_i - 1].split(" - ")[0]}"
+    input = gets.strip.to_i 
+    #binding.pry
+    if (1..self.full_song_names.length).include?(input)
+      song = Song.all.sort{|a,b| a.name<=>b.name}[input - 1]
+      #puts "Playing #{self.full_song_names[input - 1].split(" - ")[1]} by #{self.full_song_names[input - 1].split(" - ")[0]}" 
     end 
+    puts "Playing #{song.name} by #{song.artist.name}" if song != nil 
   end 
   
 end 
