@@ -61,6 +61,7 @@ describe "Associations — Song and Artist:" do
       end
 
       it "does not assign the artist if the song already has an artist" do
+ 
         song.instance_variable_set(:@artist, artist)
 
         expect(song).to_not receive(:artist=)
