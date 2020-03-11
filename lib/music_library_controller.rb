@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicLibraryController
 
   attr_accessor :gets
@@ -29,21 +31,35 @@ class MusicLibraryController
         list_artists
       when "list genres"
         list_genres
+      when "list artist"
+        list_songs_by_artist
+      when "list genre"
+        list_songs_by_genre
       when "play song"
         play_song
       end
     end
   end
+
   def list_songs
-    Song.all.sort{|a,b| a.name <=> b.name}.each_with_index(1) do |a, b|
+      Song.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |s, i|
+        puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+      end
+    end
+
+  def list_artists
+    Artist.all.sort{|a,b| a.name <=> b.name}.each_with_index do |a, b|
     # i = b + 1
       puts "#{b}. #{a.artist.name} - #{a.name} - #{a.genre.name}"
     end
   end
-  def list_artists
-  end
   def list_genres
+    Genre.all.sort{|a,b| a.name <=> b.name}.each_with_index do |a, b|
+    # i = b + 1
+      puts "#{b}. #{a.artist.name} - #{a.name} - #{a.genre.name}"
+    end
   end
   def play_song(number)
+    self.list_songs
   end
 end
