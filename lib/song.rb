@@ -49,7 +49,7 @@ class Song
     song
   end
   def self.create_from_filename(file)
-    @@all << self.new_from_filename(file)
+    self.new_from_filename(file)
   end
   # def self.find_by_name(name)
   #   all.find {|i| i.name == name}
