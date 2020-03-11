@@ -1,7 +1,8 @@
 
 class Song
-  attr_accessor :name, :artist
-  attr_reader
+  extend Concerns::Findable
+  attr_accessor :name
+  attr_reader :artist, :genre
 
   @@all = []
 
@@ -13,10 +14,10 @@ class Song
     @@all.clear
   end
 
-  def initialize(name, artist = nil)
+  def initialize(name, artist = nil, genre = nil)
     @name = name
-    @artist = artist
-    artist.add_song(name)
+    self.artist = artist if artist
+    self.genre = genre if genre
   end
 
   def save
@@ -24,10 +25,18 @@ class Song
   end
 
   def self.create(name)
-    #create an instance of said song
     song = Song.new(name)
-    #save said instance
     song.save
     song
+  end
+
+  def artist=(artist)
+    @artist = artist
+    artist.add_song(self)
+  end
+
+  def genre=(genre)
+    @genre = genre
+    genre.add_song(self)
   end
 end
