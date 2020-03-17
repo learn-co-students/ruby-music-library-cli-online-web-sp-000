@@ -5,4 +5,7 @@ class MusicImporter
     @files = Dir.entries(path).grep(/.+\.mp3/)
   end
 
+  def import
+    @files.collect {|filename| Song.create_from_filename(filename)}
+  end
 end
