@@ -22,8 +22,8 @@ class Song
     @@all.clear
   end
   
-  def self.create(name)
-    self.new(name).tap do|song|
+  def self.create(song)
+    self.new(song).tap do|song|
       song.save
     end
   end
@@ -33,8 +33,18 @@ class Song
     artist.add_song(self)
   end
   
+  def genre
+    @genre 
+  end 
+  
   def genre=(genre)
-    @genre = genre 
-    genre.add_song(self)
+    @genre = genre
+    genre.songs << self unless genre.songs.include?(self)
   end
+  
+  def self.find_by_name(name)
+    @@all.collect {|song| song.name == name}
+    end 
+  end
+    
 end 

@@ -1,7 +1,7 @@
 
 
 class Artist 
-  attr_accessor :name, :songs
+  attr_accessor :name, :song, :musiclibrarycontroller, :musicimporter
   @@all = []
   def initialize(name)
     @name = name 
@@ -34,5 +34,11 @@ class Artist
     song.artist = self if song.artist != self
     @songs << song unless @songs.include?(song)
   end
+  
+  def genres
+    songs.collect {|song| song.genre}.uniq
+  end
+
+    
   
 end
