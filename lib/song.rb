@@ -65,22 +65,13 @@ class Song
   end
 
   def self.new_from_filename(filename)
-    # song = Song.new_from_filename("Thundercat - For Love I Come - dance.mp3")
     file = filename.split(".mp3")[0].split(" - ")
-    # Song.create(file[1])
-    # self.new(file[1], file[0], file[2])
-    new_from_file = Song.create(file[1])
-    new_from_file.artist=(file[0])
-    # binding.pry
+    tempArtist = Artist.find_or_create_by_name(file[0])
+    tempGenre = Genre.find_or_create_by_name(file[2])
+    newSong = Song.new(file[1], tempArtist, tempGenre)
+  end
 
-    # @artist= file[1]
-    # @genre= file[2]
-    #return a Song instance, w/
-      #@name
-      # @artist = Artist instance
-      # @genre = Genre instance
-    # expect(song.name).to eq("For Love I Come")
-    # expect(song.artist.name).to eq("Thundercat")
-    # expect(song.genre.name).to eq("dance")
+  def self.create_from_filename(filename)
+    self.new_from_filename(filename).save
   end
 end
