@@ -14,8 +14,23 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
 
-      while gets.strip != "exit"
+      request = gets.strip
+      if request == 'exit'
+      elsif request == 'list_songs'
+        list_songs
+        call
+      else
+        call
       end
+  end
 
+  def list_songs
+    alphabetizedTitle =[]
+    Song.all.each_with_index do |s, i|
+      alphabetized << "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+    end
+    binding.pry
+
+    alphabetized.sort
   end
 end
