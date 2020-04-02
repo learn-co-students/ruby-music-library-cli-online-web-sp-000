@@ -70,6 +70,12 @@ class Song
     tempGenre = Genre.find_or_create_by_name(file[2])
     newSong = Song.new(file[1], tempArtist, tempGenre)
   end
+    # Song.create(file[1])
+    # self.new(file[1], file[0], file[2])
+    # new_from_file = Song.create(file[1])
+    # add_song(file[0])
+    # new_from_file.artist=(file[0])
+    # binding.pry
 
   def self.create_from_filename(filename)
     self.new_from_filename(filename).save
