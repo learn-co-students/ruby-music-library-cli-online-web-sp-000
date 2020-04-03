@@ -18,7 +18,7 @@ class MusicLibraryController
       if request == 'exit'
       elsif request == 'list_songs'
         list_songs
-        call
+        # call
       else
         call
       end
