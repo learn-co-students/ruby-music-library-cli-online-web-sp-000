@@ -88,11 +88,13 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-    target = gets.strip
+    target = gets.strip.to_i
     sortedSongs = Song.all.sort! {|a,b| a.name <=> b.name}
     # binding.pry
-    p = sortedSongs[target]
+    p = sortedSongs[target.-1]
     # puts "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
-    puts "Playing #{p.name} by #{p.artist.name}"
+    if p != nil && target.between?(1,sortedSongs.size)
+      puts "Playing #{p.name} by #{p.artist.name}"
+    end
   end
 end
