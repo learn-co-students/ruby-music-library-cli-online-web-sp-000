@@ -25,12 +25,12 @@ class MusicLibraryController
   end
 
   def list_songs
-    alphabetizedTitle =[]
-    Song.all.each_with_index do |s, i|
-      alphabetized << "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+    #get all songs, reference the s.name of each song and sort, then return sortedarray
+    sortedSongs = Song.all.sort! {|a,b| a.name <=> b.name}
+    # alphabetized = []
+    sortedSongs.each_with_index do |s, i|
+      # puts alphabetized << "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+      puts "#{i+1}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
     end
-    binding.pry
-
-    alphabetized.sort
   end
 end
