@@ -2,6 +2,7 @@ class Genre
   extend Concerns::Findable
   @@all = []
   attr_accessor :name
+  attr_reader :songs
 
   #Hook
   def initialize(name)
@@ -30,12 +31,8 @@ class Genre
     self.class.all << self
   end
 
-  def songs
-    @songs
-  end
-
   def artists
-    songs.collect {|inst| inst.artist}.uniq
+    self.songs.collect {|inst| inst.artist}.uniq
   end
 
 end

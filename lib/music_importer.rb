@@ -1,12 +1,12 @@
 class MusicImporter
-  attr_accessor :path, :files
+  attr_accessor :path
 
   def initialize(path)
     @path = path
   end
 
   def files
-    @files = Dir.glob("#{@path}/*.mp3").collect {|str| str[21..str.length-1]}
+    @files = Dir.entries(@path).select!{|file| file.include?("mp3")}
   end
 
   def import
