@@ -1,0 +1,25 @@
+list_of_files = @new_music_library.files.collect { |file| file.split(" - ") }
+list_of_artists = list_of_files.collect { |array| array[0] }
+list_of_artists.sort!
+list_of_artists.uniq.each_with_index do |artist, index|
+  puts "#{index + 1}. #{artist}"
+end
+
+-----
+
+@new_music_library.library
+artists = @new_music_library.library.collect { |song| song.artist.name }.sort!
+artists.uniq.each_with_index do |artist, index|
+  puts "#{index + 1}. #{artist}"
+end
+
+----
+def list_songs
+  list_of_files = @new_music_library.files.collect { |file| file.split(" - ") }
+  alphabetised_list = list_of_files.sort { |a, b| a[1]<=>b[1] }
+  list_to_print = alphabetised_list.collect { |song| song.join(" - ") }
+  list_to_print.each_with_index do |song, index|
+    song = song.chomp(".mp3")
+    puts "#{index + 1}. #{song}"
+  end
+end
