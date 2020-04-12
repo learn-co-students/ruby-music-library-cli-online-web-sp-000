@@ -1,6 +1,4 @@
-require 'pry'
-
-class Song
+class Genre
   
   @@all = []
   
@@ -24,10 +22,9 @@ class Song
   end
 
   def self.create(name)
-    song = new(name)
-    song.save
-    song
+    genre = new(name)
+    genre.save
+    genre
   end
-  
-  
+
 end
