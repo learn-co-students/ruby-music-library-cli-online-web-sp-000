@@ -4,10 +4,13 @@ class Song
   
   @@all = []
   
-  attr_accessor :name
+  attr_accessor :name, :artist
   
-  def initialize(name)
+  def initialize(name, artist = nil)
     @name = name
+    if artist != nil
+      self.artist = artist
+    end
     @@all << self
   end
   
