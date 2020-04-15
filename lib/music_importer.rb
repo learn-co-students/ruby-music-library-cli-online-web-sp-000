@@ -9,8 +9,7 @@ class MusicImporter
   end
 
   def files
-    @path = Dir["./spec/fixtures/mp3s"].each {|file| require file }
-    # binding.pry
+    Dir.glob("#{path}/*").map{|file| file.gsub("#{path}/", ' ')}
   end
   
   def import
