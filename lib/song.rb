@@ -51,10 +51,7 @@ class Song
   end
   
   def self.find_or_create_by_name(name)
-<<<<<<< HEAD
-=======
     # binding.pry
->>>>>>> 77280342c384c66b8e9350bb446d56ba2168a401
     find_by_name(name) || create(name)
   end
   
