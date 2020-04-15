@@ -12,4 +12,8 @@ class MusicImporter
     @path
   end
   
+  def import
+  
+  end
+  
 end

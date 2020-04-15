@@ -53,4 +53,12 @@ class Song
     find_by_name(name) || create(name)
   end
   
+  def self.new_from_filename(song)
+  
+  end
+  
+  def self.create_from_filename(song)
+  
+  end
+  
 end
