@@ -1,3 +1,5 @@
+require 'pry'
+
 class Artist
   
   @@all = []
@@ -35,6 +37,10 @@ class Artist
     if !@songs.include?(song)
       @songs << song
     end
+  end
+
+  def genres
+    songs.map {|song| song.genre}.uniq
   end
 
 end
