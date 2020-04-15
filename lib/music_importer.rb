@@ -9,7 +9,8 @@ class MusicImporter
   end
 
   def files
-    @path
+    @path = Dir["./spec/fixtures/mp3s"].each {|file| require file }
+    # binding.pry
   end
   
   def import
