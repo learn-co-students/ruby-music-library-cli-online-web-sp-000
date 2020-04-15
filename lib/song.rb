@@ -15,7 +15,6 @@ class Song
     if genre != nil
       self.genre = genre
     end
-    @@all << self
   end
   
   def artist=(artist)
