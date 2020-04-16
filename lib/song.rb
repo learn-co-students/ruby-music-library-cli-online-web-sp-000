@@ -53,11 +53,12 @@ class Song
     find_by_name(name) || create(name)
   end
   
-  def self.new_from_filename(song)
+  def self.new_from_filename(name)
+    # binding.pry
   
   end
   
-  def self.create_from_filename(song)
+  def self.create_from_filename(name)
   
   end
   
