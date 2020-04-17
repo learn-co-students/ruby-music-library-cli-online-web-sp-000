@@ -1,6 +1,8 @@
 class MusicLibraryController
 
-  def initialize
+  def initialize(path)
+    @path = path
+    
   end
   
   def call
