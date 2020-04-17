@@ -28,6 +28,8 @@ class MusicLibraryController
     end
   end
 
+  # puts "1. Thundercat - For Love I Come - dance"
+
   def list_artists
     Artist.all.uniq.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |artist, index|
       puts "#{index}. #{artist.name}"
@@ -62,7 +64,11 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-
+    input = gets.strip.to_i
+    if song = Song.all(input)
+      puts "Playing #{song.name} by #{song.artist.name}"
+    end
+    # puts "1. Thundercat - For Love I Come - dance"
 
   end
 
