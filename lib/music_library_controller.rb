@@ -36,7 +36,7 @@ class MusicLibraryController
       when 'play song'
         self.play_song
       else
-        "Type in a valid request please"
+        "Type in a valid request."
       end
     end
 
@@ -46,8 +46,6 @@ class MusicLibraryController
     Song.all.sort {|a,b| a.name <=> b.name}.each.with_index(1) do |song, i|
       puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
-    # Song.all.each_with_index {|song, i| puts "#{i+1}. #{song.artist} - #{song.name} - #{song.genre}"}
-    # binding.pry
   end
 
   def list_artists
@@ -60,7 +58,6 @@ class MusicLibraryController
     genres.each.with_index(1) {|genre, i| puts "#{i}. #{genre.name}"}
   end
 
-  # binding.pry
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.strip
