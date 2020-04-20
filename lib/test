@@ -1,0 +1,10 @@
+genre = Genre.new("indie rock")
+other_genre = Genre.new("electro pop")
+artist = Artist.new("The Magnetic Fields")
+other_artist = Artist.new("Neutral Milk Hotel")
+
+song_one = Song.create("The King of Carrot Flowers, Pt. One")
+song_two = Song.create("In the Aeroplane Over the Sea")
+
+music_library_controller = MusicLibraryController.new("./spec/fixtures/mp3s")
+other_music_library_controller = MusicLibraryController.new("./spec/fixtures/other_mp3s")
