@@ -69,6 +69,7 @@ class MusicLibraryController
     puts "Please enter the name of a genre:"
     input = gets
     if Genre.find_by_name(input) != nil
+
       song_by_genre = Genre.find_by_name(input).songs.collect {|s| s.name}.sort
       i = 0
       while i < song_by_genre.length
@@ -85,7 +86,7 @@ class MusicLibraryController
   def play_song 
     puts "Which song number would you like to play?"
     input = gets
-    if Song.find_by_name(input) != nil && input 1  self.list_songs.length
+    if Song.find_by_name(input) != nil && input.between?(1, self.list_songs.length)
       self.list_songs
     end
   end
