@@ -85,7 +85,7 @@ class MusicLibraryController
   def play_song 
     puts "Which song number would you like to play?"
     input = gets
-    if Song.find_by_name(input) != nil && input is between 1  self.list_songs.length
+    if Song.find_by_name(input) != nil && input 1  self.list_songs.length
       self.list_songs
     end
   end
