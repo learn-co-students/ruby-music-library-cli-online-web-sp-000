@@ -58,7 +58,22 @@ class MusicLibraryController
     if Artist.find_by_name(input) != nil
       song_by_artist = Artist.find_by_name(input).songs.collect {|s| "#{s.name} - #{s.genre.name}"}.sort
       i = 0
-      while 
+      while i < song_by_artist.length
+        puts "#{i+1}. #{song_by_artist[i]}"
+        i += 1
+      end
+    end
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter genre:"
+    input = gets
+    if Genre.find_by_name(input) != nil
+      song_by_artist = Genre.find_by_name(input).songs.collect {|s| "#{s.name} - #{s.genre.name}"}.sort
+      i = 0
+      while i < song_by_artist.length
+        puts "#{i+1}. #{song_by_artist[i]}"
+        i += 1
       end
     end
   end
