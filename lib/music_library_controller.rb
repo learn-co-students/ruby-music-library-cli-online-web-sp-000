@@ -43,7 +43,8 @@ class MusicLibraryController
     end
 
     def list_songs
-        Song.all.sort_by{|s| s.name}.each.with_index do |x, i|
+        Song.all.uniq.sort_by{|s| s.name}.each.with_index do |x, i|
+            # binding.pry
             puts "#{i+1}. #{x.artist.name} - #{x.name} - #{x.genre.name}"
         end
     end
@@ -74,15 +75,33 @@ class MusicLibraryController
         genre_songs.each_with_index { |s, i| puts "#{i+1}. #{s.artist.name} - #{s.name}" }
     end
 
+    # def play_song
+    #     puts "Which song number would you like to play?"
+    #     song_number = gets.strip.to_i
+    #     if (1..Song.all.length).include?(song_number)
+    #         song = Song.all.uniq.sort_by{|x| x.name}[song_number-1]
+    #         puts "Playing #{song.name} by #{song.artist.name}"  
+    #     else
+    #     # elsif !(1..Song.all.length).include?(song_number)
+    #         # nil
+    #     end
+    # end
     def play_song
         puts "Which song number would you like to play?"
-        song_number = gets.strip.to_i
-        if (1..Song.all.length).include?(song_number)
-            song = Song.all.sort_by{|x| x.name}[song_number+2]
-            puts "Playing #{song.name} by #{song.artist.name}"  
-        elsif !(1..Song.all.length).include?(song_number)
-            nil
+        input = gets
+        index = input.to_i - 1
+        songs = Song.all.uniq.sort_by { |song| song.name }
+        begin
+          if index > 0
+            matching_song = songs[index]
+            matching_song_name = matching_song.name
+            matching_song_artist = matching_song.artist.name
+            puts "Playing #{matching_song_name} by #{matching_song_artist}"
+          end
+        rescue
+          nil
         end
-    end
+      end
+
 end
 
