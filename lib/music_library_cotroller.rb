@@ -43,10 +43,10 @@ class MusicLibraryController
     end
   end
   
-    def list_artists
+    def list_genres
     i = 0
-    artist_list = Artist.all.collect {|a| a.name}.sort
-    artist_list.each do |a|
+    genre_list = Genre.all.collect {|a| a.name}.sort
+    genre_list.each do |a|
       i += 1
       puts "#{i}. #{a}"
     end
