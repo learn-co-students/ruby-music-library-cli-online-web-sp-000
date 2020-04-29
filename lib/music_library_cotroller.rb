@@ -19,6 +19,42 @@ class MusicLibraryController
       puts "What would you like to do?"
       input = gets
     end
-    
   end
+  
+  def list_songs
+    song_list = Song.all.collect {|s| s.name}.sort
+    i = 0
+    while i < song_list.length
+      Song.all.each do |s|
+        if s.name == song_list[i]
+          i += 1
+          puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
+        end
+      end
+    end
+  end
+
+  def list_artists
+    i = 0
+    artist_list = Artist.all.collect {|a| a.name}.sort
+    artist_list.each do |a|
+      i += 1
+      puts "#{i}. #{a}"
+    end
+  end
+  
+    def list_artists
+    i = 0
+    artist_list = Artist.all.collect {|a| a.name}.sort
+    artist_list.each do |a|
+      i += 1
+      puts "#{i}. #{a}"
+    end
+  end
+  
+  
 end
+
+
+
+#learn spec/011_music_library_cli_methods_spec.rb
