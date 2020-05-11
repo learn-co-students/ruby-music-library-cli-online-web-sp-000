@@ -1,5 +1,5 @@
+require 'pry'
 class MusicLibraryController
-
   extend Concerns::Findable
 
   def initialize(path = './db/mp3s')
@@ -40,7 +40,8 @@ class MusicLibraryController
 
   def list_songs
     sorted_songs = Song.all.sort {|a, b| a.name <=> b.name}
-    sorted_songs.each.with_index(1) {|song,i| puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
+  #  binding.pry
+    sorted_songs.uniq.each.with_index(1) {|song,i| puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
   end
 
   def list_artists
@@ -82,10 +83,10 @@ class MusicLibraryController
   def play_song
       puts "Which song number would you like to play?"
       input = gets.strip.to_i
-      if input > 0 && input <= Song.all.length
-        array = Song.all.sort{|a, b| a.name <=> b.name}
+        if input > 0 && input <= Song.all.length
+        array = Song.all.uniq.sort{|a, b| a.name <=> b.name}
         song = array[input-1]
-        puts "Playing #{song.name} by #{song.artist.name}"
+        puts "Playing #{song.name} by #{song.artist.name}" if song != nil
       end
     end
   end

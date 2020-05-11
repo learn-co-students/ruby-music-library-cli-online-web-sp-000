@@ -1,5 +1,6 @@
 class Song
-  #attr_accessor :name, :artist, :genre
+  attr_accessor :name
+  attr_reader :artist, :genre
 
   @@all = []
 
@@ -10,11 +11,9 @@ class Song
   end
 
   def self.create(name)
-    new(name).tap{|a| a.save}
-  end
-
-  def name
-    @name
+    new_song = new(name)
+    new_song.save
+    new_song
   end
 
   def self.all
