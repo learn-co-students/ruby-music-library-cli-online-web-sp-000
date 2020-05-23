@@ -66,8 +66,8 @@ class Song
     array_two = array[2].split(".")
 # binding.pry
     a = Song.new(array[1])
-    art = Artist.new(array[0])
-    gen = Genre.new(array_two[0])
+    art = Artist.find_or_create_by_name(array[0])
+    gen = Genre.find_or_create_by_name(array_two[0])
     a.artist = art
     a.genre = gen
     # a.genre.name = array_two[0]
@@ -80,7 +80,7 @@ class Song
   end
 
   def self.create_from_filename(name)
-    a = self.find_or_create_by_name(name)
-    @@all << a
+    a = new_from_filename(name)
+    a.save
   end
 end

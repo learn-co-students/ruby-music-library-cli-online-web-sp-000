@@ -16,7 +16,7 @@ class MusicImporter
          b  << name
             end
         end
-       
+    #    a.map {|name| name.include?("mp3")}
        b
         #   binding.pry
     end
@@ -27,4 +27,10 @@ class MusicImporter
         end
     end
 
+    def import
+        a = self.files
+     a.each do |i| 
+        Song.create_from_filename(i)
+     end
+    end
 end

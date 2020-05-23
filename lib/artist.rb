@@ -64,16 +64,16 @@ end
       Artist.all.detect {|song| song.name == name}
   end
 
-  def find_or_create_by_name(name)
-      a = self.find_by_name
-      binding.pry
-      if !a    
-      Song.new(name)
-      else
-        a
-        end
-        binding.pry
+  # def find_or_create_by_name(name)
+  #     a = self.find_by_name
+  #     binding.pry
+  #     if !a    
+  #     Song.new(name)
+  #     else
+  #       a
+  #       end
+  #       binding.pry
 
-  end
+  # end
 
 end
