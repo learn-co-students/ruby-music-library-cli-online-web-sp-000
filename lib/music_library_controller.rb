@@ -50,15 +50,16 @@ class MusicLibraryController
     def list_artists
         # binding.pry
 
-         b = @a.map do |a|
-            Song.new_from_filename(a)
-         end
+        #  b = @a.map do |a|
+        #     Song.new_from_filename(a)
+        #  end
+        b = Artist.all
          b = b.map do |song|
-            song.artist.name
+            song.name
          end
          b.uniq!
          b = b.sort{|a, b| a <=> b}
-           binding.pry
+        #    binding.pry
         i = 1
         b.each do |o|
             puts "#{i}. " + o
@@ -66,4 +67,31 @@ class MusicLibraryController
         end 
     end
 
+
+
+    def list_genres
+        b = Genre.all
+        b = b.map do |genre|
+            genre.name
+        end
+        b = b.sort{|a, b| a <=> b}
+        i = 1
+        b.each do |o|
+            puts "#{i}. " + o
+            i += 1
+        end 
+
+    end
+
+
+    def list_songs_by_artist
+        puts "Please enter the name of an artist:"
+        a = gets.chomp
+        # binding.pry
+        b = Artist.find_by_name(a)
+        # binding.pry
+       if b != nil
+        puts b.songs
+       end
+    end
 end
