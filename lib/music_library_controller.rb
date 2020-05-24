@@ -15,10 +15,24 @@ class MusicLibraryController
         puts "To play a song, enter 'play song'."
         puts "To quit, type 'exit'."
         puts "What would you like to do?"
-            gets
+           a = gets
          until
             gets.chomp == "exit"
          end
+         
+        if a == "list songs"
+            list_songs
+        elsif a == "list artists"
+            list_artists
+        elsif a == "list genres"
+            list_genres
+        elsif a == "list artist"
+            list_songs_by_artist
+        elsif a == "list genre"
+            list_songs_by_genre
+        elsif a == "play song"
+            play_song
+        end
     end
 
     def list_songs
@@ -89,22 +103,72 @@ class MusicLibraryController
         a = gets.chomp
         # binding.pry
         b = Artist.find_by_name(a)
-        # binding.pry
+        #  binding.pry
         songz = []
        if b != nil
             b.songs.each do |song|
-                binding.pry
+    
                 if song.artist.name == a
                     songz << song
                 end
             end
             songz.uniq!
-    
-            songz.sort{|a, b| a.name <=> b.name}
+            i = 1
+            songz.sort!{|a, b| a.name <=> b.name}
             songz.each do |song|
-                ["#{song.name}", "#{song.genre.name}"].join(" - ")
+                
+               puts "#{i}. #{song.name} - #{song.genre.name}"
+                i += 1
             end 
         
        end
     end
+
+    def list_songs_by_genre
+        puts "Please enter the name of a genre:"
+        a = gets.chomp
+        b = Genre.find_by_name(a)
+        #  binding.pry
+        songz = []
+       if b != nil
+            b.songs.each do |song|
+    
+                if song.genre.name == a
+                    songz << song
+                end
+            end
+            i = 1
+            songz.sort!{|a, b| a.name <=> b.name}
+            songz.each do |song|
+                
+               puts "#{i}. #{song.artist.name} - #{song.name}"
+                i += 1
+            end 
+        
+       end
+    end
+
+    def play_song
+        puts "Which song number would you like to play?"
+        a = gets.chomp
+        if a.to_i > 0
+        b = @a
+        a = a.to_i
+        if a > b.length
+            return
+        else
+        name = b[a]
+        if name == nil
+        return
+        else
+        
+        file = Song.new_from_filename(name)
+        
+        puts "Playing #{file.name} by #{file.artist.name}"
+        end
+    end
+    end
+    end
+
+
 end
