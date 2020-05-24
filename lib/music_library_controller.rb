@@ -90,8 +90,21 @@ class MusicLibraryController
         # binding.pry
         b = Artist.find_by_name(a)
         # binding.pry
+        songz = []
        if b != nil
-        puts b.songs
+            b.songs.each do |song|
+                binding.pry
+                if song.artist.name == a
+                    songz << song
+                end
+            end
+            songz.uniq!
+    
+            songz.sort{|a, b| a.name <=> b.name}
+            songz.each do |song|
+                ["#{song.name}", "#{song.genre.name}"].join(" - ")
+            end 
+        
        end
     end
 end
