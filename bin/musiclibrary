@@ -3,3 +3,6 @@
 require_relative '../config/environment'
 
 MusicLibraryController.new.call
+
+#user_input=gets.strip
+#option(user_input)
