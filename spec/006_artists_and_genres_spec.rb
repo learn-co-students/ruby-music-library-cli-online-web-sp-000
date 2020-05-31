@@ -11,7 +11,12 @@ describe "Associations — Artist and Genre:" do
       it "returns a collection of genres for all of the artist's songs (artist has many genres through songs)" do
         Song.new("The Luckiest Guy on the Lower East Side", artist, genre)
         Song.new("Long-Forgotten Fairytale", artist, other_genre)
-
+        def add_song(song)
+          if !song.artist
+              self.songs << song
+              song.artist = self
+          end
+      end
         expect(artist.genres).to include(genre)
         expect(artist.genres).to include(other_genre)
         expect(artist.genres.size).to be(2)
@@ -20,7 +25,6 @@ describe "Associations — Artist and Genre:" do
       it "does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs)" do
         Song.new("In the Aeroplane Over the Sea", other_artist, genre)
         Song.new("Two-Headed Boy", other_artist, genre)
-
         expect(other_artist.genres).to include(genre)
         expect(other_artist.genres.size).to eq(1)
       end
@@ -38,7 +42,6 @@ describe "Associations — Artist and Genre:" do
       it "returns a collection of artists for all of the genre's songs (genre has many artists through songs)" do
         Song.new("The Luckiest Guy on the Lower East Side", artist, genre)
         Song.new("In the Aeroplane Over the Sea", other_artist, genre)
-
         expect(genre.artists).to include(artist)
         expect(genre.artists).to include(other_artist)
         expect(genre.artists.size).to be(2)
