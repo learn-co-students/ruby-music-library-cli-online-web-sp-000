@@ -38,4 +38,8 @@ class Artist
         @songs << song
         end
     end
+
+    def genres
+        songs.map(&:genre).uniq
+    end
 end

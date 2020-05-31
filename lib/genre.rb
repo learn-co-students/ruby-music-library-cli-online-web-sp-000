@@ -5,6 +5,7 @@ class Genre
 
     def initialize(name)
         @name = name
+        @songs = []
     end
 
     def save
@@ -23,5 +24,13 @@ class Genre
         new_genre = Genre.new(genre_name)
         @@all << new_genre
         new_genre
+    end
+
+    def songs
+        @songs
+    end
+
+    def artists
+        songs.map(&:artist).uniq
     end
 end
