@@ -11,6 +11,6 @@ class MusicImporter
     end
 
     def import
-        @path << Song.create_from_filename(file)
+        files.each {|file| Song.create_from_filename(file)}
     end
 end
