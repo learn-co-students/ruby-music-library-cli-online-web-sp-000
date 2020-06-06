@@ -1,0 +1,7 @@
+#!/user/bin/env Ruby
+
+require 'irb'
+require_relative '../config/enviorment'
+
+puts "...loading your CLI enviorment"
+IRB.start
