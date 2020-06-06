@@ -1,10 +1,11 @@
 require 'pry'
 #Song belongs to an artist
+#Extend mixes the methods in the module into the class as class methods.
 class Song
   attr_accessor :name, :artist, :genre, :musicimporter, :musiclibrarycontroller
-  extend Concerns::Findable
+  extend Concerns::Findable #Methods in Findable module and add them as class methods.
 
-  @@all = []
+  @@all = [] #class variable, property of class itself
 
 #songs can be initialized with an optional artist argument.
 #songs have one genre.
@@ -15,17 +16,17 @@ class Song
     self.genre=(genre) if genre != nil
   end
 
-  def self.all
+  def self.all #class reader, exposing value inside of the variable
     @@all
   end
 
   def self.destroy_all
-    @@all.clear
+    @@all.clear #helper method to erase all of the artists
   end
 
 #instances should respond to a save method that adds the instance itself into the appropriate @@all class variable.
   def save
-    @@all << self
+    @@all << self #new object will save itself into @@all
   end
 
 #initializes, saves, and returns the song
