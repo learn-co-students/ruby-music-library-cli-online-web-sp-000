@@ -1,36 +1,25 @@
 class Genre
-  attr_accessor :name
-  @@all=[]
   extend Concerns::Findable
+  extend Concerns::Persistable::ClassMethods
+  include Concerns::Persistable::InstanceMethods
+  attr_accessor :name
+  attr_reader :songs
+  @@all=[]
 
-  def initialize(name)
+  def initialize(name) #initialize
     @name=name
     @songs=[]
   end
 
-  def self.all
+  def self.all #class reader
     @@all
   end
 
-  def save
-    @@all<<self
+  def self.create(name) #custom constructor
+    new(name).tap {|o|o.save}
   end
 
-  def self.destroy_all
-    @@all=[]
-  end
-
-  def self.create(name)
-    genre=new(name)
-    genre.save
-    genre
-  end
-
-  def songs
-    @songs
-  end
-
-  def artists
+  def artists #search artists array
     songs.map {|song| song.artist}.uniq.compact
   end
 
