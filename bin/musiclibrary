@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+require_relative '../lib/music_library_controller.rb'
 
 MusicLibraryController.new.call
 
-user_input = gets.strip
+ input = gets.strip
+
+ MusicLibraryController.new.list_songs
+ MusicLibraryController.new.list_artists
+ MusicLibraryController.new.list_genre
 
 
