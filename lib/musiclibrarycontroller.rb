@@ -30,7 +30,7 @@ class MusicLibraryController
         # binding.pry
         sorted_songs = Song.all.sort {|a,b| a.name <=> b.name}
         sorted_songs.each do |e|
-            puts "#{e.index + 1}. #{e.artist.name} - #{e.name} - #{e.genre.name}"
+            puts "#{sorted_songs.index(e) + 1}. #{e.artist.name} - #{e.name} - #{e.genre.name}"
         end
     end
 
