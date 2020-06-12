@@ -22,11 +22,27 @@ class MusicLibraryController
         puts "What would you like to do?"
 
         @input = gets.strip
-        while @input != "exit"
-            puts "To quit, type 'exit'"
-            @input = gets.strip
-        end
 
+        if @input == "list songs"
+            list_songs
+        elsif @input == "list artists"
+            list_artists
+        elsif @input == "list genres"
+            list_genres
+        elsif @input == "list artist"
+            list_songs_by_artist
+        elsif @input == "list genre"
+            list_songs_by_genre
+        elsif @input == "play song"
+            play_song
+        elsif @input == "exit"
+            return nil
+        else
+            while @input != "exit"
+                puts "To quit, type 'exit'" 
+                @input = gets.strip 
+            end
+        end
     end
 
     def list_songs  
@@ -87,14 +103,13 @@ class MusicLibraryController
     def play_song
         puts "Which song number would you like to play?"
         answer = gets.strip.to_i
-        if answer < Song.all.length
+        if answer <= Song.all.length && answer > 0
             song_array = Song.all.sort_by {|song| song.name} 
-            song_array.uniq
             song = song_array[answer - 1]
             puts "Playing #{song.name} by #{song.artist.name}"
-            binding.pry
         end
     end
-
-
 end
+
+music_library_controller = MusicLibraryController.new("./spec/fixtures/mp3s")
+music_library_controller.list_songs

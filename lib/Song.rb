@@ -66,7 +66,7 @@ class Song
         n_name = name_array[1]
         n_genre = name_array[2].split('.')[0]
         
-        n_song = Song.find_or_create_by_name(n_name)
+        n_song = Song.new(n_name)
         n_song.artist = Artist.find_or_create_by_name(n_artist)
         n_song.genre = Genre.find_or_create_by_name(n_genre)
         n_song
