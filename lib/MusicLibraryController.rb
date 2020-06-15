@@ -107,8 +107,14 @@ class MusicLibraryController
         puts "Which song number would you like to play?"
         
         @input = gets.strip.to_i
-
+        
+        @song_list = @music_importer.files.map {|file| file.split(" - ")}.sort {|a, b| a[1] <=> b[1]}.map {|file| file.join(" - ").split(".mp3")[0]}
         #binding.pry
+        if @input.between?(1, @song_list.size)
+            @song_selected = @song_list[@input - 1].split(" - ")
+            puts "Playing #{@song_selected[1]} by #{@song_selected[0]}"
+        else
+        end
         #puts "Playing #{@song_list[@input + 1]} by #{song_list[@input + 1]}"
     end
 
