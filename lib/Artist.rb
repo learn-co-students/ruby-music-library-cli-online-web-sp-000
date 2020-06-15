@@ -1,5 +1,8 @@
+require_relative '../lib/concerns/findable.rb'
+
 class Artist
     attr_accessor :name
+    extend Concerns::Findable
     @@all = []
     def initialize(name)
         @name = name
@@ -35,5 +38,10 @@ class Artist
         else
             #artist already has song
         end
+    end
+    def genres
+        @genres = []
+        Song.all.select {|song| song.artist == self}.each {|song| @genres << song.genre}
+        @genres.uniq
     end
 end

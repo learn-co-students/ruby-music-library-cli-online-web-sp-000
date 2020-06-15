@@ -68,7 +68,7 @@ describe "Genre" do
   describe ".create" do
     it "initializes and saves the genre" do
       created_genre = Genre.create("shoegaze")
-
+      #binding.pry
       expect(Genre.all).to include(created_genre)
     end
   end
