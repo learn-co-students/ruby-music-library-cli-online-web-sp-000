@@ -38,10 +38,10 @@ class MusicLibraryController
     def list_songs
         
         #binding.pry
-        @new = @music_importer.files.map {|file| file.split(" - ")}.sort {|a, b| a[1] <=> b[1]}.map {|file| file.join(" - ").split(".mp3")[0]}
+        @song_list = @music_importer.files.map {|file| file.split(" - ")}.sort {|a, b| a[1] <=> b[1]}.map {|file| file.join(" - ").split(".mp3")[0]}
         
-        #binding.pry
-        @new.each_with_index {|file, index| 
+        
+        @song_list.each_with_index {|file, index| 
         puts "#{index + 1}. " + file
         }
         
@@ -75,7 +75,7 @@ class MusicLibraryController
             artist = Artist.find_by_name(@input)
             #binding.pry
             @newArray = []
-            @new = Song.all.select {|song| song.artist == artist}.each {|song| @newArray.push("#{song.name} - #{song.genre.name}")}
+            @artist_list = Song.all.select {|song| song.artist == artist}.each {|song| @newArray.push("#{song.name} - #{song.genre.name}")}
 
             @newArray = @newArray.sort            
             @newArray.each_with_index {|song, index| puts "#{index + 1}. #{song}"}
@@ -92,7 +92,7 @@ class MusicLibraryController
             genre = Genre.find_by_name(@input)
             #binding.pry
             @newArray = []
-            @new = Song.all.select {|song| song.genre == genre}.each {|song| @newArray.push("#{song.artist.name} - #{song.name}")}
+            @song_list_genre = Song.all.select {|song| song.genre == genre}.each {|song| @newArray.push("#{song.artist.name} - #{song.name}")}
 
             @newArray = @newArray.each {|song| song.split(" - ")}.sort {|a, b| a[1] <=> b[1]}
             #binding.pry
@@ -102,4 +102,15 @@ class MusicLibraryController
             #artist not found
         end
     end
+    def play_song
+        
+        puts "Which song number would you like to play?"
+        
+        @input = gets.strip.to_i
+
+        #binding.pry
+        #puts "Playing #{@song_list[@input + 1]} by #{song_list[@input + 1]}"
+    end
+
 end
+
