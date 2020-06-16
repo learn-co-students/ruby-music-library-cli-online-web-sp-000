@@ -27,6 +27,7 @@ class Genre
     end
     def artists
         @artists = []
+        #binding.pry
         Song.all.select {|song| song.genre == self}.each {|song| @artists << song.artist}
         @artists.uniq
     end

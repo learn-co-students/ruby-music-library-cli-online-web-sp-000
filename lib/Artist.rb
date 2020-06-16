@@ -28,16 +28,19 @@ class Artist
     def add_song(song)
         if song.artist == nil
             song.artist = self
-            if @songs.find {|each_song| each_song == song} 
 
-            else
-                #song is not found in @song array
-                @songs << song
-            end
             
         else
             #artist already has song
         end
+        #binding.pry
+        if @songs.find {|each_song| each_song == song} 
+
+        else
+        #song is not found in @song array
+        @songs << song
+        end
+        #binding.pry
     end
     def genres
         @genres = []
