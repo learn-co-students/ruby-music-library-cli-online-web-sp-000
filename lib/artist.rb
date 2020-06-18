@@ -1,48 +1,51 @@
-require 'pry'
+require "pry"
 
-class Artist 
-  
-  attr_accessor :name 
+require_relative "../lib/concerns/findable"
+
+class Artist
+  extend Findable::ClassMethods
+  attr_accessor :name
   attr_reader :songs
-  
+
   @@all = []
-  
+
   def initialize(name)
-    @name = name 
+    @name = name
     @songs = []
-    save
-  end 
-  
-  def self.all 
-    @@all 
   end
-  
-  def self.destroy_all 
-    @@all.clear 
-  end 
-  
-  def save 
-    @@all << self 
-  end 
-  
+
+  def self.all
+    @@all
+  end
+
+  def self.destroy_all
+    @@all.clear
+  end
+
+  def save
+    @@all << self
+  end
+
   def self.create(name)
     artist = Artist.new(name)
-    artist.save 
+    artist.save
     artist
   end
-  
+
   def add_song(song)
     if !song.artist
-    song.artist = self
-    self.songs << song
-  end
-  end
-  
-  def artists_songs 
-    Song.all.select {|song| song.artist == self} 
+      song.artist = self
+    end
+    if !self.songs.include?(song)
+      self.songs << song
+    end
   end
 
-  def genres 
-    artists_songs.map {|song| song.genre}.uniq
+  # def artists_songs
+  #   Song.all.select { |song| song.artist == self }
+  # end
+
+  def genres
+    songs.map { |song| song.genre }.uniq
   end
 end
