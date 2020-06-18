@@ -1,3 +1,5 @@
+require 'pry'
+
 class Artist 
   
   attr_accessor :name 
@@ -8,6 +10,7 @@ class Artist
   def initialize(name)
     @name = name 
     @songs = []
+    save
   end 
   
   def self.all 
@@ -33,5 +36,13 @@ class Artist
     song.artist = self
     self.songs << song
   end
+  end
+  
+  def artists_songs 
+    Song.all.select {|song| song.artist == self} 
+  end
+
+  def genres 
+    artists_songs.map {|song| song.genre}.uniq
   end
 end
