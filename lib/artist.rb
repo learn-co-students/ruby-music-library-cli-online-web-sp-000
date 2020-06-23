@@ -1,9 +1,7 @@
 require "pry"
 
-require_relative "../lib/concerns/findable"
-
 class Artist
-  extend Findable::ClassMethods
+  extend Concerns::Findable
   attr_accessor :name
   attr_reader :songs
 

@@ -7,8 +7,7 @@ module Concerns::Findable
     if find_by_name(name)
       find_by_name(name)
     else
-      new(name)
-      save
+      create(name)
     end
   end
 end
