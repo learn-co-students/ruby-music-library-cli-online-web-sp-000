@@ -16,7 +16,20 @@ class MusicLibraryController
     puts "To play a song, enter 'play song'."
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
-    4.times do user_input = gets.chomp end
+    4.times do user_input = gets.chomp
+      if user_input == "list songs"
+      list_songs
+    elsif user_input == "list artists"
+      list_artists
+    elsif user_input == "list genres"
+      list_genres
+    elsif user_input == "list artist"
+      list_songs_by_artist
+    elsif user_input == "list genre"
+      list_songs_by_genre
+    elsif user_input == "play song"
+      play_song
+    end     end
   end
 
   def list_songs
@@ -37,23 +50,50 @@ class MusicLibraryController
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     user_input = gets.chomp
-    all_artists = Artist.all.map { |artist| artist }
+    all_artists = Artist.all
     if all_artists.any? { |artist| artist.name == user_input }
-      matching_artist = Artist.all.select { |artist| artist.name == user_input }
-      matching_artist.each_with_index { |a, i| puts "#{i + 1}. #{a.songs.name} - #{a.songs.genre}" }
+      matching_artist = Artist.all.detect { |artist| artist.name == user_input }
+
+      songs = matching_artist.songs
+      sorted_songs = songs.sort { |song_1, song_2| song_1.name <=> song_2.name }
+
+      sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.name} - #{s.genre.name}" }
     end
   end
 
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
     user_input = gets.chomp
+    all_genres = Genre.all
+    if all_genres.any? { |genre| genre.name == user_input }
+      matching_genre = Genre.all.detect { |genre| genre.name == user_input }
+
+      songs = matching_genre.songs
+      sorted_songs = songs.sort { |song_1, song_2| song_1.name <=> song_2.name }
+      sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name}" }
+    end
   end
 
   def play_song
     puts "Which song number would you like to play?"
-    user_input = gets.chomp
+
+    input = gets.strip.to_i
+    if (1..Song.all.length).include?(input)
+      song = Song.all.sort { |a, b| a.name <=> b.name }[input - 1]
+    end
+
+    puts "Playing #{song.name} by #{song.artist.name}" if song
   end
 end
+
+#     end
+#   end
+
+# "1. Thundercat - For Love I Come - dance")
+#   expect($stdout).to receive(:puts).with("2. Real Estate - Green Aisles - country")
+#   expect($stdout).to receive(:puts).with("3. Real Estate - It's Real - hip-hop")
+#   expect($stdout).to receive(:puts).with("4. Action Bronson - Larry Csonka - indie")
+#   expect($stdout).to receive(:puts).with("5. Jurassic 5 - What's Golden - hip-hop")
 
 #   def list_songs
 #     songs.each do |song| song.gsub(".mp3", "") end
