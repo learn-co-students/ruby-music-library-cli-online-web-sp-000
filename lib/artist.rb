@@ -1,12 +1,12 @@
 class Artist
     attr_accessor :name, :song, :music_library_controller, :music_importer
     extend Concerns::Findable
-    @@all = []
+    extend Persistable::ClassMethods
 
     def initialize(name)
         @name = name
         @songs = []
-        @@all << self
+        save
     end
 
     def self.all
@@ -14,7 +14,7 @@ class Artist
     end
 
     def self.destroy_all
-        @@all = []
+        @@all.clear
     end
 
     def save
@@ -22,7 +22,6 @@ class Artist
     end
 
     def self.create(name)
-        #binding.pry
         a = self.new(name)
         a.save
         a

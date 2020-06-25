@@ -1,12 +1,12 @@
 class Genre
     attr_accessor :name, :music_importer, :music_library_controller
     extend Concerns::Findable
-    @@all = []
+    extend Persistable::ClassMethods
 
     def initialize(name)
         @name = name
         @songs = []
-        @@all << self
+        save
     end
 
     def self.all
@@ -14,7 +14,7 @@ class Genre
     end
 
     def self.destroy_all
-        @@all = []
+        @@all.clear
     end
 
     def save

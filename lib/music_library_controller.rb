@@ -1,7 +1,7 @@
 class MusicLibraryController
     attr_accessor :path
 
-    def initialize(path='./db/mp3s')
+    def initialize(path='./db/mp3s') # example of filename: "Action Bronson - Larry Csonka - indie.mp3"
         @path = path
         MusicImporter.new(path).import
     end

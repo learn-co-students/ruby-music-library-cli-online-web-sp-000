@@ -3,7 +3,7 @@ class Song
     attr_accessor :name, :artist, :music_importer, :music_library_controller
     attr_reader :genre
     extend Concerns::Findable
-    @@all = []
+    extend Persistable::ClassMethods
 
     def initialize(name, artist=nil, genre=nil)
         @name = name
@@ -16,7 +16,7 @@ class Song
     end
 
     def self.destroy_all
-        @@all = []
+        @@all.clear
     end
 
     def save
@@ -38,16 +38,6 @@ class Song
     def genre=(genre)
         @genre = genre
         genre.songs << self unless genre.songs.include?(self)
-    end
-
-    def self.find_by_name(name)
-        @@all.detect do |song|
-            song.name == name
-        end
-    end
-
-    def self.find_or_create_by_name(name)
-        self.find_by_name(name) || self.create(name)
     end
 
     def self.new_from_filename(filename)
