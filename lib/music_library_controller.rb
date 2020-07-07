@@ -20,15 +20,15 @@ class MusicLibraryController < CLIMethods
   	while input != "exit"
   	  input = gets.chomp
       case input
-        when "list songs" then self.list_songs
+        when "list songs" then list_songs
         when "list artists" then self.list_artists
         when "list genres" then self.list_genres
         when "list artist" then self.list_songs_by_artist
         when "list genre" then self.list_songs_by_genre
         when "play song" then self.play_song
-        when "exit" then exit!
-        # else puts "improper selection"
-        #   call
+        #when "exit" then exit!
+         #else puts "improper selection"
+          # call
       end
 
   	end

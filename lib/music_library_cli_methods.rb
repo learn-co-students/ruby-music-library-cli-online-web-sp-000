@@ -25,7 +25,7 @@ class CLIMethods
     end
 
     def list_songs_by_artist
-      list_artists
+      #list_artists
       puts "Please enter the name of an artist:"
       input = gets.chomp
 
@@ -37,7 +37,7 @@ class CLIMethods
     end
 
     def list_songs_by_genre
-      list_genres
+      #list_genres
       puts "Please enter the name of a genre:"
       input = gets.chomp
 
@@ -49,7 +49,7 @@ class CLIMethods
     end
 
     def play_song
-      list_songs
+      #list_songs
       puts "Which song number would you like to play?"
       input = gets.chomp.to_i
       songs = Song.all.sort_by {|song| song.name}
