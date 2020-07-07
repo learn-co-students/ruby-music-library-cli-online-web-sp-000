@@ -27,8 +27,8 @@ class MusicLibraryController < CLIMethods
         when "list genre" then self.list_songs_by_genre
         when "play song" then self.play_song
         when "exit" then exit!
-        else puts "improper selection"
-          call
+        # else puts "improper selection"
+        #   call
       end
 
   	end
