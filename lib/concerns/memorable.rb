@@ -1,14 +1,19 @@
 module Memorable
   module ClassMethods
-    def reset_all
-      self.all.clear
+
+    def create(name)
+      self.new(name)
     end
 
     def count
       self.all.count
     end
 
-    def self.destroy_all
+    def all
+      return self.all
+    end
+
+    def destroy_all
       self.all.clear
     end
   end
@@ -17,6 +22,7 @@ module Memorable
   module InstanceMethods
     def initialize
       self.class.all << self
+      @name = name
     end
   end
 end

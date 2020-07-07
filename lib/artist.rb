@@ -2,13 +2,20 @@ require 'pry'
 
 class Artist
 
-attr_accessor :name, :songs
+  # extend Memorable
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
+  extend Findable
+  include Paramable
 
+
+attr_accessor :name, :songs
 @@all = []
 
 
 def initialize(name)
-  @name = name
+  super()
+  # @name = name
   @songs = []
   save
 end
@@ -22,13 +29,24 @@ def self.all
 end
 
 def add_song(song)
-  song.artist = self
+  # Artist.find_or_create_by_name
+  unless (@songs.include?(song)) || !(song.artist == nil)
+  # # if !!song.artist == false
+
+  @songs << song
+    song.artist = self
+  end
+    # song.artist = self
+    # self.songs << song
+  # end
   # @songs << song
+# end
 end
 
 def songs
-  @songs = Song.all.select {|song| song.artist == self}
   return @songs
+  # @songs = Song.all.select {|song| song.artist == self}
+
 end
 
 def self.find_or_create_by_name(name)
