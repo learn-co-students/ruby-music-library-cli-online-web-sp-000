@@ -7,7 +7,12 @@ module Memorable
     def count
       self.all.count
     end
+
+    def self.destroy_all
+      self.all.clear
+    end
   end
+
 
   module InstanceMethods
     def initialize
