@@ -4,21 +4,23 @@ require 'pry'
 class Song
 
   # extend Memorable
-  extend Memorable::ClassMethods
-  include Memorable::InstanceMethods
-  extend Findable
-  include Paramable
+  extend Findable::ClassMethods
+  include Findable::InstanceMethods
+  # extend Findable
+  # include Paramable
 
   attr_accessor :name, :artist
 
  @@all = []
 
-def initialize(name, new_artist = nil)
+
+
+def initialize(name, artist = nil)
   # @name = name
-super()
-  @artist = new_artist
+  artist= (new_artist)
   save
 end
+
 
 def save
   @@all << self
@@ -31,13 +33,13 @@ def artist=(new_artist)
   # artist.add_song(self)
   # @artist = artist
   # @artist.songs << self
-
 end
 
 
 def self.all
   return @@all
 end
+
 
 def self.new_by_filename(filename)
   parsed_filename = filename.split(" - ")

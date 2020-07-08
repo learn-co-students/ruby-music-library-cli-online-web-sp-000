@@ -4,10 +4,8 @@ require 'pry'
 class Genre
 
   # extend Memorable
-  extend Memorable::ClassMethods
-  include Memorable::InstanceMethods
-  extend Findable
-  include Paramable
+  extend Findable::ClassMethods
+  include Findable::InstanceMethods
 
   attr_accessor :name
 
