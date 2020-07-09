@@ -37,6 +37,18 @@ def save
 end
 
 
+def artists
+  @artists = []
+  @songs = Song.all.select {|song| song.genre == self}
+  @songs.each {|song|  @artists << song.artist   }
+  @artists.uniq!
+  return @artists
+end
+
+
+
+
+
 def self.all
   return @@all
 end

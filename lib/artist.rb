@@ -10,6 +10,7 @@ class Artist
 
 
 attr_accessor :name, :songs
+
 @@all = []
 
 
@@ -37,39 +38,20 @@ def self.destroy_all
 @@all.clear
 end
 
+def genres
+  @genres = []
+  @songs = Song.all.select {|song| song.artist == self}
+  @songs.each {|song|  @genres << song.genre   }
+  @genres.uniq!
+  return @genres
+end
 
 def add_song(song)
-#   # Artist.find_or_create_by_name
+
   unless (@songs.include?(song)) || !(song.artist == nil)
-#   # # if !!song.artist == false
-#
+
   @songs << song
     song.artist = self
   end
-  
-    # song.artist = self
-    # self.songs << song
-  # end
-  # @songs << song
-# end
 end
-#
-# def songs
-#   return @songs
-#   # @songs = Song.all.select {|song| song.artist == self}
-#
-# end
-#
-# def self.find_or_create_by_name(name)
-#   found = @@all.find {|artist|  artist.name == name}
-#   found ? found : Artist.new(name)
-# end
-#
-# def print_songs
-#   songs
-#   @songs.each {|track|
-#     puts track.name
-#   }
-# end
-
 end
