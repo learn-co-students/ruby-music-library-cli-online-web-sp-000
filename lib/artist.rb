@@ -3,9 +3,9 @@ require 'pry'
 class Artist
 
   # # extend Memorable
-  # extend Findable::ClassMethods
-  # include Findable::InstanceMethods
-  # # extend Findable
+  extend Concerns::Findable
+  include Concerns::Findable
+  extend Concerns
   # # include Paramable
 
 
@@ -30,9 +30,9 @@ def self.all
 end
 
 
-def self.create(name)
-return self.new(name)
-end
+# def self.create(name)
+# return self.new(name)
+# end
 
 def self.destroy_all
 @@all.clear

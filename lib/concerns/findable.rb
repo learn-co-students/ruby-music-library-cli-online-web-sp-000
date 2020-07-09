@@ -1,5 +1,5 @@
-module Findable
-  module ClassMethods
+module Concerns
+  module Findable
 
 
     def create(name)
@@ -15,6 +15,10 @@ module Findable
     #   found ? found : self.class.new(name)
     # end
 
+    def find_or_create_by_name(name)
+      found = self.find_by_name(name)
+      found ? found : self.create(name)
+    end
 
     def find_by_name(name)
       all.detect{|a| a.name == name}

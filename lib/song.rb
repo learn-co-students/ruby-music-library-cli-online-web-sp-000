@@ -8,6 +8,9 @@ class Song
   # include Findable::InstanceMethods
   # # extend Findable
   # # include Paramable
+  extend Concerns::Findable
+  include Concerns::Findable
+  extend Concerns
 
   attr_accessor :name, :artist, :genre
 
@@ -47,9 +50,9 @@ def save
 end
 
 
-def self.find_by_name(name)
-  @@all.detect{|song| song.name == name}
-end
+# def self.find_by_name(name)
+#   @@all.detect{|song| song.name == name}
+# end
 
 def self.find_or_create_by_name(name)
   found = Song.find_by_name(name)
@@ -69,9 +72,9 @@ def self.all
   return @@all
 end
 
-def self.create(name)
-return self.new(name)
-end
+# def self.create(name)
+# return self.new(name)
+# end
 
 def self.destroy_all
 @@all.clear
