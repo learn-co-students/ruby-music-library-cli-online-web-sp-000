@@ -47,6 +47,15 @@ def save
 end
 
 
+def self.find_by_name(name)
+  @@all.detect{|song| song.name == name}
+end
+
+def self.find_or_create_by_name(name)
+  found = Song.find_by_name(name)
+  found ? found : Song.create(name)
+end
+
 # def artist=(new_artist)
 #   @artist = new_artist
 #   new_artist.add_song(self)
