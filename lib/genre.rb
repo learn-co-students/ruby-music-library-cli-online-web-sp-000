@@ -7,7 +7,7 @@ class Genre
   # extend Findable::ClassMethods
   # include Findable::InstanceMethods
 
-  attr_accessor :name
+  attr_accessor :name, :songs
 
 
  @@all = []
@@ -20,6 +20,13 @@ end
 
 def songs
 return @songs
+end
+
+def add_song(song)
+  unless (@songs.include?(song)) || !(song.genre == nil)
+    @songs << song
+    song.genre = self
+  end
 end
 
 def save
