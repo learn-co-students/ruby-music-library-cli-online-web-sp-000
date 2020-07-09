@@ -19,13 +19,16 @@ def initialize(name)
 end
 
 def songs
-return @songs
+  return @songs
 end
 
 def add_song(song)
-  unless (@songs.include?(song)) || !(song.genre == nil)
-    @songs << song
+  unless !(song.genre == nil)
     song.genre = self
+  end
+
+  unless (@songs.include?(song))
+    @songs << song
   end
 end
 
