@@ -9,7 +9,7 @@ class Song
   # # extend Findable
   # # include Paramable
   extend Concerns::Findable
-  include Concerns::Findable
+  include Concerns::InstanceMethods
   extend Concerns
 
   attr_accessor :name, :artist, :genre
@@ -45,9 +45,9 @@ def genre=(new_genre)
 
 end
 
-def save
-  @@all << self
-end
+# def save
+#   @@all << self
+# end
 
 
 # def self.find_by_name(name)
@@ -66,34 +66,33 @@ end
 #   # @artist = artist
 #   # @artist.songs << self
 # end
-
-
 def self.all
   return @@all
 end
 
-def self.create(name)
-return self.new(name)
-end
+# def self.create(name)
+# return self.new(name)
+# end
 
-def self.destroy_all
-@@all.clear
-end
+# def self.destroy_all
+# @@all.clear
+# end
 
 def self.new_from_filename(filename)
-  parsed_filename = filename.split(" - ")
+  parsed_filename = parse_filename(filename)
   artist_name = parsed_filename[0]
   song_name = parsed_filename[1]
-  genre_name = parsed_filename[2].chomp(".mp3")
+  genre_name = parsed_filename[2]
 
 artist_object = Artist.find_or_create_by_name(artist_name)
 genre_object = Genre.find_or_create_by_name(genre_name)
 
 
-  song_object = Song.new(song_name, artist_object, genre_object)
+  # song_object =
+  Song.new(song_name, artist_object, genre_object)
   # song_object.artist_name = parsed_filename[0]
   # song_object.genre_name = parsed_filename[2]
-  return song_object
+  # return song_object
 end
 
 def self.create_from_filename(filename)

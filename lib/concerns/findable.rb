@@ -15,6 +15,15 @@ module Concerns
     #   found ? found : self.class.new(name)
     # end
 
+def list
+  list = self.all.map {|object| object.name}
+  list.sort!
+  return list
+end
+
+
+
+
     def find_or_create_by_name(name)
       found = self.find_by_name(name)
       found ? found : self.create(name)
@@ -32,6 +41,10 @@ module Concerns
       return self.all
     end
 
+    def parse_filename(filename)
+      parsed_filename = filename.split(" - ")
+    end
+
     def destroy_all
       self.all.clear
     end
@@ -44,5 +57,11 @@ module Concerns
       self.class.all << self
       @name = name
     end
+
+    def save
+      self.class.all << self
+    end
+
+
   end
 end

@@ -6,7 +6,7 @@ class MusicImporter
   include Concerns::Findable
   extend Concerns
 
-attr_accessor :path
+attr_accessor :path, :files
 
 def initialize(path)
 
@@ -20,7 +20,7 @@ end
 def files
   Dir.each_child(@path) { |filename|
 if filename[-4..-1] == ".mp3"
-   @files << filename
+   @files << filename.chomp(".mp3")
  end
   }
   return @files

@@ -4,7 +4,7 @@ class Artist
 
   # # extend Memorable
   extend Concerns::Findable
-  include Concerns::Findable
+  include Concerns::InstanceMethods
   extend Concerns
   # # include Paramable
 
@@ -21,9 +21,9 @@ def initialize(name)
   save
 end
 
-def save
-  @@all << self
-end
+# def save
+#   @@all << self
+# end
 
 def self.all
   return @@all
@@ -34,9 +34,9 @@ end
 # return self.new(name)
 # end
 
-def self.destroy_all
-@@all.clear
-end
+# def self.destroy_all
+# @@all.clear
+# end
 
 def genres
   @genres = []
@@ -47,11 +47,12 @@ def genres
 end
 
 def add_song(song)
+unless !(song.artist == nil)
+  song.artist = self
+end
 
-  unless (@songs.include?(song)) || !(song.artist == nil)
-
-  @songs << song
-    song.artist = self
+  unless (@songs.include?(song))
+    @songs << song
   end
 end
 end

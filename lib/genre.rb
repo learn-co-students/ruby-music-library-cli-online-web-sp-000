@@ -5,7 +5,7 @@ class Genre
 
 
   extend Concerns::Findable
-  include Concerns::Findable
+  include Concerns::InstanceMethods
   extend Concerns
   # # extend Memorable
   # extend Findable::ClassMethods
@@ -36,9 +36,9 @@ def add_song(song)
   end
 end
 
-def save
-  @@all << self
-end
+# def save
+#   @@all << self
+# end
 
 
 def artists
@@ -61,8 +61,8 @@ end
 #    return self.new(name)
 # end
 
-def self.destroy_all
-@@all.clear
-end
+# def self.destroy_all
+# @@all.clear
+# end
 
 end
