@@ -82,7 +82,7 @@ def self.new_from_filename(filename)
   parsed_filename = parse_filename(filename)
   artist_name = parsed_filename[0]
   song_name = parsed_filename[1]
-  genre_name = parsed_filename[2]
+  genre_name = parsed_filename[2].chomp(".mp3")
 
 artist_object = Artist.find_or_create_by_name(artist_name)
 genre_object = Genre.find_or_create_by_name(genre_name)
