@@ -68,7 +68,7 @@ end
     song_list = Song.all.select {|song| song.artist.name == input}
     song_list.sort_by!{|song| song.name}
     song_list.each {|song|
-    puts "#{(song_list.index(song) + 1)}. #{song.name} - #{song.genre.name}"}
+    puts "#{(song_list.index(song) + 1)}. #{song.name} - #{song.genre.name.chomp(".mp3")}"}
   end
   end
 
@@ -85,7 +85,12 @@ end
 
 
   def play_song
-
+    puts "Which song number would you like to play?"
+    input = gets.strip.to_i
+    unless (input < 1) || (input > Song.count)
+      chosen_song = Song.all.sort_by{|song| song.name}[input - 1]
+      puts "Playing #{chosen_song.name} by #{chosen_song.artist.name}"
+    end
   end
 
 
