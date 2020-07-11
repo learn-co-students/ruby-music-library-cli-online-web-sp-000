@@ -5,10 +5,10 @@ You're going to be implementing a Music Library domain composed of 3 main models
 
 This is a complex lab with many parts, so go slowly. Take time to understand what you're building holistically before starting. Read this entire README before jumping in. As you go from spec to spec, we recommend doing them in numbered order.
 
-## Instructions
+## Instruction
 
-## `Song`, `Artist`, and `Genre` basics
-The first thing to do is get the basics of the main models working. Each model has almost the exact same basic requirements, so once you make `001_song_basics_spec.rb` pass by building the `Song` class, the basic `Artist` and `Genre` specs will go quickly.
+## `Song`, `Artist`, and `Genre` basic
+The firt thing to do is get the basics of the main models working. Each model has almost the exact same basic requirements, so once you make `001_song_basics_spec.rb` pass by building the `Song` class, the basic `Artist` and `Genre` specs will go quickly.
 
 The requirements for each model are that they can accept a `name` upon initialization and set that property correctly. The `name` property should be readable and writable by the object.
 
