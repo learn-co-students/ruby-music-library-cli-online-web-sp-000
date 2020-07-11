@@ -7,9 +7,6 @@ class Genre
   extend Concerns::Findable
   include Concerns::InstanceMethods
   extend Concerns
-  # # extend Memorable
-  # extend Findable::ClassMethods
-  # include Findable::InstanceMethods
 
   attr_accessor :name, :songs
 
@@ -36,11 +33,6 @@ def add_song(song)
   end
 end
 
-# def save
-#   @@all << self
-# end
-
-
 def artists
   @artists = []
   @songs = Song.all.select {|song| song.genre == self}
@@ -50,19 +42,8 @@ def artists
 end
 
 
-
-
-
 def self.all
   return @@all
 end
-
-# def self.create(name)
-#    return self.new(name)
-# end
-
-# def self.destroy_all
-# @@all.clear
-# end
 
 end

@@ -2,11 +2,9 @@ require 'pry'
 
 class Artist
 
-  # # extend Memorable
   extend Concerns::Findable
   include Concerns::InstanceMethods
   extend Concerns
-  # # include Paramable
 
 
 attr_accessor :name, :songs
@@ -15,28 +13,14 @@ attr_accessor :name, :songs
 
 
 def initialize(name)
-
   @name = name
   @songs = []
   save
 end
 
-# def save
-#   @@all << self
-# end
-
 def self.all
   return @@all
 end
-
-
-# def self.create(name)
-# return self.new(name)
-# end
-
-# def self.destroy_all
-# @@all.clear
-# end
 
 def genres
   @genres = []

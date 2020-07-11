@@ -64,8 +64,6 @@ end
   end
 
   def list_genres
-    # genre_list = Genre.all.map {|genre| genre.name}
-    # genre_list.sort!.each {|genre|
     genre_list = Genre.list
     genre_list.each {|genre|
     puts "#{(genre_list.index(genre) + 1)}. #{genre}"}
