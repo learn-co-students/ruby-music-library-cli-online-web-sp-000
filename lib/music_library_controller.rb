@@ -9,6 +9,8 @@ class MusicLibraryController
 
 attr_accessor :importer
 
+attr_accessor :importer
+
 def initialize(path = './db/mp3s')
   @importer = MusicImporter.new(path)
 
@@ -80,6 +82,7 @@ end
     puts "#{(song_list.index(song) + 1)}. #{song.artist.name} - #{song.name}"}
   end
 end
+
 
   def play_song
 
