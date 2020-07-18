@@ -1,6 +1,7 @@
 require 'pry'
 #an artist has many songs.
 #artists have many genres through their songs.
+#artist.all returns [] in rake console 
 class Artist
   attr_accessor :name, :song, :musiclibrarycontroller, :musicimporter
   extend Concerns::Findable
@@ -55,7 +56,7 @@ class Artist
 #genres method: artists have many genres through their songs.
   def genres
     @new_array_of_genres = []
-    @songs.each do |song| #iterate through each song to find the genre 
+    @songs.each do |song| #iterate through each song to find the genre
       if @new_array_of_genres.include?(song.genre) #does not return duplicate genres
         nil
       else
