@@ -1,0 +1,10 @@
+<h1>Artists</h1>
+
+<ul>
+  <% Artist.all.each do |artist| <%>
+  <li><a href="artists/<%= artist.name %>.html"><%= artist.name %></a></li>
+  <% end %>
+</ul>
+
+
+ <!-- will generate line 5 for every instance of this artist 
