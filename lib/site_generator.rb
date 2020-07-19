@@ -26,10 +26,22 @@ template_string = File.read("./lib/views/songs/show.html.erb")
 template = ERB.new(template_string)
 
 Song.all.each do |song|
-  html = template.result
+  html = template.result(binding)
   File.write("#{path}/songs/#{song.name}.html", "Nothing for now")
   end
 end
+
+def generate_artist_show
+# for each artist in Artist, generate a page artists/ the artists name.html
+template_string = File.read("./lib/views/artists/show.html.erb")
+template = ERB.new(template_string)
+
+Artist.all.each do |artist|
+  html = template.result(binding)
+  File.write("#{path}/artists/#{artist.name}.html", "Nothing for now")
+  end
+end
+
 
 def call
   generate_index("index.html")
@@ -37,6 +49,8 @@ def call
   generate_index("genres/index.html")
   generate_index("songs/index.html")
   generate_song_show
+  generate_artist_show
+
 end
 
 end
