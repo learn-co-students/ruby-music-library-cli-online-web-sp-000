@@ -15,6 +15,6 @@ task :console do
 end
 
 task :generate_site do
-  MusicImporter.new("/db/mp3s").import 
+  MusicImporter.new("./db/mp3s").import 
   SiteGenerator.new("_site").call
 end
