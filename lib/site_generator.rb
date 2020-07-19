@@ -27,7 +27,7 @@ template = ERB.new(template_string)
 
 Song.all.each do |song|
   html = template.result(binding)
-  File.write("#{path}/songs/#{song.name}.html", "Nothing for now")
+  File.write("#{path}/songs/#{song.name}.html", html)
   end
 end
 
@@ -38,7 +38,7 @@ template = ERB.new(template_string)
 
 Artist.all.each do |artist|
   html = template.result(binding)
-  File.write("#{path}/artists/#{artist.name}.html", "Nothing for now")
+  File.write("#{path}/artists/#{artist.name}.html", html)
   end
 end
 
@@ -50,8 +50,7 @@ def call
   generate_index("songs/index.html")
   generate_song_show
   generate_artist_show
-
-end
+  end
 
 end
 
