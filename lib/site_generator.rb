@@ -20,11 +20,23 @@ html = template.result
 File.write("#{path}/#{template_path}", html)
 end
 
+def generate_song_show
+# for each song in Song, generate a page songs/ the songs name.html
+template_string = File.read("./lib/views/songs/show.html.erb")
+template = ERB.new(template_string)
+
+Song.all.each do |song|
+  html = template.result
+  File.write("#{path}/songs/#{song.name}.html", "Nothing for now")
+  end
+end
+
 def call
   generate_index("index.html")
   generate_index("artists/index.html")
   generate_index("genres/index.html")
   generate_index("songs/index.html")
+  generate_song_show
 end
 
 end
@@ -36,3 +48,4 @@ end
 #then write it
 
 #the content of the file in def generate_index
+#cd _site, copy paste httpserver to see in browser
