@@ -3,13 +3,17 @@ want to be able to rake generate_site
 
 when I run the task, generate a static HTML website in a directory called _site
 
-in that site:
-
+In that site:
 -index.html that links to all artists, genres, songs
+
 -artists/index.html -Artists index
+
   -list of all artists with links to individual artists show pages
 
 -artists/fun.html artists show
+
 -should list all of the songs for an artist, each song link to song show page
+
 -songs/index.html -Song Index
+
 -Show the song name (song youtube vid too?)
