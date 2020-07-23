@@ -1,6 +1,3 @@
-require 'bundler'
-Bundler.require
-
 module Concerns
   module Findable
     def find_by_name(name_str)
@@ -12,7 +9,7 @@ module Concerns
     end
   end
 end
+    
 
-require_all 'lib'
-
-
+# # rspec spec/008_findable_module_spec.rb
+# # rspec spec/008_findable_module_spec.rb
