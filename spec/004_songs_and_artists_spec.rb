@@ -1,103 +1,75 @@
 require "spec_helper"
 
-describe "Associations — Song and Artist:" do
-  let(:song) { Song.new("In the Aeroplane Over the Sea") }
-  let(:artist) { Artist.new("Neutral Milk Hotel") }
+describe "Genre" do
+  let(:genre) { Genre.new("indie rock") }
 
-  context "Artist" do
-    describe "#initialize" do
-      it "creates a 'songs' property set to an empty array (artist has many songs)" do
-        expect(artist.instance_variable_defined?(:@songs)).to be(true)
-        expect(artist.instance_variable_get(:@songs)).to eq([])
-      end
-    end
+  describe "#initialize" do
+    it "accepts a name for the new genre" do
+      new_genre = Genre.new("shoegaze")
 
-    describe "#songs" do
-      it "returns the artist's 'songs' collection (artist has many songs)" do
-        expect(artist.songs).to eq([])
+      new_genre_name = new_genre.instance_variable_get(:@name)
 
-        artist.songs << song
-
-        expect(artist.songs).to include(song)
-      end
+      expect(new_genre_name).to eq("shoegaze")
     end
   end
 
-  context "Song" do
-    describe "#initialize" do
-      it "can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)" do
-        song_with_artist = Song.new("Two-Headed Boy", artist)
-
-        expect(song_with_artist.instance_variable_defined?(:@artist)).to be(true)
-        expect(song_with_artist.instance_variable_get(:@artist)).to be(artist)
-      end
-    end
-
-    describe "#artist" do
-      it "returns the artist of the song (song belongs to artist)" do
-        song.instance_variable_set(:@artist, artist)
-
-        expect(song.artist).to be(artist)
-      end
-    end
-
-    describe "#artist=" do
-      it "assigns an artist to the song (song belongs to artist)" do
-        song.artist = artist
-
-        assigned_artist = song.instance_variable_get(:@artist)
-
-        expect(assigned_artist).to be(artist)
-      end
+  describe "#name" do
+    it "retrieves the name of a genre" do
+      expect(genre.name).to eq("indie rock")
     end
   end
 
-  context "Artist" do
-    describe "#add_song" do
-      it "assigns the current artist to the song's 'artist' property (song belongs to artist)" do
-        artist.add_song(song)
+  describe "#name=" do
+    it "can set the name of a genre" do
+      genre.name = "classics"
 
-        expect(song.artist).to be(artist)
-      end
+      genre_name = genre.instance_variable_get(:@name)
 
-      it "does not assign the artist if the song already has an artist" do
-        song.instance_variable_set(:@artist, artist)
-
-        expect(song).to_not receive(:artist=)
-
-        artist.add_song(song)
-      end
-
-      it "adds the song to the current artist's 'songs' collection" do
-        artist.add_song(song)
-
-        expect(artist.songs).to include(song)
-      end
-
-      it "does not add the song to the current artist's collection of songs if it already exists therein" do
-        2.times { artist.add_song(song) }
-
-        expect(artist.songs).to include(song)
-        expect(artist.songs.size).to be(1)
-      end
+      expect(genre_name).to eq("classics")
     end
   end
 
-  context "Song" do
-    describe "#artist=" do
-      it "invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)" do
-        expect(artist).to receive(:add_song)
+  describe "@@all" do
+    it "is initialized as an empty array" do
+      all = Genre.class_variable_get(:@@all)
 
-        song.artist = artist
-      end
+      expect(all).to match_array([])
     end
+  end
 
-    describe "#initialize" do
-      it "invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization" do
-        expect_any_instance_of(Song).to receive(:artist=).with(artist)
+  describe ".all" do
+    it "returns the class variable @@all" do
+      expect(Genre.all).to match_array([])
 
-        Song.new("Two-Headed Boy", artist)
-      end
+      Genre.class_variable_set(:@@all, [genre])
+
+      expect(Genre.all).to match_array([genre])
+    end
+  end
+
+  describe ".destroy_all" do
+    it "resets the @@all class variable to an empty array" do
+      Genre.class_variable_set(:@@all, [genre])
+
+      Genre.destroy_all
+
+      expect(Genre.all).to match_array([])
+    end
+  end
+
+  describe "#save" do
+    it "adds the Genre instance to the @@all class variable" do
+      genre.save
+
+      expect(Genre.all).to include(genre)
+    end
+  end
+
+  describe ".create" do
+    it "initializes and saves the genre" do
+      created_genre = Genre.create("shoegaze")
+
+      expect(Genre.all).to include(created_genre)
     end
   end
 end

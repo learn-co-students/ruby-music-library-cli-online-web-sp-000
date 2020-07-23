@@ -72,4 +72,3 @@ describe "Genre" do
       expect(Genre.all).to include(created_genre)
     end
   end
-end
