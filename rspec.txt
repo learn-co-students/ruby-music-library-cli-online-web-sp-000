@@ -1,0 +1,1130 @@
+
+Song
+  #initialize
+[31m    accepts a name for the new song (FAILED - 1)[0m
+  #name
+[31m    retrieves the name of a song (FAILED - 2)[0m
+  #name=
+[31m    can set the name of a song (FAILED - 3)[0m
+  @@all
+[31m    is initialized as an empty array (FAILED - 4)[0m
+  .all
+[31m    returns the class variable @@all (FAILED - 5)[0m
+  .destroy_all
+[31m    resets the @@all class variable to an empty array (FAILED - 6)[0m
+  #save
+[31m    adds the Song instance to the @@all class variable (FAILED - 7)[0m
+  .create
+[31m    initializes, saves, and returns the song (FAILED - 8)[0m
+
+Artist
+  #initialize
+[31m    accepts a name for the new artist (FAILED - 9)[0m
+  #name
+[31m    retrieves the name of an artist (FAILED - 10)[0m
+  #name=
+[31m    can set the name of an artist (FAILED - 11)[0m
+  @@all
+[31m    is initialized as an empty array (FAILED - 12)[0m
+  .all
+[31m    returns the class variable @@all (FAILED - 13)[0m
+  .destroy_all
+[31m    resets the @@all class variable to an empty array (FAILED - 14)[0m
+  #save
+[31m    adds the Artist instance to the @@all class variable (FAILED - 15)[0m
+  .create
+[31m    initializes and saves the artist (FAILED - 16)[0m
+
+Genre
+  #initialize
+[31m    accepts a name for the new genre (FAILED - 17)[0m
+  #name
+[31m    retrieves the name of a genre (FAILED - 18)[0m
+  #name=
+[31m    can set the name of a genre (FAILED - 19)[0m
+  @@all
+[31m    is initialized as an empty array (FAILED - 20)[0m
+  .all
+[31m    returns the class variable @@all (FAILED - 21)[0m
+  .destroy_all
+[31m    resets the @@all class variable to an empty array (FAILED - 22)[0m
+  #save
+[31m    adds the Genre instance to the @@all class variable (FAILED - 23)[0m
+  .create
+[31m    initializes and saves the genre (FAILED - 24)[0m
+
+Associations — Song and Artist:
+  Artist
+    #initialize
+[31m      creates a 'songs' property set to an empty array (artist has many songs) (FAILED - 25)[0m
+    #songs
+[31m      returns the artist's 'songs' collection (artist has many songs) (FAILED - 26)[0m
+  Song
+    #initialize
+[31m      can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist) (FAILED - 27)[0m
+    #artist
+[31m      returns the artist of the song (song belongs to artist) (FAILED - 28)[0m
+    #artist=
+[31m      assigns an artist to the song (song belongs to artist) (FAILED - 29)[0m
+  Artist
+    #add_song
+[31m      assigns the current artist to the song's 'artist' property (song belongs to artist) (FAILED - 30)[0m
+[31m      does not assign the artist if the song already has an artist (FAILED - 31)[0m
+[31m      adds the song to the current artist's 'songs' collection (FAILED - 32)[0m
+[31m      does not add the song to the current artist's collection of songs if it already exists therein (FAILED - 33)[0m
+  Song
+    #artist=
+[31m      invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs) (FAILED - 34)[0m
+    #initialize
+[31m      invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization (FAILED - 35)[0m
+
+Associations — Song and Genre:
+  Genre
+    #initialize
+[31m      creates a 'songs' property set to an empty array (genre has many songs) (FAILED - 36)[0m
+    #songs
+[31m      returns the genre's 'songs' collection (genre has many songs) (FAILED - 37)[0m
+  Song
+    #initialize
+[31m      can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre) (FAILED - 38)[0m
+    #genre
+[31m      returns the genre of the song (song belongs to genre) (FAILED - 39)[0m
+    #genre=
+[31m      assigns a genre to the song (song belongs to genre) (FAILED - 40)[0m
+[31m      adds the song to the genre's collection of songs (genre has many songs) (FAILED - 41)[0m
+[31m      does not add the song to the genre's collection of songs if it already exists therein (FAILED - 42)[0m
+    #initialize
+[31m      invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization (FAILED - 43)[0m
+
+Associations — Artist and Genre:
+  Artist
+    #genres
+[31m      returns a collection of genres for all of the artist's songs (artist has many genres through songs) (FAILED - 44)[0m
+[31m      does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs) (FAILED - 45)[0m
+[31m      collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs) (FAILED - 46)[0m
+  Genre
+    #artists
+[31m      returns a collection of artists for all of the genre's songs (genre has many artists through songs) (FAILED - 47)[0m
+[31m      does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs) (FAILED - 48)[0m
+[31m      collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs) (FAILED - 49)[0m
+
+Song
+  .find_by_name
+[31m    finds a song instance in @@all by the name property of the song (FAILED - 50)[0m
+  .find_or_create_by_name
+[31m    returns (does not recreate) an existing song with the provided name if one exists in @@all (FAILED - 51)[0m
+[31m    invokes .find_by_name instead of re-coding the same functionality (FAILED - 52)[0m
+[31m    creates a song if an existing match is not found (FAILED - 53)[0m
+[31m    invokes .create instead of re-coding the same functionality (FAILED - 54)[0m
+
+Concerns::Findable
+[31m  defines a module named Concerns::Findable (FAILED - 55)[0m
+
+Artist
+[31m  extends the Concerns::Findable module (FAILED - 56)[0m
+
+Genre
+[31m  extends the Concerns::Findable module (FAILED - 57)[0m
+
+Concerns::Findable
+  .find_by_name
+[31m    is added as a class method to classes that extend the module (FAILED - 58)[0m
+[31m    isn't hard-coded (FAILED - 59)[0m
+    works exactly like a generic version of Song.find_by_name,
+[31m      searching the extended class's @@all variable for an instance that matches the provided name (FAILED - 60)[0m
+  .find_or_create_by_name
+[31m    is added as a class method to classes that extend the module (FAILED - 61)[0m
+    works exactly like a generic version of Song.find_or_create_by_name:
+[31m      finds (does not recreate) an existing instance with the provided name if one exists in @@all (FAILED - 62)[0m
+[31m      isn't hard-coded (FAILED - 63)[0m
+[31m      invokes .find_by_name instead of re-coding the same functionality (FAILED - 64)[0m
+[31m      invokes the extended class's .create method, passing in the provided name, if an existing match is not found (FAILED - 65)[0m
+
+MusicImporter
+  #initialize
+[31m    accepts a file path to parse MP3 files from (FAILED - 66)[0m
+  #path
+[31m    retrieves the path provided to the MusicImporter object (FAILED - 67)[0m
+  #files
+[31m    loads all the MP3 files in the path directory (FAILED - 68)[0m
+[31m    normalizes the filename to just the MP3 filename with no path (FAILED - 69)[0m
+
+Song
+  .new_from_filename
+[31m    initializes a song based on the passed-in filename (FAILED - 70)[0m
+[31m    invokes the appropriate Findable methods so as to avoid duplicating objects (FAILED - 71)[0m
+  .create_from_filename
+[31m    initializes and saves a song based on the passed-in filename (FAILED - 72)[0m
+[31m    invokes .new_from_filename instead of re-coding the same functionality (FAILED - 73)[0m
+
+MusicImporter
+  #import
+[31m    imports the files into the library by invoking Song.create_from_filename (FAILED - 74)[0m
+
+MusicLibraryController
+  #initialize
+[31m    accepts one argument, the path to the MP3 files to be imported (FAILED - 75)[0m
+[31m    creates a new MusicImporter object, passing in the 'path' value (FAILED - 76)[0m
+[31m    the 'path' argument defaults to './db/mp3s' (FAILED - 77)[0m
+[31m    invokes the #import method on the created MusicImporter object (FAILED - 78)[0m
+  #call
+[31m    welcomes the user (FAILED - 79)[0m
+[31m    asks the user for input (FAILED - 80)[0m
+[31m    loops and asks for user input until they type in exit (FAILED - 81)[0m
+
+MusicLibraryController - CLI Methods
+  #list_songs
+[31m    prints all songs in the music library in a numbered list (alphabetized by song name) (FAILED - 82)[0m
+[31m    is not hard-coded (FAILED - 83)[0m
+  #list_artists
+[31m    prints all artists in the music library in a numbered list (alphabetized by artist name) (FAILED - 84)[0m
+[31m    is not hard-coded (FAILED - 85)[0m
+  #list_genres
+[31m    prints all genres in the music library in a numbered list (alphabetized by genre name) (FAILED - 86)[0m
+[31m    is not hard-coded (FAILED - 87)[0m
+  #list_songs_by_artist
+[31m    prompts the user to enter an artist (FAILED - 88)[0m
+[31m    accepts user input (FAILED - 89)[0m
+[31m    prints all songs by a particular artist in a numbered list (alphabetized by song name) (FAILED - 90)[0m
+[31m    does nothing if no matching artist is found (FAILED - 91)[0m
+  #list_songs_by_genre
+[31m    prompts the user to enter a genre (FAILED - 92)[0m
+[31m    accepts user input (FAILED - 93)[0m
+[31m    prints all songs by a particular genre in a numbered list (alphabetized by song name) (FAILED - 94)[0m
+[31m    does nothing if no matching genre is found (FAILED - 95)[0m
+  #play_song
+[31m    prompts the user to choose a song from the alphabetized list output by #list_songs (FAILED - 96)[0m
+[31m    accepts user input (FAILED - 97)[0m
+[31m    upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs (FAILED - 98)[0m
+[31m    does not 'puts' anything out if a matching song is not found (FAILED - 99)[0m
+[31m    checks that the user entered a number between 1 and the total number of songs in the library (FAILED - 100)[0m
+
+MusicLibraryController - CLI Commands
+  'list songs'
+[31m    triggers #list_songs (FAILED - 101)[0m
+  'list artists'
+[31m    triggers #list_artists (FAILED - 102)[0m
+  'list genres'
+[31m    triggers #list_genres (FAILED - 103)[0m
+  'list artist'
+[31m    triggers #list_songs_by_artist (FAILED - 104)[0m
+  'list genre'
+[31m    triggers #list_songs_by_genre (FAILED - 105)[0m
+  'play song'
+[31m    triggers #play_song (FAILED - 106)[0m
+
+Failures:
+
+  1) Song #initialize accepts a name for the new song
+     [31mFailure/Error: [0mnew_song = [1;34;4mSong[0m.new([31m[1;31m"[0m[31mAlison[1;31m"[0m[31m[0m)[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:8:in `block (3 levels) in <top (required)>'[0m
+
+  2) Song #name retrieves the name of a song
+     [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+     [36m# ./spec/001_song_basics_spec.rb:18:in `block (3 levels) in <top (required)>'[0m
+
+  3) Song #name= can set the name of a song
+     [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+     [36m# ./spec/001_song_basics_spec.rb:24:in `block (3 levels) in <top (required)>'[0m
+
+  4) Song @@all is initialized as an empty array
+     [31mFailure/Error: [0mall = [1;34;4mSong[0m.class_variable_get([33m:@@all[0m)[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:34:in `block (3 levels) in <top (required)>'[0m
+
+  5) Song .all returns the class variable @@all
+     [31mFailure/Error: [0m[32mexpect[0m([1;34;4mSong[0m.all).to match_array([])[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:42:in `block (3 levels) in <top (required)>'[0m
+
+  6) Song .destroy_all resets the @@all class variable to an empty array
+     [31mFailure/Error: [0m[1;34;4mSong[0m.class_variable_set([33m:@@all[0m, [song])[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:52:in `block (3 levels) in <top (required)>'[0m
+
+  7) Song #save adds the Song instance to the @@all class variable
+     [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+     [36m# ./spec/001_song_basics_spec.rb:62:in `block (3 levels) in <top (required)>'[0m
+
+  8) Song .create initializes, saves, and returns the song
+     [31mFailure/Error: [0mcreated_song = [1;34;4mSong[0m.create([31m[1;31m"[0m[31mKaohsiung Christmas[1;31m"[0m[31m[0m)[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Song[0m
+     [36m# ./spec/001_song_basics_spec.rb:70:in `block (3 levels) in <top (required)>'[0m
+
+  9) Artist #initialize accepts a name for the new artist
+     [31mFailure/Error: [0mnew_artist = [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mSlowdive[1;31m"[0m[31m[0m)[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant Artist[0m
+     [36m# ./spec/002_artist_basics_spec.rb:8:in `block (3 levels) in <top (required)>'[0m
+
+  10) Artist #name retrieves the name of an artist
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/002_artist_basics_spec.rb:18:in `block (3 levels) in <top (required)>'[0m
+
+  11) Artist #name= can set the name of an artist
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/002_artist_basics_spec.rb:24:in `block (3 levels) in <top (required)>'[0m
+
+  12) Artist @@all is initialized as an empty array
+      [31mFailure/Error: [0mall = [1;34;4mArtist[0m.class_variable_get([33m:@@all[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:34:in `block (3 levels) in <top (required)>'[0m
+
+  13) Artist .all returns the class variable @@all
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mArtist[0m.all).to match_array([])[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:42:in `block (3 levels) in <top (required)>'[0m
+
+  14) Artist .destroy_all resets the @@all class variable to an empty array
+      [31mFailure/Error: [0m[1;34;4mArtist[0m.class_variable_set([33m:@@all[0m, [artist])[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:52:in `block (3 levels) in <top (required)>'[0m
+
+  15) Artist #save adds the Artist instance to the @@all class variable
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/002_artist_basics_spec.rb:62:in `block (3 levels) in <top (required)>'[0m
+
+  16) Artist .create initializes and saves the artist
+      [31mFailure/Error: [0mcreated_artist = [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mFear of Tigers[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/002_artist_basics_spec.rb:70:in `block (3 levels) in <top (required)>'[0m
+
+  17) Genre #initialize accepts a name for the new genre
+      [31mFailure/Error: [0mnew_genre = [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mshoegaze[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:8:in `block (3 levels) in <top (required)>'[0m
+
+  18) Genre #name retrieves the name of a genre
+      [31mFailure/Error: [0m[32mlet[0m([33m:genre[0m) { [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mindie rock[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/003_genre_basics_spec.rb:18:in `block (3 levels) in <top (required)>'[0m
+
+  19) Genre #name= can set the name of a genre
+      [31mFailure/Error: [0m[32mlet[0m([33m:genre[0m) { [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mindie rock[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/003_genre_basics_spec.rb:24:in `block (3 levels) in <top (required)>'[0m
+
+  20) Genre @@all is initialized as an empty array
+      [31mFailure/Error: [0mall = [1;34;4mGenre[0m.class_variable_get([33m:@@all[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:34:in `block (3 levels) in <top (required)>'[0m
+
+  21) Genre .all returns the class variable @@all
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mGenre[0m.all).to match_array([])[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:42:in `block (3 levels) in <top (required)>'[0m
+
+  22) Genre .destroy_all resets the @@all class variable to an empty array
+      [31mFailure/Error: [0m[1;34;4mGenre[0m.class_variable_set([33m:@@all[0m, [genre])[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:52:in `block (3 levels) in <top (required)>'[0m
+
+  23) Genre #save adds the Genre instance to the @@all class variable
+      [31mFailure/Error: [0m[32mlet[0m([33m:genre[0m) { [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mindie rock[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/003_genre_basics_spec.rb:62:in `block (3 levels) in <top (required)>'[0m
+
+  24) Genre .create initializes and saves the genre
+      [31mFailure/Error: [0mcreated_genre = [1;34;4mGenre[0m.create([31m[1;31m"[0m[31mshoegaze[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/003_genre_basics_spec.rb:70:in `block (3 levels) in <top (required)>'[0m
+
+  25) Associations — Song and Artist: Artist #initialize creates a 'songs' property set to an empty array (artist has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:10:in `block (4 levels) in <top (required)>'[0m
+
+  26) Associations — Song and Artist: Artist #songs returns the artist's 'songs' collection (artist has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:17:in `block (4 levels) in <top (required)>'[0m
+
+  27) Associations — Song and Artist: Song #initialize can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)
+      [31mFailure/Error: [0msong_with_artist = [1;34;4mSong[0m.new([31m[1;31m"[0m[31mTwo-Headed Boy[1;31m"[0m[31m[0m, artist)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:29:in `block (4 levels) in <top (required)>'[0m
+
+  28) Associations — Song and Artist: Song #artist returns the artist of the song (song belongs to artist)
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:38:in `block (4 levels) in <top (required)>'[0m
+
+  29) Associations — Song and Artist: Song #artist= assigns an artist to the song (song belongs to artist)
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:46:in `block (4 levels) in <top (required)>'[0m
+
+  30) Associations — Song and Artist: Artist #add_song assigns the current artist to the song's 'artist' property (song belongs to artist)
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:58:in `block (4 levels) in <top (required)>'[0m
+
+  31) Associations — Song and Artist: Artist #add_song does not assign the artist if the song already has an artist
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:64:in `block (4 levels) in <top (required)>'[0m
+
+  32) Associations — Song and Artist: Artist #add_song adds the song to the current artist's 'songs' collection
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:72:in `block (4 levels) in <top (required)>'[0m
+
+  33) Associations — Song and Artist: Artist #add_song does not add the song to the current artist's collection of songs if it already exists therein
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:78:in `block (5 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:78:in `times'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:78:in `block (4 levels) in <top (required)>'[0m
+
+  34) Associations — Song and Artist: Song #artist= invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:artist[0m) { [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:89:in `block (4 levels) in <top (required)>'[0m
+
+  35) Associations — Song and Artist: Song #initialize invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization
+      [31mFailure/Error: [0mexpect_any_instance_of([1;34;4mSong[0m).to receive([33m:artist=[0m).with(artist)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/004_songs_and_artists_spec.rb:97:in `block (4 levels) in <top (required)>'[0m
+
+  36) Associations — Song and Genre: Genre #initialize creates a 'songs' property set to an empty array (genre has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:genre[0m) { [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mindie rock[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:10:in `block (4 levels) in <top (required)>'[0m
+
+  37) Associations — Song and Genre: Genre #songs returns the genre's 'songs' collection (genre has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:genre[0m) { [1;34;4mGenre[0m.new([31m[1;31m"[0m[31mindie rock[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:17:in `block (4 levels) in <top (required)>'[0m
+
+  38) Associations — Song and Genre: Song #initialize can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre)
+      [31mFailure/Error: [0martist = [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:29:in `block (4 levels) in <top (required)>'[0m
+
+  39) Associations — Song and Genre: Song #genre returns the genre of the song (song belongs to genre)
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:39:in `block (4 levels) in <top (required)>'[0m
+
+  40) Associations — Song and Genre: Song #genre= assigns a genre to the song (song belongs to genre)
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:47:in `block (4 levels) in <top (required)>'[0m
+
+  41) Associations — Song and Genre: Song #genre= adds the song to the genre's collection of songs (genre has many songs)
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:53:in `block (4 levels) in <top (required)>'[0m
+
+  42) Associations — Song and Genre: Song #genre= does not add the song to the genre's collection of songs if it already exists therein
+      [31mFailure/Error: [0m[32mlet[0m([33m:song[0m) { [1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:59:in `block (5 levels) in <top (required)>'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:59:in `times'[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:59:in `block (4 levels) in <top (required)>'[0m
+
+  43) Associations — Song and Genre: Song #initialize invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization
+      [31mFailure/Error: [0martist = [1;34;4mArtist[0m.new([31m[1;31m"[0m[31mNeutral Milk Hotel[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/005_songs_and_genres_spec.rb:68:in `block (4 levels) in <top (required)>'[0m
+
+  44) Associations — Artist and Genre: Artist #genres returns a collection of genres for all of the artist's songs (artist has many genres through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mThe Luckiest Guy on the Lower East Side[1;31m"[0m[31m[0m, artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:12:in `block (4 levels) in <top (required)>'[0m
+
+  45) Associations — Artist and Genre: Artist #genres does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m, other_artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:21:in `block (4 levels) in <top (required)>'[0m
+
+  46) Associations — Artist and Genre: Artist #genres collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m, other_artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:29:in `block (4 levels) in <top (required)>'[0m
+
+  47) Associations — Artist and Genre: Genre #artists returns a collection of artists for all of the genre's songs (genre has many artists through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mThe Luckiest Guy on the Lower East Side[1;31m"[0m[31m[0m, artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:39:in `block (4 levels) in <top (required)>'[0m
+
+  48) Associations — Artist and Genre: Genre #artists does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m, other_artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:48:in `block (4 levels) in <top (required)>'[0m
+
+  49) Associations — Artist and Genre: Genre #artists collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.new([31m[1;31m"[0m[31mIn the Aeroplane Over the Sea[1;31m"[0m[31m[0m, other_artist, genre)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/006_artists_and_genres_spec.rb:56:in `block (4 levels) in <top (required)>'[0m
+
+  50) Song .find_by_name finds a song instance in @@all by the name property of the song
+      [31mFailure/Error: [0mlet!([33m:song_one[0m) { [1;34;4mSong[0m.create([31m[1;31m"[0m[31mThe King of Carrot Flowers, Pt. One[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'[0m
+
+  51) Song .find_or_create_by_name returns (does not recreate) an existing song with the provided name if one exists in @@all
+      [31mFailure/Error: [0mlet!([33m:song_one[0m) { [1;34;4mSong[0m.create([31m[1;31m"[0m[31mThe King of Carrot Flowers, Pt. One[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'[0m
+
+  52) Song .find_or_create_by_name invokes .find_by_name instead of re-coding the same functionality
+      [31mFailure/Error: [0mlet!([33m:song_one[0m) { [1;34;4mSong[0m.create([31m[1;31m"[0m[31mThe King of Carrot Flowers, Pt. One[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'[0m
+
+  53) Song .find_or_create_by_name creates a song if an existing match is not found
+      [31mFailure/Error: [0mlet!([33m:song_one[0m) { [1;34;4mSong[0m.create([31m[1;31m"[0m[31mThe King of Carrot Flowers, Pt. One[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'[0m
+
+  54) Song .find_or_create_by_name invokes .create instead of re-coding the same functionality
+      [31mFailure/Error: [0mlet!([33m:song_one[0m) { [1;34;4mSong[0m.create([31m[1;31m"[0m[31mThe King of Carrot Flowers, Pt. One[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/007_findable_songs_spec.rb:2:in `block (2 levels) in <top (required)>'[0m
+
+  55) Concerns::Findable defines a module named Concerns::Findable
+      [31mFailure/Error: [0m[32mexpect[0m([32mdefined?[0m([1;34;4mConcerns[0m::[1;34;4mFindable[0m)).to be_truthy[0m
+      [31m[0m
+      [31m  expected: truthy value[0m
+      [31m       got: nil[0m
+      [36m# ./spec/008_findable_module_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+
+  56) Artist extends the Concerns::Findable module
+      [31mFailure/Error: [0martist_extends_concerns_findable = [1;34;4mArtist[0m.singleton_class.ancestors.include?([1;34;4mConcerns[0m::[1;34;4mFindable[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:13:in `block (2 levels) in <top (required)>'[0m
+
+  57) Genre extends the Concerns::Findable module
+      [31mFailure/Error: [0mgenre_extends_concerns_findable = [1;34;4mGenre[0m.singleton_class.ancestors.include?([1;34;4mConcerns[0m::[1;34;4mFindable[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Genre[0m
+      [36m# ./spec/008_findable_module_spec.rb:20:in `block (2 levels) in <top (required)>'[0m
+
+  58) Concerns::Findable .find_by_name is added as a class method to classes that extend the module
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  59) Concerns::Findable .find_by_name isn't hard-coded
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  60) Concerns::Findable .find_by_name works exactly like a generic version of Song.find_by_name, searching the extended class's @@all variable for an instance that matches the provided name
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  61) Concerns::Findable .find_or_create_by_name is added as a class method to classes that extend the module
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  62) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: finds (does not recreate) an existing instance with the provided name if one exists in @@all
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  63) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: isn't hard-coded
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  64) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes .find_by_name instead of re-coding the same functionality
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  65) Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes the extended class's .create method, passing in the provided name, if an existing match is not found
+      [31mFailure/Error: [0mlet!([33m:artist_one[0m) { [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mMadonna[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/008_findable_module_spec.rb:26:in `block (2 levels) in <top (required)>'[0m
+
+  66) MusicImporter #initialize accepts a file path to parse MP3 files from
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_importer[0m) { [1;34;4mMusicImporter[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/009_music_importer_spec.rb:8:in `block (3 levels) in <top (required)>'[0m
+
+  67) MusicImporter #path retrieves the path provided to the MusicImporter object
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_importer[0m) { [1;34;4mMusicImporter[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/009_music_importer_spec.rb:15:in `block (3 levels) in <top (required)>'[0m
+
+  68) MusicImporter #files loads all the MP3 files in the path directory
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_importer[0m) { [1;34;4mMusicImporter[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/009_music_importer_spec.rb:21:in `block (3 levels) in <top (required)>'[0m
+
+  69) MusicImporter #files normalizes the filename to just the MP3 filename with no path
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_importer[0m) { [1;34;4mMusicImporter[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/009_music_importer_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/009_music_importer_spec.rb:25:in `block (3 levels) in <top (required)>'[0m
+
+  70) Song .new_from_filename initializes a song based on the passed-in filename
+      [31mFailure/Error: [0msong = [1;34;4mSong[0m.new_from_filename([31m[1;31m"[0m[31mThundercat - For Love I Come - dance.mp3[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/009_music_importer_spec.rb:36:in `block (3 levels) in <top (required)>'[0m
+
+  71) Song .new_from_filename invokes the appropriate Findable methods so as to avoid duplicating objects
+      [31mFailure/Error: [0martist = [1;34;4mArtist[0m.create([31m[1;31m"[0m[31mThundercat[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/009_music_importer_spec.rb:44:in `block (3 levels) in <top (required)>'[0m
+
+  72) Song .create_from_filename initializes and saves a song based on the passed-in filename
+      [31mFailure/Error: [0msong = [1;34;4mSong[0m.create_from_filename([31m[1;31m"[0m[31mThundercat - For Love I Come - dance.mp3[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/009_music_importer_spec.rb:59:in `block (3 levels) in <top (required)>'[0m
+
+  73) Song .create_from_filename invokes .new_from_filename instead of re-coding the same functionality
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mSong[0m).to receive([33m:new_from_filename[0m).and_return(double([35msave[0m: [1;36mtrue[0m))[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/009_music_importer_spec.rb:65:in `block (3 levels) in <top (required)>'[0m
+
+  74) MusicImporter #import imports the files into the library by invoking Song.create_from_filename
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mSong[0m).to receive([33m:create_from_filename[0m).with([31m[1;31m"[0m[31mAction Bronson - Larry Csonka - indie.mp3[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/009_music_importer_spec.rb:77:in `block (3 levels) in <top (required)>'[0m
+
+  75) MusicLibraryController #initialize accepts one argument, the path to the MP3 files to be imported
+      [31mFailure/Error: [0m[32mexpect[0m{ [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }.to_not raise_error[0m
+      [31m[0m
+      [31m  expected no Exception, got #<NameError: uninitialized constant MusicLibraryController> with backtrace:[0m
+      [31m    # ./spec/010_music_library_controller_spec.rb:6:in `block (4 levels) in <top (required)>'[0m
+      [31m    # ./spec/010_music_library_controller_spec.rb:6:in `block (3 levels) in <top (required)>'[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:6:in `block (3 levels) in <top (required)>'[0m
+
+  76) MusicLibraryController #initialize creates a new MusicImporter object, passing in the 'path' value
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mMusicImporter[0m).to receive([33m:new[0m).with([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m).and_return(double([1;34;4mMusicImporter[0m, [35mimport[0m: [1;36mtrue[0m))[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:10:in `block (3 levels) in <top (required)>'[0m
+
+  77) MusicLibraryController #initialize the 'path' argument defaults to './db/mp3s'
+      [31mFailure/Error: [0m[32mexpect[0m([1;34;4mMusicImporter[0m).to receive([33m:new[0m).with([31m[1;31m"[0m[31m./db/mp3s[1;31m"[0m[31m[0m).and_return(double([1;34;4mMusicImporter[0m, [35mimport[0m: [1;36mtrue[0m))[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:16:in `block (3 levels) in <top (required)>'[0m
+
+  78) MusicLibraryController #initialize invokes the #import method on the created MusicImporter object
+      [31mFailure/Error: [0mmusic_importer = [1;34;4mMusicImporter[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicImporter[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:22:in `block (3 levels) in <top (required)>'[0m
+
+  79) MusicLibraryController #call welcomes the user
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:35:in `block (3 levels) in <top (required)>'[0m
+
+  80) MusicLibraryController #call asks the user for input
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:51:in `block (3 levels) in <top (required)>'[0m
+
+  81) MusicLibraryController #call loops and asks for user input until they type in exit
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:32:in `block (3 levels) in <top (required)>'[0m
+      [36m# ./spec/010_music_library_controller_spec.rb:59:in `block (3 levels) in <top (required)>'[0m
+
+  82) MusicLibraryController - CLI Methods #list_songs prints all songs in the music library in a numbered list (alphabetized by song name)
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:15:in `block (3 levels) in <top (required)>'[0m
+
+  83) MusicLibraryController - CLI Methods #list_songs is not hard-coded
+      [31mFailure/Error: [0m[32mlet[0m([33m:other_music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/other_mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:24:in `block (3 levels) in <top (required)>'[0m
+
+  84) MusicLibraryController - CLI Methods #list_artists prints all artists in the music library in a numbered list (alphabetized by artist name)
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:35:in `block (3 levels) in <top (required)>'[0m
+
+  85) MusicLibraryController - CLI Methods #list_artists is not hard-coded
+      [31mFailure/Error: [0m[1;34;4mArtist[0m.create([31m[1;31m"[0m[31mZZ Top[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Artist[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:39:in `block (3 levels) in <top (required)>'[0m
+
+  86) MusicLibraryController - CLI Methods #list_genres prints all genres in the music library in a numbered list (alphabetized by genre name)
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:57:in `block (3 levels) in <top (required)>'[0m
+
+  87) MusicLibraryController - CLI Methods #list_genres is not hard-coded
+      [31mFailure/Error: [0m[32mlet[0m([33m:other_music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/other_mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:65:in `block (3 levels) in <top (required)>'[0m
+
+  88) MusicLibraryController - CLI Methods #list_songs_by_artist prompts the user to enter an artist
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:71:in `block (3 levels) in <top (required)>'[0m
+
+  89) MusicLibraryController - CLI Methods #list_songs_by_artist accepts user input
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:79:in `block (3 levels) in <top (required)>'[0m
+
+  90) MusicLibraryController - CLI Methods #list_songs_by_artist prints all songs by a particular artist in a numbered list (alphabetized by song name)
+      [31mFailure/Error: [0m[1;34;4mSong[0m.create_from_filename([31m[1;31m"[0m[31mReal Estate - Wonder Years - dream pop.mp3[1;31m"[0m[31m[0m)[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant Song[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:87:in `block (3 levels) in <top (required)>'[0m
+
+  91) MusicLibraryController - CLI Methods #list_songs_by_artist does nothing if no matching artist is found
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:100:in `block (3 levels) in <top (required)>'[0m
+
+  92) MusicLibraryController - CLI Methods #list_songs_by_genre prompts the user to enter a genre
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:111:in `block (3 levels) in <top (required)>'[0m
+
+  93) MusicLibraryController - CLI Methods #list_songs_by_genre accepts user input
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:119:in `block (3 levels) in <top (required)>'[0m
+
+  94) MusicLibraryController - CLI Methods #list_songs_by_genre prints all songs by a particular genre in a numbered list (alphabetized by song name)
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:127:in `block (3 levels) in <top (required)>'[0m
+
+  95) MusicLibraryController - CLI Methods #list_songs_by_genre does nothing if no matching genre is found
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:137:in `block (3 levels) in <top (required)>'[0m
+
+  96) MusicLibraryController - CLI Methods #play_song prompts the user to choose a song from the alphabetized list output by #list_songs
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:148:in `block (3 levels) in <top (required)>'[0m
+
+  97) MusicLibraryController - CLI Methods #play_song accepts user input
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:158:in `block (3 levels) in <top (required)>'[0m
+
+  98) MusicLibraryController - CLI Methods #play_song upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:166:in `block (3 levels) in <top (required)>'[0m
+
+  99) MusicLibraryController - CLI Methods #play_song does not 'puts' anything out if a matching song is not found
+      [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+      [31m[0m
+      [31mNameError:[0m
+      [31m  uninitialized constant MusicLibraryController[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+      [36m# ./spec/011_music_library_cli_methods_spec.rb:175:in `block (3 levels) in <top (required)>'[0m
+
+  100) MusicLibraryController - CLI Methods #play_song checks that the user entered a number between 1 and the total number of songs in the library
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/011_music_library_cli_methods_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/011_music_library_cli_methods_spec.rb:184:in `block (3 levels) in <top (required)>'[0m
+
+  101) MusicLibraryController - CLI Commands 'list songs' triggers #list_songs
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:8:in `block (3 levels) in <top (required)>'[0m
+
+  102) MusicLibraryController - CLI Commands 'list artists' triggers #list_artists
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:18:in `block (3 levels) in <top (required)>'[0m
+
+  103) MusicLibraryController - CLI Commands 'list genres' triggers #list_genres
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:28:in `block (3 levels) in <top (required)>'[0m
+
+  104) MusicLibraryController - CLI Commands 'list artist' triggers #list_songs_by_artist
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:38:in `block (3 levels) in <top (required)>'[0m
+
+  105) MusicLibraryController - CLI Commands 'list genre' triggers #list_songs_by_genre
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:48:in `block (3 levels) in <top (required)>'[0m
+
+  106) MusicLibraryController - CLI Commands 'play song' triggers #play_song
+       [31mFailure/Error: [0m[32mlet[0m([33m:music_library_controller[0m) { [1;34;4mMusicLibraryController[0m.new([31m[1;31m"[0m[31m./spec/fixtures/mp3s[1;31m"[0m[31m[0m) }[0m
+       [31m[0m
+       [31mNameError:[0m
+       [31m  uninitialized constant MusicLibraryController[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:4:in `block (2 levels) in <top (required)>'[0m
+       [36m# ./spec/012_music_library_cli_spec.rb:58:in `block (3 levels) in <top (required)>'[0m
+
+Finished in 0.09428 seconds (files took 0.4313 seconds to load)
+[31m106 examples, 106 failures[0m
+
+Failed examples:
+
+[31mrspec ./spec/001_song_basics_spec.rb:7[0m [36m# Song #initialize accepts a name for the new song[0m
+[31mrspec ./spec/001_song_basics_spec.rb:17[0m [36m# Song #name retrieves the name of a song[0m
+[31mrspec ./spec/001_song_basics_spec.rb:23[0m [36m# Song #name= can set the name of a song[0m
+[31mrspec ./spec/001_song_basics_spec.rb:33[0m [36m# Song @@all is initialized as an empty array[0m
+[31mrspec ./spec/001_song_basics_spec.rb:41[0m [36m# Song .all returns the class variable @@all[0m
+[31mrspec ./spec/001_song_basics_spec.rb:51[0m [36m# Song .destroy_all resets the @@all class variable to an empty array[0m
+[31mrspec ./spec/001_song_basics_spec.rb:61[0m [36m# Song #save adds the Song instance to the @@all class variable[0m
+[31mrspec ./spec/001_song_basics_spec.rb:69[0m [36m# Song .create initializes, saves, and returns the song[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:7[0m [36m# Artist #initialize accepts a name for the new artist[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:17[0m [36m# Artist #name retrieves the name of an artist[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:23[0m [36m# Artist #name= can set the name of an artist[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:33[0m [36m# Artist @@all is initialized as an empty array[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:41[0m [36m# Artist .all returns the class variable @@all[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:51[0m [36m# Artist .destroy_all resets the @@all class variable to an empty array[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:61[0m [36m# Artist #save adds the Artist instance to the @@all class variable[0m
+[31mrspec ./spec/002_artist_basics_spec.rb:69[0m [36m# Artist .create initializes and saves the artist[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:7[0m [36m# Genre #initialize accepts a name for the new genre[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:17[0m [36m# Genre #name retrieves the name of a genre[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:23[0m [36m# Genre #name= can set the name of a genre[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:33[0m [36m# Genre @@all is initialized as an empty array[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:41[0m [36m# Genre .all returns the class variable @@all[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:51[0m [36m# Genre .destroy_all resets the @@all class variable to an empty array[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:61[0m [36m# Genre #save adds the Genre instance to the @@all class variable[0m
+[31mrspec ./spec/003_genre_basics_spec.rb:69[0m [36m# Genre .create initializes and saves the genre[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:9[0m [36m# Associations — Song and Artist: Artist #initialize creates a 'songs' property set to an empty array (artist has many songs)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:16[0m [36m# Associations — Song and Artist: Artist #songs returns the artist's 'songs' collection (artist has many songs)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:28[0m [36m# Associations — Song and Artist: Song #initialize can be invoked with an optional second argument, an Artist object to be assigned to the song's 'artist' property (song belongs to artist)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:37[0m [36m# Associations — Song and Artist: Song #artist returns the artist of the song (song belongs to artist)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:45[0m [36m# Associations — Song and Artist: Song #artist= assigns an artist to the song (song belongs to artist)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:57[0m [36m# Associations — Song and Artist: Artist #add_song assigns the current artist to the song's 'artist' property (song belongs to artist)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:63[0m [36m# Associations — Song and Artist: Artist #add_song does not assign the artist if the song already has an artist[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:71[0m [36m# Associations — Song and Artist: Artist #add_song adds the song to the current artist's 'songs' collection[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:77[0m [36m# Associations — Song and Artist: Artist #add_song does not add the song to the current artist's collection of songs if it already exists therein[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:88[0m [36m# Associations — Song and Artist: Song #artist= invokes Artist#add_song to add itself to the artist's collection of songs (artist has many songs)[0m
+[31mrspec ./spec/004_songs_and_artists_spec.rb:96[0m [36m# Associations — Song and Artist: Song #initialize invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:9[0m [36m# Associations — Song and Genre: Genre #initialize creates a 'songs' property set to an empty array (genre has many songs)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:16[0m [36m# Associations — Song and Genre: Genre #songs returns the genre's 'songs' collection (genre has many songs)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:28[0m [36m# Associations — Song and Genre: Song #initialize can be invoked with an optional third argument, a Genre object to be assigned to the song's 'genre' property (song belongs to genre)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:38[0m [36m# Associations — Song and Genre: Song #genre returns the genre of the song (song belongs to genre)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:46[0m [36m# Associations — Song and Genre: Song #genre= assigns a genre to the song (song belongs to genre)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:52[0m [36m# Associations — Song and Genre: Song #genre= adds the song to the genre's collection of songs (genre has many songs)[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:58[0m [36m# Associations — Song and Genre: Song #genre= does not add the song to the genre's collection of songs if it already exists therein[0m
+[31mrspec ./spec/005_songs_and_genres_spec.rb:67[0m [36m# Associations — Song and Genre: Song #initialize invokes #genre= instead of simply assigning to a @genre instance variable to ensure that associations are created upon initialization[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:11[0m [36m# Associations — Artist and Genre: Artist #genres returns a collection of genres for all of the artist's songs (artist has many genres through songs)[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:20[0m [36m# Associations — Artist and Genre: Artist #genres does not return duplicate genres if the artist has more than one song of a particular genre (artist has many genres through songs)[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:28[0m [36m# Associations — Artist and Genre: Artist #genres collects genres through its songs instead of maintaining its own @genres instance variable (artist has many genres through songs)[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:38[0m [36m# Associations — Artist and Genre: Genre #artists returns a collection of artists for all of the genre's songs (genre has many artists through songs)[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:47[0m [36m# Associations — Artist and Genre: Genre #artists does not return duplicate artists if the genre has more than one song by a particular artist (genre has many artists through songs)[0m
+[31mrspec ./spec/006_artists_and_genres_spec.rb:55[0m [36m# Associations — Artist and Genre: Genre #artists collects artists through its songs instead of maintaining its own @artists instance variable (genre has many artists through songs)[0m
+[31mrspec ./spec/007_findable_songs_spec.rb:6[0m [36m# Song .find_by_name finds a song instance in @@all by the name property of the song[0m
+[31mrspec ./spec/007_findable_songs_spec.rb:12[0m [36m# Song .find_or_create_by_name returns (does not recreate) an existing song with the provided name if one exists in @@all[0m
+[31mrspec ./spec/007_findable_songs_spec.rb:19[0m [36m# Song .find_or_create_by_name invokes .find_by_name instead of re-coding the same functionality[0m
+[31mrspec ./spec/007_findable_songs_spec.rb:25[0m [36m# Song .find_or_create_by_name creates a song if an existing match is not found[0m
+[31mrspec ./spec/007_findable_songs_spec.rb:31[0m [36m# Song .find_or_create_by_name invokes .create instead of re-coding the same functionality[0m
+[31mrspec ./spec/008_findable_module_spec.rb:4[0m [36m# Concerns::Findable defines a module named Concerns::Findable[0m
+[31mrspec ./spec/008_findable_module_spec.rb:12[0m [36m# Artist extends the Concerns::Findable module[0m
+[31mrspec ./spec/008_findable_module_spec.rb:19[0m [36m# Genre extends the Concerns::Findable module[0m
+[31mrspec ./spec/008_findable_module_spec.rb:32[0m [36m# Concerns::Findable .find_by_name is added as a class method to classes that extend the module[0m
+[31mrspec ./spec/008_findable_module_spec.rb:42[0m [36m# Concerns::Findable .find_by_name isn't hard-coded[0m
+[31mrspec ./spec/008_findable_module_spec.rb:37[0m [36m# Concerns::Findable .find_by_name works exactly like a generic version of Song.find_by_name, searching the extended class's @@all variable for an instance that matches the provided name[0m
+[31mrspec ./spec/008_findable_module_spec.rb:48[0m [36m# Concerns::Findable .find_or_create_by_name is added as a class method to classes that extend the module[0m
+[31mrspec ./spec/008_findable_module_spec.rb:53[0m [36m# Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: finds (does not recreate) an existing instance with the provided name if one exists in @@all[0m
+[31mrspec ./spec/008_findable_module_spec.rb:57[0m [36m# Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: isn't hard-coded[0m
+[31mrspec ./spec/008_findable_module_spec.rb:61[0m [36m# Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes .find_by_name instead of re-coding the same functionality[0m
+[31mrspec ./spec/008_findable_module_spec.rb:66[0m [36m# Concerns::Findable .find_or_create_by_name works exactly like a generic version of Song.find_or_create_by_name: invokes the extended class's .create method, passing in the provided name, if an existing match is not found[0m
+[31mrspec ./spec/009_music_importer_spec.rb:7[0m [36m# MusicImporter #initialize accepts a file path to parse MP3 files from[0m
+[31mrspec ./spec/009_music_importer_spec.rb:14[0m [36m# MusicImporter #path retrieves the path provided to the MusicImporter object[0m
+[31mrspec ./spec/009_music_importer_spec.rb:20[0m [36m# MusicImporter #files loads all the MP3 files in the path directory[0m
+[31mrspec ./spec/009_music_importer_spec.rb:24[0m [36m# MusicImporter #files normalizes the filename to just the MP3 filename with no path[0m
+[31mrspec ./spec/009_music_importer_spec.rb:35[0m [36m# Song .new_from_filename initializes a song based on the passed-in filename[0m
+[31mrspec ./spec/009_music_importer_spec.rb:43[0m [36m# Song .new_from_filename invokes the appropriate Findable methods so as to avoid duplicating objects[0m
+[31mrspec ./spec/009_music_importer_spec.rb:58[0m [36m# Song .create_from_filename initializes and saves a song based on the passed-in filename[0m
+[31mrspec ./spec/009_music_importer_spec.rb:64[0m [36m# Song .create_from_filename invokes .new_from_filename instead of re-coding the same functionality[0m
+[31mrspec ./spec/009_music_importer_spec.rb:76[0m [36m# MusicImporter #import imports the files into the library by invoking Song.create_from_filename[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:5[0m [36m# MusicLibraryController #initialize accepts one argument, the path to the MP3 files to be imported[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:9[0m [36m# MusicLibraryController #initialize creates a new MusicImporter object, passing in the 'path' value[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:15[0m [36m# MusicLibraryController #initialize the 'path' argument defaults to './db/mp3s'[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:21[0m [36m# MusicLibraryController #initialize invokes the #import method on the created MusicImporter object[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:34[0m [36m# MusicLibraryController #call welcomes the user[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:50[0m [36m# MusicLibraryController #call asks the user for input[0m
+[31mrspec ./spec/010_music_library_controller_spec.rb:58[0m [36m# MusicLibraryController #call loops and asks for user input until they type in exit[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:8[0m [36m# MusicLibraryController - CLI Methods #list_songs prints all songs in the music library in a numbered list (alphabetized by song name)[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:18[0m [36m# MusicLibraryController - CLI Methods #list_songs is not hard-coded[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:29[0m [36m# MusicLibraryController - CLI Methods #list_artists prints all artists in the music library in a numbered list (alphabetized by artist name)[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:38[0m [36m# MusicLibraryController - CLI Methods #list_artists is not hard-coded[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:51[0m [36m# MusicLibraryController - CLI Methods #list_genres prints all genres in the music library in a numbered list (alphabetized by genre name)[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:60[0m [36m# MusicLibraryController - CLI Methods #list_genres is not hard-coded[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:70[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_artist prompts the user to enter an artist[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:78[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_artist accepts user input[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:86[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_artist prints all songs by a particular artist in a numbered list (alphabetized by song name)[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:99[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_artist does nothing if no matching artist is found[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:110[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_genre prompts the user to enter a genre[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:118[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_genre accepts user input[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:126[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_genre prints all songs by a particular genre in a numbered list (alphabetized by song name)[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:136[0m [36m# MusicLibraryController - CLI Methods #list_songs_by_genre does nothing if no matching genre is found[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:147[0m [36m# MusicLibraryController - CLI Methods #play_song prompts the user to choose a song from the alphabetized list output by #list_songs[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:157[0m [36m# MusicLibraryController - CLI Methods #play_song accepts user input[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:165[0m [36m# MusicLibraryController - CLI Methods #play_song upon receiving valid input 'plays' the matching song from the alphabetized list output by #list_songs[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:174[0m [36m# MusicLibraryController - CLI Methods #play_song does not 'puts' anything out if a matching song is not found[0m
+[31mrspec ./spec/011_music_library_cli_methods_spec.rb:183[0m [36m# MusicLibraryController - CLI Methods #play_song checks that the user entered a number between 1 and the total number of songs in the library[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:7[0m [36m# MusicLibraryController - CLI Commands 'list songs' triggers #list_songs[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:17[0m [36m# MusicLibraryController - CLI Commands 'list artists' triggers #list_artists[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:27[0m [36m# MusicLibraryController - CLI Commands 'list genres' triggers #list_genres[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:37[0m [36m# MusicLibraryController - CLI Commands 'list artist' triggers #list_songs_by_artist[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:47[0m [36m# MusicLibraryController - CLI Commands 'list genre' triggers #list_songs_by_genre[0m
+[31mrspec ./spec/012_music_library_cli_spec.rb:57[0m [36m# MusicLibraryController - CLI Commands 'play song' triggers #play_song[0m
+
