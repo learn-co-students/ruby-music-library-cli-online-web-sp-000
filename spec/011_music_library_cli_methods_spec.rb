@@ -97,7 +97,7 @@ describe "MusicLibraryController - CLI Methods" do
     end
 
     it "does nothing if no matching artist is found" do
-      allow(music_library_controller).to receive(:gets).and_return("Eel Restate")
+      allow(music_library_controller).to receive(:gets).and_return("Real Restate")
 
       expect($stdout).to receive(:puts).with("Please enter the name of an artist:")
       expect($stdout).to_not receive(:puts)
