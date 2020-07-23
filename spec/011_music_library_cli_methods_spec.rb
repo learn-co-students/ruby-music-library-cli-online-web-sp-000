@@ -13,6 +13,7 @@ describe "MusicLibraryController - CLI Methods" do
       expect($stdout).to receive(:puts).with("5. Jurassic 5 - What's Golden - hip-hop")
 
       music_library_controller.list_songs
+
     end
 
     it "is not hard-coded" do
