@@ -1,3 +1,4 @@
+require 'pry'
 context "Song" do
   let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
   let!(:song_two) { Song.create("In the Aeroplane Over the Sea") }
@@ -24,7 +25,7 @@ context "Song" do
 
     it "creates a song if an existing match is not found" do
       other_song = Song.find_or_create_by_name("I'd Rather Go Blind")
-
+ #binding.pry
       expect(Song.all).to include(other_song)
     end
 
