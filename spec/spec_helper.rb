@@ -1,4 +1,10 @@
 require_relative "../config/environment.rb"
+require_relative "../lib/001_song_basics.rb"
+require_relative "../lib/002_artist_basics.rb"
+require_relative "../lib/003_genre_basics.rb"
+require_relative "../lib/concerns_module.rb"
+require_relative "../lib/music_importer.rb"
+
 
 RSpec.configure do |config|
   config.order = :default
