@@ -33,14 +33,15 @@ class Genre
   end
   
   def artists 
-    artists = @songs.collect {|song| song.artist}
     final = []
-    artists.each do |artist|
-      if !final.include?(artist) 
-        final << artist
+    @songs.each do |song|
+      if !final.include?(song.artist)
+        final << song.artist
       end 
     end 
     final
   end 
+    
+    
   
 end 
