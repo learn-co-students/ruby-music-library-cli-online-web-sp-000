@@ -3,18 +3,13 @@ require 'pry'
 module Concerns::Findable 
   
   def find_by_name(name) 
-   self.all.each do |artist|
-     if artist.name == name
-       return artist 
-     end
-   end
-   false
- end
+    self.all.detect {|artist| artist.name === name}
+  end
     
   
   def find_or_create_by_name(name)
     result = find_by_name(name)
-    if result != false
+    if result != nil
       return result
     else 
       result = self.create(name)
