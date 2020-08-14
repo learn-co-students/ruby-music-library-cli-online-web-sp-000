@@ -1,6 +1,8 @@
 # rspec spec/001_song_basics_spec.rb
+require 'pry'
+class Song# < MusicImporter
 
-class Song
+  extend Concerns::Findable
 
   attr_accessor :name, :genre, :artist
   @@all = []
@@ -31,27 +33,35 @@ class Song
   def self.create(name)
     self.new(name)
   end
-
-  # #artist=invokes Artist#add_song to add itself to the artist's collection of songs
   
   def artist=(artist)
+    @artist = artist
     artist.add_song(self)
   end
 
-  # def genre=(genre)
-  #   @genre = genre
-  #   Song.all.find do |song| 
-  #     song.genre != self
-  #       @@all << self
-  #   end
-  # end
-
-  def self.find_by_name(name)
-    @@all.find {|song| song.name == name}
+  def genre=(genre)
+    @genre = genre
+    if !genre.songs.include?(self)
+      genre.songs << self
+    end
   end
 
-  def self.find_or_create_by_name(name)
-    @@all.find {|song| song.name == name} || self.new(name)
+  def self.new_from_filename(filename)
+    name = filename.split(" - ")[1]
+    artist_name = filename.split(" - ")[0]
+    artist = Artist.find_or_create_by_name(artist_name)
+    genre_name = filename.split(" - ")[2].gsub(".mp3","")
+    genre = Genre.find_or_create_by_name(genre_name)
+    song = self.new(name, artist, genre)
+    #binding.pry
+    song
+  end
+
+  def self.create_from_filename(filename)
+    # song = self.new_from_filename(filename)
+    # Song.all << self
+    # self
+    Song.all << self.new_from_filename(filename)
   end
 
 end
