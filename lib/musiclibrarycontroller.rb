@@ -1,5 +1,3 @@
-# rspec spec/010_music_library_controller_spec.rb
-require 'pry'
 class MusicLibraryController
 
   attr_accessor :path
@@ -10,8 +8,8 @@ class MusicLibraryController
   end
 
   def call
-    input = gets.strip
 
+    input = nil
     while input != 'exit'
     
       puts "Welcome to your music library!"
@@ -39,10 +37,6 @@ class MusicLibraryController
         list_songs_by_genre
       when 'play song'
         play_song
-      when 'exit'
-        break
-      else
-        call
       end
 
     end

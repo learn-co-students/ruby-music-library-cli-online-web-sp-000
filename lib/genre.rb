@@ -1,5 +1,3 @@
-# rspec spec/003_genre_basics_spec.rb
-
 class Genre
 
   extend Concerns::Findable

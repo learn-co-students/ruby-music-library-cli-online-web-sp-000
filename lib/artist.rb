@@ -1,5 +1,3 @@
-# rspec spec/002_artist_basics_spec.rb
-
 class Artist
 
   extend Concerns::Findable

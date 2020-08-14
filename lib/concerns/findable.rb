@@ -1,5 +1,3 @@
-# rspec spec/008_findable_module_spec.rb
-
 module Concerns::Findable
 
   def find_by_name(name)

@@ -1,5 +1,3 @@
-# rspec spec/009_music_importer_spec.rb
-
 class MusicImporter
 
   attr_accessor :path

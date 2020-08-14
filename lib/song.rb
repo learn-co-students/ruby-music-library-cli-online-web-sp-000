@@ -1,6 +1,4 @@
-# rspec spec/001_song_basics_spec.rb
-require 'pry'
-class Song# < MusicImporter
+class Song
 
   extend Concerns::Findable
 
@@ -57,9 +55,6 @@ class Song# < MusicImporter
   end
 
   def self.create_from_filename(filename)
-    # song = self.new_from_filename(filename)
-    # Song.all << self
-    # self
     Song.all << self.new_from_filename(filename)
   end
 
