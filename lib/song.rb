@@ -53,7 +53,6 @@ class Song# < MusicImporter
     genre_name = filename.split(" - ")[2].gsub(".mp3","")
     genre = Genre.find_or_create_by_name(genre_name)
     song = self.new(name, artist, genre)
-    #binding.pry
     song
   end
 
