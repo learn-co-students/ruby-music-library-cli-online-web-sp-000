@@ -32,4 +32,8 @@ class Genre
     song
   end
 
+  def artists
+    @songs.map{|song| song.artist}.uniq
+  end
+
 end
