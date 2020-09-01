@@ -23,6 +23,8 @@ class MusicLibraryController
       puts "What would you like to do?"
 
       input = gets.strip
+      
+    end
 
   end 
 
@@ -64,12 +66,6 @@ class MusicLibraryController
         puts "#{i+1}. #{song.artist.name} - #{song.name}"
       end
     end
-  end
-
-  def play_song
-    puts "Which song number would you like to play?"
-    input = gets.strip.to_i
-    
   end
 
 end
