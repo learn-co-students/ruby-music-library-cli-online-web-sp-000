@@ -1,7 +1,11 @@
+require "pry"
+
 class Artist
 
-require "pry"
-    attr_accessor :name, :songs, :song
+
+
+
+    attr_accessor :name, :songs
 
     
     @@all = []
@@ -22,6 +26,13 @@ require "pry"
             find          
 end
 end
+
+def genres
+    @songs.selct do |song|
+        binding.pry
+end
+end
+
 
 def save
     @@all << self
