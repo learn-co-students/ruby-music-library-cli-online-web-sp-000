@@ -44,13 +44,6 @@ class Genre
 
 #binding.pry
        def artists
-        binding.pry 
-        songs.collect do |song| 
-            if song = nil
-            song.artist = artist 
-            song.artist 
-                                                                               
-    end
-end
+        songs.collect{|song|song.artist}.uniq
 end
 end
