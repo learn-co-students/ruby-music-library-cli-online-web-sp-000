@@ -39,8 +39,8 @@ def genre=(genre)
 end
 
 def self.find_by_name(name)
-    @@all.find do |song|
-        song.name
+    @@all.select do |song|
+        song.name 
   end
 end
 
