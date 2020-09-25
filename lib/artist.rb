@@ -28,10 +28,10 @@ end
 end
 
 def genres
-    @songs.selct do |song|
-        binding.pry
+    self.songs.collect {|song|song.genre}.uniq
+        #binding.pry
 end
-end
+
 
 
 def save

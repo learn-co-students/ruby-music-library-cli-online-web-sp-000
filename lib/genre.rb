@@ -44,6 +44,12 @@ class Genre
 
 #binding.pry
        def artists
-        songs.collect {|song| song.artist}
+        songs.collect do |song| 
+            if song = nil
+            song.artist = artist 
+            song.artist 
+            binding.pry                                                                    
     end
+end
+end
 end
