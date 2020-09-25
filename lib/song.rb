@@ -18,7 +18,7 @@ def self.all
 end
 
 def self.create(name)
-    Song.new(name) = song
+    song = Song.new(name) 
     song.save
 #if !self.all.include?(name)
 end
