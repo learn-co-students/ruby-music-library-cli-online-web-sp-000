@@ -1,3 +1,5 @@
+require "pry"
+
 class Song
 
     @@all = []
@@ -20,6 +22,8 @@ end
 def self.create(name)
     song = Song.new(name) 
     song.save
+    song
+    binding.pry
 #if !self.all.include?(name)
 end
 
