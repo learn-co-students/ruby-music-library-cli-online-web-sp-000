@@ -18,9 +18,7 @@ def self.all
 end
 
 def self.create(name)
-    Artist.new(name)
-    @@all << self
-    self
+    self.new(name)
 #if !self.all.include?(name)
 end
 
