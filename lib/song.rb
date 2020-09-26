@@ -2,6 +2,8 @@ require "pry"
 
 class Song
 
+    extend Concerns::Findable
+
     @@all = []
 
     attr_accessor :artist, :name, :genre
@@ -10,7 +12,6 @@ class Song
         self.artist = artist if artist != nil
         self.genre = genre if genre != nil
         @name = name
-        genre = genre.new(name)
     end
 
 
@@ -79,5 +80,5 @@ end
         self.artist.add_song(self)
     end
 
-    binding.pry
+    #binding.pry
 end
