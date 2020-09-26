@@ -10,8 +10,7 @@ class Song
         self.artist = artist if artist != nil
         self.genre = genre if genre != nil
         @name = name
-        self.save
-
+        genre = genre.new(name)
     end
 
 
@@ -20,10 +19,11 @@ def self.all
 end
 
 def self.create(name)
+    
     song = Song.new(name) 
     song.save
     song
-    binding.pry
+   
 #if !self.all.include?(name)
 end
 
@@ -47,14 +47,14 @@ def self.find_by_name(name)
 
 
 def self.find_or_create_by_name(name)
-self.find_by_name(name) || self.create(name)
+find_by_name(name) || create(name)
 #binding.pry
 end
 
 
 
-def self.new_by_filename(file)
 
+def self.new_by_filename(file)
     row = file
         data = row.split(" - ")
           artist_name = data[0]
@@ -78,4 +78,6 @@ end
         @artist = artist
         self.artist.add_song(self)
     end
+
+    binding.pry
 end
