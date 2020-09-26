@@ -12,6 +12,7 @@ class Song
         self.artist = artist if artist != nil
         self.genre = genre if genre != nil
         @name = name
+
     end
 
 
@@ -55,16 +56,26 @@ end
 
 
 
-def self.new_by_filename(file)
-    row = file
-        data = row.split(" - ")
-          artist_name = data[0]
-          song_name = data[1].delete_suffix(".mp3").strip
-          song = Song.new(song_name)
-          song.artist_name = artist_name
-          song
-    end
- 
+
+
+def self.new_from_filename(filename)
+    song_data = filename.split(" - ")
+        song = song_data[1]
+        artist_name = song_data[0]
+        genre_name = song_data[2].split(".mp3").join
+    
+    
+        artist_name = Artist.find_or_create_by_name(artist_name)
+        genre_name = Genre.find_or_create_by_name(genre_name)
+        self.new(song, artist_name, genre_name)
+      end
+
+
+
+      def self.create_from_filename(file)
+        song = Song.new_from_filename(file)
+        song.save
+end
  
     def self.destroy_all
     @@all.clear
@@ -79,6 +90,5 @@ end
         @artist = artist
         self.artist.add_song(self)
     end
-
-    #binding.pry
+    
 end

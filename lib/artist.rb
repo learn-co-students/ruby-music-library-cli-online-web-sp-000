@@ -18,15 +18,6 @@ class Artist
         
     end
 
-    def self.find_or_create_by_name(name)
-
-       find =  @@all.find{|artist| artist.name == name}
-        if find == nil   
-         self.new(name) 
-        else
-            find          
-end
-end
 
 def genres
     self.songs.collect {|song|song.genre}.uniq
@@ -40,9 +31,8 @@ def save
 end
 
 def self.create(name)
-    Song.new(name)
-    @@all << self
-    self
+   Artist.new(name)
+   
 #if !self.all.include?(name)
 end
 
@@ -65,6 +55,7 @@ def print_songs
     songs.each { |song| puts song.name }
     
 end
+
 end
 
 

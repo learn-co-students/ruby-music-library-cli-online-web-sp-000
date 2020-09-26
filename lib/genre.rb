@@ -24,9 +24,8 @@ class Genre
     end
 
     def self.create(name)
-            self.new(name)
-            @@all << self
-            self
+        Genre.new(name)
+                 
         #if !self.all.include?(name)
         end
 
