@@ -1,4 +1,4 @@
-class MusicLibraryController
+class MusicLibraryController < MusicImporter
 
 
     def initialize(path)
