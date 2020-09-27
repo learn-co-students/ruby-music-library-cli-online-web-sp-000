@@ -24,8 +24,36 @@ def call
         input = gets.strip
     end
 end
-    def lists_songs  
-        input = ""
-        input = gets.strip     
+    def list_songs  
+        sorted_songs = Song.all.sort{ |a,b| a.name <=> b.name}
+        sorted_songs.each_with_index do |song, index|
+        puts "#{index+1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+        
+        end
+    end  
+    
+    def list_artists
+        sorted_artists = Artist.all.sort{ |a,b| a.name <=> b.name}
+        sorted_artists.each_with_index do |artist, index|
+        puts "#{index+1}. #{artist.name}"
+
     end
+end
+
+
+def list_genres
+        sorted_genres = Genre.all.sort{ |a,b| a.name <=> b.name}
+        sorted_genres.each_with_index do |genre, index|
+        puts "#{index+1}. #{genre.name}"
+        end
+    end
+def list_songs_by_artist
+    input = ""
+    sorted_artist_songs = Artist.songs.sort{ |a,b| a.name <=> b.name}
+        sorted_artist_songs.each_with_index do |song, index|
+    puts "Please enter the name of an artist:"
+    puts "#{index+1}. #{song.name} - #{song.genre}"
+    input = gets.strip
+    end
+end
 end
