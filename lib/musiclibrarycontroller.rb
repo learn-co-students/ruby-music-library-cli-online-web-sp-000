@@ -48,12 +48,13 @@ def list_genres
         end
     end
 def list_songs_by_artist
-    input = ""
-    sorted_artist_songs = Artist.songs.sort{ |a,b| a.name <=> b.name}
-        sorted_artist_songs.each_with_index do |song, index|
     puts "Please enter the name of an artist:"
-    puts "#{index+1}. #{song.name} - #{song.genre}"
     input = gets.strip
+    sorted_artist_songs = artist.songs.sort{ |a,b| a.name <=> b.name}
+        sorted_artist_songs.each_with_index do |song, index|
+    
+    puts "#{index+1}. #{song.name} - #{song.genre}"
+    
     end
 end
 end
