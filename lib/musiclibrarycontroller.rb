@@ -77,8 +77,9 @@ end
 
 def play_song
         puts "Which song number would you like to play?"
-        input = gets.strip
-        if song_artist = Song.find_by_name(input)
+        input = gets.strip.to_i
+        if Song.all.count > input && input > 0
+         song =  Song.all.each_with_index{|song, index| song.index == input}
         puts "Playing #{song.name} by #{song.artst.name}"
         end
       end
