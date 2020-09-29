@@ -14,6 +14,13 @@ module Findable
       #binding.pry
       end
     end
+
+   def list_songs  
+      sorted_songs = Song.all.sort{ |a,b| a.name <=> b.name}
+      sorted_songs.each_with_index do |song, index|
+      puts "#{index+1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"    
+      end
+  end  
   end
 
 
