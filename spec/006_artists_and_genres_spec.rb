@@ -12,6 +12,9 @@ describe "Associations — Artist and Genre:" do
         Song.new("The Luckiest Guy on the Lower East Side", artist, genre)
         Song.new("Long-Forgotten Fairytale", artist, other_genre)
 
+        # puts artist.genres
+        # puts "buf"
+        # puts genre
         expect(artist.genres).to include(genre)
         expect(artist.genres).to include(other_genre)
         expect(artist.genres.size).to be(2)
