@@ -1,5 +1,3 @@
-require 'pry'
-
 class Artist
 
   attr_accessor :name, :songs
@@ -37,6 +35,12 @@ class Artist
     unless @songs.include?(song)
       @songs << song
     end
+  end
+
+  def genres
+    genre = @songs.collect {|e| e.genre}
+    array = genre.uniq
+    array
   end
 
 end

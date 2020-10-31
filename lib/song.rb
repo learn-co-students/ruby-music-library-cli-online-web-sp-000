@@ -6,13 +6,17 @@ class Song
 
   @@all = []
 
-#---how to differentiate between 2nd and third optional arguments?
   def initialize(name, artist = nil, genre = nil)
     @name = name
-    self.artist = artist if artist
-    #invoke optional third argument (Genre object) and assign to the Song's genre property
-    #---why is self.genre nil in pry? is there no genre passed in during test?
-    self.genre = genre if genre
+    if artist
+      self.artist = artist
+      artist=(artist)
+    end
+
+    if genre
+      self.genre = genre
+      genre=(genre)
+    end
   end
 
   def self.all
@@ -38,15 +42,27 @@ class Song
     artist.add_song(self)
   end
 
-  def genre=(genre) #Genre object
-    #unless the song already has a Genre object
+  def genre=(genre)
     unless self.genre
-    #assign the Song's genre property to the Genre object
-      #self.genre = genre #---MAIN ERROR
+      @genre = genre
     end
 
     unless genre.songs.include?(self)
       genre.songs << self
+    end
+  end
+
+  def self.find_by_name(title)
+    @@all.select {|e| return e if e.name == title}
+  end
+
+  def self.find_or_create_by_name(title)
+    array = @@all.map {|e| e.name}
+
+    if array.include?(title)
+      self.find_by_name(title)
+    else
+      self.create(title)
     end
 
 #binding.pry
