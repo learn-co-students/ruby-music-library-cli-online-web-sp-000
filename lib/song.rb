@@ -16,7 +16,6 @@ class Song
     if genre != nil
       self.genre=(genre)
     end
-
   end
 
   def genre=(genre)
@@ -49,7 +48,7 @@ class Song
   end
 
   def self.find_by_name(name)
-    self.all.find { |song| song.name == name }
+    @@all.find { |song| song.name == name }
   end
 
   def self.find_or_create_by_name(name)
@@ -58,7 +57,6 @@ class Song
     else
       self.create(name)
     end
-
   end
 
 end
