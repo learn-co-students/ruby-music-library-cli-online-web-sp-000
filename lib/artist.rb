@@ -29,23 +29,3 @@ class Artist
   end
 
 end
-
-#moved to Persistable:
-# def self.destroy_all
-#   self.all.clear
-# end
-#
-# def save
-#   @@all << self
-# end
-
-# def self.create(name)
-  # new_artist = self.new(name)
-  # new_artist.save
-  # new_artist
-#
-#   self.new(name).tap do|s|
-#     s.save
-#   end
-# end
-# end
