@@ -1,4 +1,6 @@
 class MusicLibraryController
+  extend Concerns::Sortable::ClassMethods
+  include Concerns::Sortable::InstanceMethods
 
   def initialize(path = './db/mp3s')
     MusicImporter.new(path).import
@@ -53,18 +55,17 @@ class MusicLibraryController
 
 
   def list_songs
-    sorted_songs = Song.all.sort { |a, b| a.name <=> b.name }
-    sorted_songs.each_with_index { |song, index| puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}" }
+    Song.sort_by_name.each_with_index do |song, index|
+      puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
 
   def list_artists
-    sorted_artists = Artist.all.sort  { |a, b| a.name <=> b.name }
-    sorted_artists.each_with_index { |artist, index| puts "#{index + 1}. #{artist.name}" }
+    Artist.sort_and_print_by_name
   end
 
   def list_genres
-    sorted_genres = Genre.all.sort { |a, b| a.name <=> b.name }
-    sorted_genres.each_with_index { |genre, index| puts "#{index + 1}. #{genre.name}" }
+    Genre.sort_and_print_by_name
   end
 
   def list_songs_by_artist
@@ -74,8 +75,9 @@ class MusicLibraryController
     if user_input
       artist = Artist.find_by_name(user_input)
       if artist
-        sorted_songs = artist.songs.sort { |a, b| a.name <=> b.name }
-        sorted_songs.each_with_index { |song, index| puts "#{index + 1}. #{song.name} - #{song.genre.name}" }
+        artist.sort_object_by_name.each_with_index do |song, index|
+          puts "#{index + 1}. #{song.name} - #{song.genre.name}"
+        end
       end
     end
   end
@@ -87,8 +89,9 @@ class MusicLibraryController
     if user_input
       genre = Genre.find_by_name(user_input)
       if genre
-        sorted_songs = genre.songs.sort { |a, b| a.name <=> b.name }
-        sorted_songs.each_with_index { |song, index| puts "#{index + 1}. #{song.artist.name} - #{song.name}" }
+        genre.sort_object_by_name.each_with_index do |song, index|
+          puts "#{index + 1}. #{song.artist.name} - #{song.name}"
+        end
       end
     end
   end
@@ -97,7 +100,7 @@ class MusicLibraryController
     puts "Which song number would you like to play?"
     user_input = gets.chomp.to_i
     if user_input > 0 && user_input <= Song.all.length
-      sorted_songs = Song.all.sort { |a, b| a.name <=> b.name }
+      sorted_songs = Song.sort_by_name
       song = sorted_songs[user_input - 1]
       puts "Playing #{song.name} by #{song.artist.name}"
     end

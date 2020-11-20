@@ -9,7 +9,6 @@ class MusicImporter
 
   def files
     Dir.children(self.path)
-    # Dir.children(@path)
   end
 
   def import

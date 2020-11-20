@@ -1,6 +1,10 @@
 class Genre
   extend Concerns::Findable
-  
+  extend Concerns::Persistable::ClassMethods
+  include Concerns::Persistable::InstanceMethods
+  extend Concerns::Sortable::ClassMethods
+  include Concerns::Sortable::InstanceMethods
+
 
   attr_accessor :name, :songs
 
@@ -11,26 +15,12 @@ class Genre
     @songs = []
   end
 
-  def save
-    @@all << self
-  end
-
-  def self.create(name)
-    genre = self.new(name)
-    genre.save
-    genre
-  end
-
   def self.all
     @@all
   end
 
-  def self.destroy_all
-    self.all.clear
-  end
-
   def artists
-    @songs.collect { |song| song.artist }.uniq
+    self.songs.collect { |song| song.artist }.uniq
   end
 
 end
