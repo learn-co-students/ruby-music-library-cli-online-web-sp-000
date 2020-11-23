@@ -200,7 +200,7 @@ class MusicLibraryController
     p input = gets
     
      access = input.to_i - 1
-     ##HOW DO I HAVE THE WRONG SONG LIST?!!!
+  
      p @@ordered_songs
    
     if input.to_i > @@ordered_songs.size
@@ -208,15 +208,12 @@ class MusicLibraryController
     elsif input.to_i <= 0
       nil
     else
-      #list_songs
       song_to_play = @@ordered_songs[access].split(" - ")
       song_name = song_to_play[1]
       artist_and_number = song_to_play[0].split(".")
       artist_name = artist_and_number[1]
       puts "Playing #{song_name} by#{artist_name}"
-     
     end
-  
   end
   
   
