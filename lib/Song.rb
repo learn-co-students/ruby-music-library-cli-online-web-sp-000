@@ -65,9 +65,10 @@ class Song
 
  def self.new_from_filename(file)
    str = file.delete_suffix(".mp3")
-   strArr = str.split("-")
+   strArr = str.split(" - ")
 
    name = strArr[1].strip
+   #song = Song.create(name)
    song = Song.new(name)
    song.genre = Genre.find_or_create_by_name(strArr[2].strip)
    song.artist = Artist.find_or_create_by_name(strArr[0].strip)
