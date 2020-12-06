@@ -29,7 +29,7 @@ class MusicLibraryController
       elsif choice == "list artist"
         list_songs_by_artist
       elsif choice == "list genre"
-        list_songs_by_artist
+        list_songs_by_genre
       elsif choice == "play song"
         play_song
       end
