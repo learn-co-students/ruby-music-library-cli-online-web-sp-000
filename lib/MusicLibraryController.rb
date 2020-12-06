@@ -38,13 +38,17 @@ class MusicLibraryController
   end
 
   def list_songs
-    sorted_songs = Song.all.sort_by {|song| song.name}
+    sorted_songs = get_sorted_songs
     item_count = 1
     sorted_songs.each do |song|
       puts (item_count.to_s + ". "+song.artist.name + " - "+song.name+ " - "+song.genre.name)
       item_count +=1
     end
     sorted_songs
+  end
+
+  def get_sorted_songs
+    sorted_songs = Song.all.sort_by {|song| song.name}
   end
 
   def list_artists
@@ -98,13 +102,12 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-    sorted_songs = list_songs
-    number_of_song = gets.chomp
-    if number_of_song.numberic?
-      str = sorted_songs[number_of_song.to_i]
-      arr_str = str.split(" - ")
-      artist_name = arr_str[0].delete_prefix(number_of_song.to_s + ".")
-      puts "Playing #{{arr_str[1]}} by "
+    sorted_songs = get_sorted_songs
+    song_number_str = gets.chomp
+    song_number = song_number_str.to_i
+    if song_number >= 1 && song_number < sorted_songs.size
+      song = sorted_songs[song_number]
+      puts "Playing #{song.name} by #{song.artist.name}"
     end
 
   end
