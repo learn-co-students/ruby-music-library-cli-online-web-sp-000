@@ -101,7 +101,10 @@ class MusicLibraryController
     sorted_songs = list_songs
     number_of_song = gets.chomp
     if number_of_song.numberic?
-      song = sorted_songs[number_of_song.to_i]
+      str = sorted_songs[number_of_song.to_i]
+      arr_str = str.split(" - ")
+      artist_name = arr_str[0].delete_prefix(number_of_song.to_s + ".")
+      puts "Playing #{{arr_str[1]}} by "
     end
 
   end
