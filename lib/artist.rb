@@ -28,8 +28,8 @@ class Artist
 	end
 
 	def add_song(song)
-		song.artist = self if !song.artist
-		songs.push(song) if !songs.include?(song)
+		song.artist = self unless song.artist
+		songs.push(song) unless songs.include?(song)
 	end
 
 	def genres
