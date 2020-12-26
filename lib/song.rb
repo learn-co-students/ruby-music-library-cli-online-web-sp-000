@@ -52,5 +52,23 @@ attr_reader :artist, :genre
         #     create(name)
         # end
     end
+
+    def self.new_from_filename(filename)
+        song_split = filename.split(" - ")
+        # binding.pry
+        artist_name = song_split[0]
+        genre_name = song_split[2].delete(".mp3")
+        song_name = song_split[1]
+
+        artist = Artist.find_or_create_by_name(artist_name)
+        genre = Genre.find_or_create_by_name(genre_name)
+
+        song = Song.new(song_name, artist, genre)
+
+    end
+
+    def self.create_from_filename(filename)
+        @@all << self.new_from_filename(filename) 
+    end
     
 end
