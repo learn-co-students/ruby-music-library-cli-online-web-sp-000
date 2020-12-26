@@ -8,7 +8,10 @@ class MusicImporter
     end
 
     def files
-        # binding.pry
+        binding.pry
+        Dir.glob("*.mp3") do |filename|
+
+        end
     end
 
 end
