@@ -2,7 +2,7 @@ require 'pry'
 
 class Genre
   extend Persistable::ClassMethods
-  extend Findable::ClassMethods
+  extend Concerns::Findable
   extend Nameable::ClassMethods
   include Persistable::InstanceMethods
   attr_accessor :name, :songs, :musiclibrarycontroller, :musicimporter
@@ -17,7 +17,9 @@ class Genre
     @@all
   end
 
-
+  def self.destroy_all
+    @@all.clear
+  end
 
   def self.create(genre)
     genre = self.new(genre)

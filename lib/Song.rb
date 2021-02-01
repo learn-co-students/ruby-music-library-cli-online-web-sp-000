@@ -2,16 +2,18 @@ require 'pry'
 
 class Song
   extend Persistable::ClassMethods
-  extend Findable::ClassMethods
+  extend Concerns::Findable
   extend Nameable::ClassMethods
   include Persistable::InstanceMethods
   attr_accessor :name, :artist, :musicimporter, :musiclibrarycontroller
   attr_reader :genre
   @@all = []
 
-  def initialize
-    save
-  end
+  def initialize(name, artist=nil,genre=nil)
+    @name=name
+    self.artist=(artist) if artist.class==Artist
+    self.genre=(genre) if genre.class==Genre
+end
 
   def self.all
     @@all
@@ -62,6 +64,5 @@ class Song
   def self.create_from_filename(filename)
     self.new_from_filename(filename).save
   end
-
 
 end

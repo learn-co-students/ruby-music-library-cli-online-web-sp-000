@@ -2,7 +2,7 @@ require 'pry'
 
 class Artist
   extend Persistable::ClassMethods
-  extend Findable::ClassMethods
+  extend Concerns::Findable
   extend Nameable::ClassMethods
   include Persistable::InstanceMethods
   attr_accessor :name, :song, :musiclibrarycontroller, :musicimporter
