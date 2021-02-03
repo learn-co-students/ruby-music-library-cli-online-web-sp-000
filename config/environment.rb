@@ -1,7 +1,10 @@
 require 'bundler'
 Bundler.require
 
-module Concerns
-end
 
-require_all 'lib'
+require_all 'lib' # keep object files seperate and work together
+
+module Concerns
+  module Findable
+end
+  end
