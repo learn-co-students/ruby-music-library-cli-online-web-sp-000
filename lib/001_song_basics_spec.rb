@@ -2,6 +2,7 @@ require_relative './002_artist_basics_spec.rb'
 
 class Song
   @@all = []
+  Concerns::Findable
 
   attr_accessor :name, :artist, :genre
 
@@ -37,7 +38,7 @@ class Song
   def self.create(name)
     song = Song.new(name)
     song.save
-    puts "Song created: #{song.name}."
+    #puts "Song created: #{song.name}."
     song
   end
 
@@ -50,5 +51,26 @@ class Song
       #binding.pry
       #create(name)
   end
+
+  def normalize(file)
+    split1 = file.split(".")
+    normal = split1[0].split(" - ")
+    binding.pry
+  end
+
+  def self.new_from_filename(file)
+    split1 = file.split(".")
+    normal = split1[0].split(" - ")
+    #name = self.find_or_create_by_name(nam)
+    artist = Artist.find_or_create_by_name(normal[0])
+    genre = Genre.find_or_create_by_name(normal[2])
+    song = Song.new(normal[1], artist, genre)
+    song
+  end
+
+  def self.create_from_filename(file)
+    new_from_filename(file).save
+  end
+
 
 end
