@@ -58,8 +58,20 @@ end
   def self.new_from_filename(filename)
      song = filename.split(" - ")[1]
      artist = filename.split(" - ")[0]
-     genre = filename.split(" - ")[2].split(".mp3")
-     Song.new(song,artist,genre)
+     genre = filename.split(" - ")[2].split(".mp3").join
+    artist = Artist.find_or_create_by_name(artist)
+    genre = Genre.find_or_create_by_name(genre)
+     song = Song.new(song,artist,genre)
+  end 
+  
+  def self.create_from_filename(filename)
+    song = filename.split(" - ")[1]
+    artist = filename.split(" - ")[0]
+    genre = filename.split(" - ")[2].split(".mp3").join
+    artist = Artist.find_or_create_by_name(artist)
+    genre = Genre.find_or_create_by_name(genre)
+     song = self.new_from_filename(filename)
+     @@all << song
   end 
   
   
