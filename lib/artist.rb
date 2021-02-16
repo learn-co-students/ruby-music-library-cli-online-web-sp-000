@@ -26,13 +26,11 @@ class Artist
   end
 
   def add_song(song)
-    #binding.pry
-    if song.artist == nil
-      song.artist = self
-      if not @songs.include?(song)
-        @songs << song
-      end
-    end
+      song.artist = self unless song.artist != nil
+      @songs << song unless @songs.include?(song)
   end
 
+  def genres
+    self.songs.collect{|x| x.genre}.uniq
+  end
 end

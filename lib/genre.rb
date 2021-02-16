@@ -25,4 +25,12 @@ class Genre
     self
   end
 
+  def add_song(song)
+      @songs << song
+  end
+
+  def artists
+    self.songs.collect{|x| x.artist}.uniq
+  end
+
 end
