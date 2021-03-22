@@ -1,17 +1,23 @@
 require "spec_helper"
 
 describe "Associations — Song and Artist:" do
-  let(:song) { Song.create("In the Aeroplane Over the Sea") }
+  let(:song) { Song.new("In the Aeroplane Over the Sea") }
   let(:artist) { Artist.new("Neutral Milk Hotel") }
 
   context "Artist" do
+    describe "#initialize" do
+      it "creates a 'songs' property set to an empty array (artist has many songs)" do
+        expect(artist.instance_variable_defined?(:@songs)).to be(true)
+        expect(artist.instance_variable_get(:@songs)).to eq([])
+      end
+    end
 
     describe "#songs" do
       it "returns the artist's 'songs' collection (artist has many songs)" do
         expect(artist.songs).to eq([])
 
-        song.instance_variable_set(:@artist, artist)
-        
+        artist.songs << song
+
         expect(artist.songs).to include(song)
       end
     end
