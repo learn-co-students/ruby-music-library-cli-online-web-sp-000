@@ -5,7 +5,7 @@ RSpec.configure do |config|
   config.before(:each) do
     ["Song", "Genre", "Artist"].each do |class_name|
       if Kernel.const_defined?(class_name)
-        klass = Kernel.const_get(class_name)
+          klass = Kernel.const_get(class_name)
         if klass.respond_to?(:destroy_all)
           klass.destroy_all
         elsif klass.class_variable_defined?(:@@all) && klass.class_variable_get(:@@all).kind_of?(Array)
