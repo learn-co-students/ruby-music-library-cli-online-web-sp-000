@@ -9,7 +9,7 @@ describe "Associations — Song and Genre:" do
       it "returns the genre's 'songs' collection (genre has many songs)" do
         expect(genre.songs).to eq([])
 
-        song.instance_variable_set(:@genre, genre)
+        song.genre = genre
 
         expect(genre.songs).to include(song)
       end
