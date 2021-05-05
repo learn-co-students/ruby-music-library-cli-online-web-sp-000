@@ -1,4 +1,3 @@
-require "pry"
 class Song
   attr_accessor :name
   attr_reader :artist, :genre
@@ -51,11 +50,15 @@ class Song
   end
   
   def self.new_from_filename(filename)
-    file_array = filename.split(" - ")
-    name = file_array[1]
-    artist = file_array[0]
-    #binding.pry 
-    self.new(name, artist = nil, genre = nil)
+    file_array = filename.split(".mp3")[0].split(" - ")
+    artist = Artist.find_or_create_by_name(file_array[0])
+    genre = Genre.find_or_create_by_name(file_array[2])
+    self.new(file_array[1], artist, genre)
   end 
   
+  def self.create_from_filename(filename)
+    song = self.new_from_filename(filename)
+    song.save
+  end 
+
 end 
