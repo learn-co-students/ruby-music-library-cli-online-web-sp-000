@@ -1,4 +1,3 @@
-require "pry"
 class MusicImporter
   attr_accessor :path, :files
   
@@ -11,7 +10,6 @@ class MusicImporter
     @files.delete(".")
     @files.delete("..")
     @files
-    #binding.pry 
   end 
   
   def import
