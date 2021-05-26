@@ -3,27 +3,10 @@ class Artist
 
     attr_accessor :name
 
-    @@all
+    @@all = []
 
     def initialize(name)
         @name = name
-    end
-
-    def self.all
-        @@all
-    end
-
-    def self.destroy_all
-        all.clear
-    end
-
-    def self.create(name)
-        new(name).save
-    end
-
-    def save
-        self.class.all << self
-        self
     end
 
     def add_song(song)
