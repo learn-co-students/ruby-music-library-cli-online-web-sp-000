@@ -33,7 +33,7 @@ class MusicLibraryController
                 when "play song"
                     play_song
                 end
-            end
+            
         end
     end
 
@@ -64,6 +64,7 @@ class MusicLibraryController
                 puts "#{i}. #{s.name} - #{s.genre.name}"
         end
     end
+end
 
     def list_songs_by_genre
         puts "Please enter the name of a genre:"
@@ -74,6 +75,7 @@ class MusicLibraryController
                 puts "#{i}. #{s.artist.name} - #{s.name}"
         end
     end
+end
 
     def play_song
         puts "Which song number would you like to play?"
