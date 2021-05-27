@@ -23,11 +23,6 @@ class Artist
         self
     end
 
-    def create(name)
-        #binding.pry
-        new(name).save
-    end
-
     def add_song(song)
         song.artist = self unless song.artist
     end

@@ -26,10 +26,6 @@ class Song
         self
     end
 
-    def create(name)
-        #binding.pry
-        new(name).save
-    end
 
     def artist=(artist)
         @artist = artist
