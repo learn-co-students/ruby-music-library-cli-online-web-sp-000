@@ -23,15 +23,22 @@ class Artist
         self
     end
 
+    def create(name)
+        #binding.pry
+        new(name).save
+    end
+
     def add_song(song)
         song.artist = self unless song.artist
     end
 
     def songs
+        #binding.pry
         Song.all.select{|s| s.artist == self}
     end
 
     def genres
-        song.collect{|s| s.genre}.uniq
+        #binding.pry
+        songs.collect{|s| s.genre}.uniq
     end
 end

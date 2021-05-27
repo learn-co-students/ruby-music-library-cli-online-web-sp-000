@@ -23,6 +23,11 @@ class Genre
         self
     end
 
+    def create(name)
+        #binding.pry
+        new(name).save
+    end
+
     def artists
         songs.collect{|s| s.artist}.uniq
     end

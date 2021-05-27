@@ -12,6 +12,7 @@ module Concerns::Findable
 
 
     def create(name)
+        #binding.pry
         new(name).save
     end
 
