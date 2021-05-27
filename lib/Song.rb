@@ -1,4 +1,7 @@
 class Song
+    extend Memorable::ClassMethods
+    include Memorable::InstanceMethods
+
     attr_accessor :name
     attr_reader :artist, :genre
     @@all = []
@@ -19,21 +22,23 @@ class Song
         @genre = genre
     end 
 
-    def save
-        @@all << self 
-    end 
+    # included Memorable::InstanceMethods for this instance meth
+    # def save 
+    #     @@all << self 
+    # end 
 
     def self.all
         @@all 
     end 
 
-    def self.create(name)
-        self.new(name)
-    end 
+    # extended Memorable::ClassMethods for these two class meths
+    # def self.create(name)
+    #     self.new(name)
+    # end 
 
-    def self.destroy_all
-        self.all.clear
-    end 
+    # def self.destroy_all
+    #     self.all.clear
+    # end 
 
     def self.find_by_name(name)
         self.all.find {|song| song.name == name}
