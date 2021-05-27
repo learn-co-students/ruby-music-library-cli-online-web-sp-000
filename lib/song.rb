@@ -30,6 +30,20 @@ class Song
         new(song_name, artist, genre)
     end
 
+    def self.all
+        @@all
+    end
+
+    def self.destroy_all
+        all.clear
+    end
+
+
+    def save
+        self.class.all << self
+        self
+    end
+
     def self.create_from_filename(filename)
         new_from_filename(filename).save
     end

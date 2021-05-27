@@ -9,6 +9,20 @@ class Artist
         @name = name
     end
 
+    def self.all
+        @@all
+    end
+
+    def self.destroy_all
+        all.clear
+    end
+
+
+    def save
+        self.class.all << self
+        self
+    end
+
     def add_song(song)
         song.artist = self unless song.artist
     end
