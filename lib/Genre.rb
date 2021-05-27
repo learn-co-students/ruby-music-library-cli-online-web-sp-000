@@ -22,15 +22,15 @@ class Genre
         self.new(name)
     end 
 
+    def self.destroy_all
+        self.all.clear
+    end 
+
     def songs
         Song.all.select {|song| song.genre == self}
     end 
 
     def artists
         songs.collect {|song| song.artist}.uniq
-    end 
-
-    def self.destroy_all
-        self.all.clear
     end 
 end 
