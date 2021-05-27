@@ -31,6 +31,10 @@ class Song
         self.new(name)
     end 
 
+    def self.destroy_all
+        self.all.clear
+    end 
+
     def self.find_by_name(name)
         self.all.find {|song| song.name == name}
     end 
@@ -54,9 +58,5 @@ class Song
 
     def self.create_from_filename(filename)
         self.new_from_filename(filename)
-    end 
-
-    def self.destroy_all
-        self.all.clear
     end 
 end 
