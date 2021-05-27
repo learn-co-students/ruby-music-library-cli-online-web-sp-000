@@ -7,9 +7,10 @@ class MusicImporter
 
     def files
         files = Dir.children(@path)
+        # @files ||= Dir.glob("#{path}/*.mp3").collect{|f| f.gsub("#{path}/", "")}
     end 
 
     def import
-        song = self.files.each {|file| Song.create_from_filename(file)}
+        self.files.each {|file| Song.create_from_filename(file)}
     end
 end 
