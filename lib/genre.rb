@@ -1,4 +1,8 @@
 class Genre
+    extend Findable
+    extend Persistable::ClassMethods
+    include Persistable::InstanceMethods
+
     attr_accessor :name, :songs
     @@all = []
 
@@ -9,12 +13,5 @@ class Genre
     def intitialize
         save
     end
-
-    def save
-        @@all << self
-    end
-
-    def self.reset_all
-        @@all.clear
-    end
+    
 end
