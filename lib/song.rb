@@ -41,10 +41,7 @@ class Song
         artist_name, song_name, genre_name = parts[0], parts[1], parts[2].gsub(".mp3", "")
         artist = Artist.find_or_create_by_name(artist_name)
         genre = Genre.find_or_create_by_name(genre_name)
-        song = Song.find_or_create_by_name(song_name)
-        #binding.pry
-        
-        new(song, artist, genre)
+        self.new(song_name, artist, genre)
     end
     
 
