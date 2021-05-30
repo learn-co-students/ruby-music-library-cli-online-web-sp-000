@@ -1,6 +1,5 @@
-class Song
-  extend Findable 
-  attr_accessor :name
+class Artist
+  attr_accessor :name, :songs
   @@all = []
   
   def initialize

@@ -1,6 +1,5 @@
-class Song
-  extend Findable 
-  attr_accessor :name
+class Genre
+  attr_accessor :name, :songs
   @@all = []
   
   def initialize
@@ -22,5 +21,5 @@ class Song
   def self.count
     @@all.size
   end
-  
+
 end
