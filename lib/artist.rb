@@ -30,7 +30,7 @@ class Artist
 
 
 
-  #class methods
+  #instance methods
   def save
     @@all << self
   end

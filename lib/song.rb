@@ -36,7 +36,8 @@ class Song
     end
 
 
-    #custom constructors for name artist and genre which link them @ the same time
+    #custom constructors for name, artist and genre which link them @ the same time
+    #instance methods 
     def artist=(artist)
       @artist = artist
       artist.add_song(self)
@@ -50,12 +51,12 @@ class Song
       @name = name
     end
 
-
-    #instance methods
     def save
       @@all << self
     end
 
+
+#class methods (should have inherited this from the concerns part of the puzzle)
     def self.find_by_name(name)
       @@all.find {|song| song.name == name}
     end
