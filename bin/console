@@ -1,0 +1,4 @@
+#!/user/bin/env ruby
+require 'irb'
+require relative '../config/environment'
+IRB.start
